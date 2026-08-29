@@ -1,0 +1,57 @@
+name: Bug report
+description: Something does not work the way it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. The more of the below you fill in, the
+        faster this can be sorted out.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce it
+      placeholder: |
+        1. Create a watch with …
+        2. Set the label to …
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: ha-version
+    attributes:
+      label: Home Assistant version
+      placeholder: "2026.8.3"
+    validations:
+      required: true
+  - type: input
+    id: sg-version
+    attributes:
+      label: StateGuard version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: watch-config
+    attributes:
+      label: The watch involved
+      description: >
+        Settings → StateGuard → Developer tools → Actions →
+        `stateguard.export_config`, and paste the relevant watch here.
+        Remove any channel credentials before posting.
+      render: json
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log output
+      description: >
+        Settings → System → Logs, filtered for `stateguard`. Enable debug
+        logging first if there is nothing there.
+      render: text

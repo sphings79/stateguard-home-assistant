@@ -1,0 +1,69 @@
+snooze:
+  fields:
+    watch_id:
+      required: false
+      example: 4f2c1a9b7e30
+      selector:
+        text:
+    entity_id:
+      required: false
+      example: sensor.living_room_temperature
+      selector:
+        entity:
+    duration:
+      required: true
+      default: 8h
+      selector:
+        select:
+          options:
+            - "1h"
+            - "8h"
+            - "24h"
+            - "until_morning"
+
+acknowledge:
+  fields:
+    watch_id:
+      required: false
+      selector:
+        text:
+    entity_id:
+      required: false
+      selector:
+        entity:
+
+clear_acknowledgement:
+  fields:
+    watch_id:
+      required: false
+      selector:
+        text:
+    entity_id:
+      required: false
+      selector:
+        entity:
+
+pause_watch:
+  fields:
+    watch_id:
+      required: true
+      selector:
+        text:
+
+resume_watch:
+  fields:
+    watch_id:
+      required: true
+      selector:
+        text:
+
+run_check:
+
+export_config:
+
+import_config:
+  fields:
+    config:
+      required: true
+      selector:
+        object:

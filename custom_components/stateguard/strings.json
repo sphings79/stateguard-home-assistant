@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up StateGuard",
+        "description": "StateGuard monitors labelled entities and devices and alerts you when they go unavailable, stop sending data or cross a threshold. Everything else is configured in the StateGuard panel after setup."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard is already set up. Only one instance is needed."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problems"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Monitoring"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Snooze",
+      "description": "Holds back alerts for a while without turning the watch off.",
+      "fields": {
+        "watch_id": {
+          "name": "Watch",
+          "description": "Limit the snooze to one watch. Leave empty for all watches."
+        },
+        "entity_id": {
+          "name": "Entity",
+          "description": "Limit the snooze to one entity. Leave empty for all entities."
+        },
+        "duration": {
+          "name": "Duration",
+          "description": "How long alerts stay muted."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Acknowledge",
+      "description": "Marks a problem as known. No further alerts are sent until it clears.",
+      "fields": {
+        "watch_id": {
+          "name": "Watch",
+          "description": "Limit to one watch. Leave empty for all watches."
+        },
+        "entity_id": {
+          "name": "Entity",
+          "description": "Limit to one entity. Leave empty for all entities."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Clear acknowledgement",
+      "description": "Undoes an acknowledgement and any active snooze.",
+      "fields": {
+        "watch_id": {
+          "name": "Watch",
+          "description": "Limit to one watch. Leave empty for all watches."
+        },
+        "entity_id": {
+          "name": "Entity",
+          "description": "Limit to one entity. Leave empty for all entities."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Pause watch",
+      "description": "Disables a single watch until it is resumed.",
+      "fields": {
+        "watch_id": {
+          "name": "Watch",
+          "description": "The watch to pause."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Resume watch",
+      "description": "Re-enables a paused watch.",
+      "fields": {
+        "watch_id": {
+          "name": "Watch",
+          "description": "The watch to resume."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Run check",
+      "description": "Re-resolves all targets and evaluates every watch immediately."
+    },
+    "export_config": {
+      "name": "Export configuration",
+      "description": "Returns the complete StateGuard configuration for backup."
+    },
+    "import_config": {
+      "name": "Import configuration",
+      "description": "Replaces the current configuration with a previously exported one.",
+      "fields": {
+        "config": {
+          "name": "Configuration",
+          "description": "The configuration object as returned by Export configuration."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard is not set up."
+    },
+    "watch_not_found": {
+      "message": "There is no watch with the id {watch_id}."
+    },
+    "invalid_config": {
+      "message": "The supplied configuration could not be read: {error}"
+    }
+  }
+}

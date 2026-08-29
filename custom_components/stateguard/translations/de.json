@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "StateGuard einrichten",
+        "description": "StateGuard überwacht Entitäten und Geräte anhand von Labels und meldet, wenn sie nicht mehr verfügbar sind, keine Daten mehr senden oder einen Schwellwert überschreiten. Alles Weitere wird nach der Einrichtung im StateGuard-Panel konfiguriert."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard ist bereits eingerichtet. Eine Instanz genügt."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Probleme"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Überwachung"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Schlummern",
+      "description": "Unterdrückt Meldungen für eine Weile, ohne die Überwachung abzuschalten.",
+      "fields": {
+        "watch_id": {
+          "name": "Überwachung",
+          "description": "Auf eine Überwachung beschränken. Leer lassen für alle."
+        },
+        "entity_id": {
+          "name": "Entität",
+          "description": "Auf eine Entität beschränken. Leer lassen für alle."
+        },
+        "duration": {
+          "name": "Dauer",
+          "description": "Wie lange Meldungen stumm bleiben."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Quittieren",
+      "description": "Markiert ein Problem als bekannt. Bis zur Behebung kommen keine weiteren Meldungen.",
+      "fields": {
+        "watch_id": {
+          "name": "Überwachung",
+          "description": "Auf eine Überwachung beschränken. Leer lassen für alle."
+        },
+        "entity_id": {
+          "name": "Entität",
+          "description": "Auf eine Entität beschränken. Leer lassen für alle."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Quittierung aufheben",
+      "description": "Hebt eine Quittierung und ein laufendes Schlummern wieder auf.",
+      "fields": {
+        "watch_id": {
+          "name": "Überwachung",
+          "description": "Auf eine Überwachung beschränken. Leer lassen für alle."
+        },
+        "entity_id": {
+          "name": "Entität",
+          "description": "Auf eine Entität beschränken. Leer lassen für alle."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Überwachung pausieren",
+      "description": "Schaltet eine einzelne Überwachung ab, bis sie fortgesetzt wird.",
+      "fields": {
+        "watch_id": {
+          "name": "Überwachung",
+          "description": "Die zu pausierende Überwachung."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Überwachung fortsetzen",
+      "description": "Aktiviert eine pausierte Überwachung wieder.",
+      "fields": {
+        "watch_id": {
+          "name": "Überwachung",
+          "description": "Die fortzusetzende Überwachung."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Prüfung ausführen",
+      "description": "Löst alle Ziele neu auf und wertet sofort jede Überwachung aus."
+    },
+    "export_config": {
+      "name": "Konfiguration exportieren",
+      "description": "Gibt die vollständige StateGuard-Konfiguration zur Sicherung zurück."
+    },
+    "import_config": {
+      "name": "Konfiguration importieren",
+      "description": "Ersetzt die aktuelle Konfiguration durch eine zuvor exportierte.",
+      "fields": {
+        "config": {
+          "name": "Konfiguration",
+          "description": "Das Konfigurationsobjekt aus „Konfiguration exportieren“."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard ist nicht eingerichtet."
+    },
+    "watch_not_found": {
+      "message": "Es gibt keine Überwachung mit der ID {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Die übergebene Konfiguration ist nicht lesbar: {error}"
+    }
+  }
+}

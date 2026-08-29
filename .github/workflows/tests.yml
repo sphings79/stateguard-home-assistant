@@ -1,0 +1,60 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # ruff-action has no floating v4 tag, so the full version is pinned.
+      - uses: astral-sh/ruff-action@v4.1.0
+        with:
+          args: check --output-format=github
+      - uses: astral-sh/ruff-action@v4.1.0
+        with:
+          args: format --check
+
+  pytest:
+    name: Pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install homeassistant pytest pytest-asyncio
+      - name: Run tests
+        run: pytest -q
+
+  frontend:
+    name: Frontend bundle is current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install and build
+        working-directory: frontend
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm run build
+      - name: Fail if the committed bundle is out of date
+        run: |
+          if ! git diff --exit-code -- custom_components/stateguard/frontend/; then
+            echo "::error::The committed frontend bundle does not match the sources."
+            echo "Run 'npm run build' in frontend/ and commit the result."
+            exit 1
+          fi

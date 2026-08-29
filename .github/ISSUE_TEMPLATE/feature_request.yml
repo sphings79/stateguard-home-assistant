@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest something StateGuard should be able to do
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to achieve?
+      description: >
+        Describe the situation rather than the solution — there may be a way
+        to do it already.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: How do you imagine it working?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What did you try instead?

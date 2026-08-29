@@ -1,0 +1,20 @@
+{
+  "entity": {
+    "sensor": {
+      "problems": { "default": "mdi:shield-alert-outline" }
+    },
+    "switch": {
+      "monitoring": { "default": "mdi:shield-check", "state": { "off": "mdi:shield-off-outline" } }
+    }
+  },
+  "services": {
+    "snooze": "mdi:sleep",
+    "acknowledge": "mdi:check-circle-outline",
+    "clear_acknowledgement": "mdi:undo-variant",
+    "pause_watch": "mdi:pause-circle-outline",
+    "resume_watch": "mdi:play-circle-outline",
+    "run_check": "mdi:refresh",
+    "export_config": "mdi:download-outline",
+    "import_config": "mdi:upload-outline"
+  }
+}

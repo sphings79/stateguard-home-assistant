@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-label="How StateGuard works: Home Assistant labels resolve to entities, the engine checks conditions, a suppression chain holds back false alarms, and surviving problems are bundled and sent to notification channels while being written to the incident history">
+  <defs>
+    <style>
+      .t { font-family: ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .box { fill: #16202b; stroke: #28394a; }
+      .h { font-size: 17px; font-weight: 600; fill: #e6edf3; }
+      .s { font-size: 13px; fill: #9fb0c0; }
+      .lbl { font-size: 12px; fill: #41BDF5; }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#41BDF5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="640" fill="#0f1720"/>
+  <text class="t" x="48" y="52" font-size="24" font-weight="700" fill="#e6edf3">How StateGuard works</text>
+
+  <rect class="box" x="48" y="90" width="250" height="128" rx="12"/>
+  <text class="t h" x="70" y="122">1 · Targets</text>
+  <text class="t s" x="70" y="148">Home Assistant labels,</text>
+  <text class="t s" x="70" y="168">areas, floors, domains,</text>
+  <text class="t s" x="70" y="188">integrations, exclusions</text>
+  <text class="t lbl" x="70" y="208">→ a set of entities</text>
+
+  <rect class="box" x="338" y="90" width="250" height="128" rx="12"/>
+  <text class="t h" x="360" y="122">2 · Conditions</text>
+  <text class="t s" x="360" y="148">unavailable · no data ·</text>
+  <text class="t s" x="360" y="168">threshold · state match ·</text>
+  <text class="t s" x="360" y="188">stuck · disappeared</text>
+  <text class="t lbl" x="360" y="208">state events + 30 s pass</text>
+
+  <rect class="box" x="628" y="90" width="250" height="128" rx="12"/>
+  <text class="t h" x="650" y="122">3 · Grace period</text>
+  <text class="t s" x="650" y="148">A condition must hold</text>
+  <text class="t s" x="650" y="168">for the configured time</text>
+  <text class="t s" x="650" y="188">before anything is sent.</text>
+  <text class="t lbl" x="650" y="208">pending → alerted</text>
+
+  <rect class="box" x="918" y="90" width="234" height="128" rx="12"/>
+  <text class="t h" x="940" y="122">4 · Escalation</text>
+  <text class="t s" x="940" y="148">After a set time the</text>
+  <text class="t s" x="940" y="168">problem also goes to</text>
+  <text class="t s" x="940" y="188">the escalation channels.</text>
+
+  <rect class="box" x="48" y="266" width="546" height="196" rx="12"/>
+  <text class="t h" x="70" y="298">Suppression chain — in this order</text>
+  <text class="t s" x="70" y="328">1 · watch paused or monitoring switched off</text>
+  <text class="t s" x="70" y="352">2 · snoozed or acknowledged</text>
+  <text class="t s" x="70" y="376">3 · grace period after a Home Assistant restart</text>
+  <text class="t s" x="70" y="400">4 · the connectivity entity reports down</text>
+  <text class="t s" x="70" y="424">5 · the whole integration failed → one message, not fifty</text>
+  <text class="t s" x="70" y="448">6 · a parent device is down → children stay quiet</text>
+
+  <rect class="box" x="628" y="266" width="524" height="92" rx="12"/>
+  <text class="t h" x="650" y="298">Quiet hours</text>
+  <text class="t s" x="650" y="326">Held back, not discarded: sent afterwards if it still stands.</text>
+
+  <rect class="box" x="628" y="378" width="524" height="84" rx="12"/>
+  <text class="t h" x="650" y="410">Bundling</text>
+  <text class="t s" x="650" y="438">Ten problems in one window become one message.</text>
+
+  <rect class="box" x="48" y="510" width="380" height="94" rx="12"/>
+  <text class="t h" x="70" y="542">Channels</text>
+  <text class="t s" x="70" y="570">Any Home Assistant service · SMTP · Telegram ·</text>
+  <text class="t s" x="70" y="590">Pushover · ntfy — each with its own message text</text>
+
+  <rect class="box" x="452" y="510" width="330" height="94" rx="12"/>
+  <text class="t h" x="474" y="542">Entities &amp; events</text>
+  <text class="t s" x="474" y="570">binary_sensor per watch, counters,</text>
+  <text class="t s" x="474" y="590">stateguard_alert / _cleared</text>
+
+  <rect class="box" x="806" y="510" width="346" height="94" rx="12"/>
+  <text class="t h" x="828" y="542">History</text>
+  <text class="t s" x="828" y="570">Own SQLite file, not the recorder,</text>
+  <text class="t s" x="828" y="590">with a retention you choose</text>
+
+  <path d="M298 154 H332" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M588 154 H622" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M878 154 H912" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M463 218 V260" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M594 364 H622" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M890 462 V504" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M321 462 V504" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+</svg>

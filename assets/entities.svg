@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-label="Entities StateGuard creates: one problem binary sensor per watch with the affected entities as attributes, a total problem counter, one counter per severity, and a switch to pause monitoring">
+  <defs>
+    <style>
+      .t { font-family: ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .box { fill: #16202b; stroke: #28394a; }
+      .h { font-size: 16px; font-weight: 600; fill: #e6edf3; }
+      .id { font-size: 13.5px; fill: #41BDF5; }
+      .s { font-size: 13px; fill: #9fb0c0; }
+      .v { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#0f1720"/>
+  <text class="t" x="48" y="52" font-size="24" font-weight="700" fill="#e6edf3">Entities you get</text>
+  <text class="t s" x="48" y="80">Everything below is usable in automations, scripts and dashboards.</text>
+
+  <rect class="box" x="48" y="108" width="1104" height="150" rx="12"/>
+  <text class="t h" x="72" y="140">One problem sensor per watch</text>
+  <text class="m id" x="72" y="170">binary_sensor.stateguard_availability</text>
+  <text class="t v" x="640" y="170">on</text>
+  <text class="t s" x="72" y="198">Attributes: problem_count, entities, reasons, severity, oldest_problem,</text>
+  <text class="t s" x="72" y="220">watched_entity_count, suppressed</text>
+  <text class="t s" x="72" y="242">device_class: problem — so Home Assistant shows it as OK / Problem</text>
+
+  <rect class="box" x="48" y="284" width="540" height="176" rx="12"/>
+  <text class="t h" x="72" y="316">Counters</text>
+  <text class="m id" x="72" y="348">sensor.stateguard_problems</text>
+  <text class="t v" x="500" y="348">3</text>
+  <text class="m id" x="72" y="378">sensor.stateguard_problems_warning</text>
+  <text class="t v" x="500" y="378">2</text>
+  <text class="m id" x="72" y="408">sensor.stateguard_problems_security</text>
+  <text class="t v" x="500" y="408">1</text>
+  <text class="t s" x="72" y="438">One per severity, created and removed with it.</text>
+
+  <rect class="box" x="612" y="284" width="540" height="176" rx="12"/>
+  <text class="t h" x="636" y="316">Switch</text>
+  <text class="m id" x="636" y="348">switch.stateguard_monitoring</text>
+  <text class="t v" x="1064" y="348">on</text>
+  <text class="t s" x="636" y="382">Turns every watch off at once — during maintenance,</text>
+  <text class="t s" x="636" y="404">or from an automation while you are away.</text>
+  <text class="t s" x="636" y="438">Withdraws standing alerts instead of just muting them.</text>
+
+  <rect class="box" x="48" y="486" width="1104" height="170" rx="12"/>
+  <text class="t h" x="72" y="518">Events and services</text>
+  <text class="m id" x="72" y="550">stateguard_alert · stateguard_escalated · stateguard_cleared</text>
+  <text class="t s" x="72" y="576">Fired with watch, entity, severity, condition and reason.</text>
+  <text class="m id" x="72" y="608">stateguard.snooze · acknowledge · pause_watch · run_check · export_config</text>
+  <text class="t s" x="72" y="634">Everything the panel does is available as a service call too.</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="1200" height="380" role="img" aria-label="Installation in four steps: add the repository to HACS, install StateGuard, restart Home Assistant, then add the integration and open the panel from the sidebar">
+  <defs>
+    <style>
+      .t { font-family: ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .box { fill: #16202b; stroke: #28394a; }
+      .n { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+      .s { font-size: 13px; fill: #9fb0c0; }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#41BDF5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="380" fill="#0f1720"/>
+  <text class="t" x="48" y="52" font-size="22" font-weight="700" fill="#e6edf3">Installation</text>
+
+  <rect class="box" x="48" y="92" width="252" height="180" rx="12"/>
+  <circle cx="84" cy="132" r="18" fill="#41BDF5"/>
+  <text class="t" x="79" y="138" font-size="17" font-weight="700" fill="#0f1720">1</text>
+  <text class="t n" x="116" y="138">HACS</text>
+  <text class="t s" x="72" y="176">Integrations → search for</text>
+  <text class="t s" x="72" y="198">StateGuard, or add this</text>
+  <text class="t s" x="72" y="220">repository as a custom one.</text>
+
+  <rect class="box" x="330" y="92" width="252" height="180" rx="12"/>
+  <circle cx="366" cy="132" r="18" fill="#41BDF5"/>
+  <text class="t" x="361" y="138" font-size="17" font-weight="700" fill="#0f1720">2</text>
+  <text class="t n" x="398" y="138">Install</text>
+  <text class="t s" x="354" y="176">Download, then restart</text>
+  <text class="t s" x="354" y="198">Home Assistant so the</text>
+  <text class="t s" x="354" y="220">integration is picked up.</text>
+
+  <rect class="box" x="612" y="92" width="252" height="180" rx="12"/>
+  <circle cx="648" cy="132" r="18" fill="#41BDF5"/>
+  <text class="t" x="643" y="138" font-size="17" font-weight="700" fill="#0f1720">3</text>
+  <text class="t n" x="680" y="138">Add it</text>
+  <text class="t s" x="636" y="176">Settings → Devices &amp;</text>
+  <text class="t s" x="636" y="198">services → Add integration</text>
+  <text class="t s" x="636" y="220">→ StateGuard. No fields.</text>
+
+  <rect class="box" x="894" y="92" width="258" height="180" rx="12"/>
+  <circle cx="930" cy="132" r="18" fill="#3ddc97"/>
+  <text class="t" x="925" y="138" font-size="17" font-weight="700" fill="#0f1720">4</text>
+  <text class="t n" x="962" y="138">Configure</text>
+  <text class="t s" x="918" y="176">StateGuard appears in the</text>
+  <text class="t s" x="918" y="198">sidebar. Start from a</text>
+  <text class="t s" x="918" y="220">template and pick a label.</text>
+
+  <path d="M300 182 H324" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M582 182 H606" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+  <path d="M864 182 H888" stroke="#41BDF5" stroke-width="2" marker-end="url(#a)" fill="none"/>
+
+  <text class="t s" x="48" y="326">The Lovelace card is registered automatically — nothing extra to install.</text>
+  <text class="t s" x="48" y="350">On a YAML dashboard, add the resource by hand (see the README).</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="StateGuard social preview: entity and device monitoring for Home Assistant, with a shield logo and the key features listed">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#41BDF5"/>
+      <stop offset="1" stop-color="#7C7CF5"/>
+    </linearGradient>
+    <style>
+      .t { font-family: ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="1280" height="640" fill="#0f1720"/>
+  <g transform="translate(120 152) scale(0.5)">
+    <path d="M256 40 L440 104 v152 c0 108-78 178-184 216-106-38-184-108-184-216V104z" fill="url(#brand)"/>
+    <path d="M120 268 h58 l30-62 44 130 32-74 24 34 h84" fill="none" stroke="#ffffff"
+          stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text class="t" x="400" y="250" font-size="82" font-weight="700" fill="#e6edf3">StateGuard</text>
+  <text class="t" x="404" y="308" font-size="30" fill="#9fb0c0">Entity &amp; device monitoring for Home Assistant</text>
+  <text class="t" x="404" y="376" font-size="23" fill="#41BDF5">Label it · watch it · get told when it stops answering</text>
+  <text class="t" x="404" y="432" font-size="20" fill="#9fb0c0">Unavailable · no data · thresholds · quiet hours · escalation</text>
+  <text class="t" x="404" y="468" font-size="20" fill="#9fb0c0">SMTP · Telegram · Pushover · ntfy · own panel and card</text>
+</svg>

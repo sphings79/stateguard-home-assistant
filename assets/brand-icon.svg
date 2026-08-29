@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="StateGuard icon: a shield with a heartbeat line through it">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#41BDF5"/>
+      <stop offset="1" stop-color="#7C7CF5"/>
+    </linearGradient>
+  </defs>
+  <path d="M256 40 L440 104 v152 c0 108-78 178-184 216-106-38-184-108-184-216V104z"
+        fill="url(#g)"/>
+  <path d="M256 84 L400 134 v122 c0 86-60 143-144 175-84-32-144-89-144-175V134z"
+        fill="#0f1720" opacity=".22"/>
+  <path d="M120 268 h58 l30-62 44 130 32-74 24 34 h84"
+        fill="none" stroke="#ffffff" stroke-width="26"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,17 @@
+StateGuard for Home Assistant
+Copyright (c) 2026 sphings79
+
+This project is an unofficial, community-built integration. It is not
+affiliated with, endorsed by, or supported by the Home Assistant project or
+Nabu Casa, Inc.
+
+Third-party services StateGuard can deliver notifications through — Telegram,
+Pushover and ntfy — are operated by their respective owners. StateGuard only
+talks to their public APIs with credentials you supply. Their terms of service
+and rate limits apply:
+
+  Telegram Bot API   https://core.telegram.org/bots/api
+  Pushover           https://pushover.net/api
+  ntfy               https://docs.ntfy.sh
+
+"Home Assistant" is a trademark of the Home Assistant project.

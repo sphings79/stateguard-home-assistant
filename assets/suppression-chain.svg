@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-label="The suppression chain: a matching condition passes through seven checks in order — monitoring off, snoozed or acknowledged, restart grace period, connectivity entity down, integration failed, parent device down, quiet hours — and only then becomes a message">
+  <defs>
+    <style>
+      .t { font-family: ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .box { fill: #16202b; stroke: #28394a; }
+      .h { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+      .s { font-size: 12.5px; fill: #9fb0c0; }
+      .out { font-size: 12.5px; fill: #ff6b6b; }
+    </style>
+    <marker id="down" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#41BDF5"/>
+    </marker>
+    <marker id="stop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="620" fill="#0f1720"/>
+  <text class="t" x="48" y="50" font-size="22" font-weight="700" fill="#e6edf3">Why a matching condition may stay quiet</text>
+  <text class="t s" x="48" y="76">Checked in this order. The first one that applies stops the message.</text>
+
+  <rect class="box" x="330" y="98" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="130">A condition matches</text>
+
+  <rect class="box" x="330" y="172" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="196">1 · Monitoring or watch paused</text>
+  <text class="t s" x="354" y="215">You switched it off</text>
+  <text class="t out" x="690" y="203">→ withdrawn, sensor goes off</text>
+
+  <rect class="box" x="330" y="246" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="270">2 · Snoozed or acknowledged</text>
+  <text class="t s" x="354" y="289">You said “I know”</text>
+  <text class="t out" x="690" y="277">→ withdrawn until it expires</text>
+
+  <rect class="box" x="330" y="320" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="344">3 · Grace period after a restart</text>
+  <text class="t s" x="354" y="363">Everything is briefly unavailable</text>
+  <text class="t out" x="690" y="351">→ no new alerts, old ones stand</text>
+
+  <rect class="box" x="330" y="394" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="418">4 · No internet</text>
+  <text class="t s" x="354" y="437">Your connectivity entity is off</text>
+  <text class="t out" x="690" y="425">→ cloud devices stay quiet</text>
+
+  <rect class="box" x="330" y="468" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="492">5 · Integration failed · 6 · Parent down</text>
+  <text class="t s" x="354" y="511">One bridge, not fifty devices</text>
+  <text class="t out" x="690" y="499">→ one message instead of many</text>
+
+  <rect class="box" x="330" y="542" width="330" height="52" rx="10"/>
+  <text class="t h" x="354" y="566">7 · Quiet hours</text>
+  <text class="t s" x="354" y="585">Unless the severity ignores them</text>
+  <text class="t out" x="690" y="573">→ deferred, sent afterwards</text>
+
+  <path d="M495 150 V166" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+  <path d="M495 224 V240" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+  <path d="M495 298 V314" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+  <path d="M495 372 V388" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+  <path d="M495 446 V462" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+  <path d="M495 520 V536" stroke="#41BDF5" stroke-width="2" marker-end="url(#down)" fill="none"/>
+
+  <path d="M664 198 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+  <path d="M664 272 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+  <path d="M664 346 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+  <path d="M664 420 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+  <path d="M664 494 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+  <path d="M664 568 H686" stroke="#ff6b6b" stroke-width="2" marker-end="url(#stop)" fill="none"/>
+
+  <rect x="48" y="172" width="252" height="112" rx="10" fill="#16202b" stroke="#3ddc97"/>
+  <text class="t h" x="72" y="204" fill="#3ddc97">Survived everything</text>
+  <text class="t s" x="72" y="230">Bundled with anything else</text>
+  <text class="t s" x="72" y="252">from the same watch, then</text>
+  <text class="t s" x="72" y="274">sent to the channels.</text>
+</svg>
