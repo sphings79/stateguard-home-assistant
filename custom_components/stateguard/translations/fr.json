@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer StateGuard",
+        "description": "StateGuard surveille les entités et appareils étiquetés et signale lorsqu’ils deviennent indisponibles, cessent d’émettre ou franchissent un seuil. Tout le reste se règle ensuite dans le panneau StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard est déjà configuré. Une seule instance suffit."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problèmes"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Surveillance"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Mettre en veille",
+      "description": "Retient les signalements un moment sans désactiver la surveillance.",
+      "fields": {
+        "watch_id": {
+          "name": "Surveillance",
+          "description": "Limiter à une surveillance. Laisser vide pour toutes."
+        },
+        "entity_id": {
+          "name": "Entité",
+          "description": "Limiter à une entité. Laisser vide pour toutes."
+        },
+        "duration": {
+          "name": "Durée",
+          "description": "Combien de temps les signalements restent silencieux."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Acquitter",
+      "description": "Marque un problème comme connu. Plus aucun signalement jusqu’à sa résolution.",
+      "fields": {
+        "watch_id": {
+          "name": "Surveillance",
+          "description": "Limiter à une surveillance. Laisser vide pour toutes."
+        },
+        "entity_id": {
+          "name": "Entité",
+          "description": "Limiter à une entité. Laisser vide pour toutes."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Lever l’acquittement",
+      "description": "Annule un acquittement et une mise en veille en cours.",
+      "fields": {
+        "watch_id": {
+          "name": "Surveillance",
+          "description": "Limiter à une surveillance. Laisser vide pour toutes."
+        },
+        "entity_id": {
+          "name": "Entité",
+          "description": "Limiter à une entité. Laisser vide pour toutes."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Mettre une surveillance en pause",
+      "description": "Désactive une surveillance jusqu’à sa reprise.",
+      "fields": {
+        "watch_id": {
+          "name": "Surveillance",
+          "description": "La surveillance à mettre en pause."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Reprendre une surveillance",
+      "description": "Réactive une surveillance en pause.",
+      "fields": {
+        "watch_id": {
+          "name": "Surveillance",
+          "description": "La surveillance à reprendre."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Lancer une vérification",
+      "description": "Recalcule toutes les cibles et évalue immédiatement chaque surveillance."
+    },
+    "export_config": {
+      "name": "Exporter la configuration",
+      "description": "Renvoie la configuration complète de StateGuard pour sauvegarde."
+    },
+    "import_config": {
+      "name": "Importer la configuration",
+      "description": "Remplace la configuration actuelle par une configuration exportée.",
+      "fields": {
+        "config": {
+          "name": "Configuration",
+          "description": "L’objet de configuration issu de « Exporter la configuration »."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard n’est pas configuré."
+    },
+    "watch_not_found": {
+      "message": "Il n’existe aucune surveillance portant l’identifiant {watch_id}."
+    },
+    "invalid_config": {
+      "message": "La configuration fournie est illisible : {error}"
+    }
+  }
+}

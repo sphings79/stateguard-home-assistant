@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "StateGuard instellen",
+        "description": "StateGuard bewaakt gelabelde entiteiten en apparaten en meldt wanneer ze niet meer beschikbaar zijn, geen gegevens meer sturen of een grens overschrijden. De rest stel je na de installatie in het StateGuard-paneel in."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard is al ingesteld. Eén exemplaar is genoeg."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemen"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Bewaking"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Uitstellen",
+      "description": "Houdt meldingen een tijdje tegen zonder de bewaking uit te zetten.",
+      "fields": {
+        "watch_id": {
+          "name": "Bewaking",
+          "description": "Beperken tot één bewaking. Leeg laten voor alle."
+        },
+        "entity_id": {
+          "name": "Entiteit",
+          "description": "Beperken tot één entiteit. Leeg laten voor alle."
+        },
+        "duration": {
+          "name": "Duur",
+          "description": "Hoe lang meldingen stil blijven."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Bevestigen",
+      "description": "Markeert een probleem als bekend. Tot het opgelost is komen er geen meldingen meer.",
+      "fields": {
+        "watch_id": {
+          "name": "Bewaking",
+          "description": "Beperken tot één bewaking. Leeg laten voor alle."
+        },
+        "entity_id": {
+          "name": "Entiteit",
+          "description": "Beperken tot één entiteit. Leeg laten voor alle."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Bevestiging opheffen",
+      "description": "Heft een bevestiging en een lopend uitstel weer op.",
+      "fields": {
+        "watch_id": {
+          "name": "Bewaking",
+          "description": "Beperken tot één bewaking. Leeg laten voor alle."
+        },
+        "entity_id": {
+          "name": "Entiteit",
+          "description": "Beperken tot één entiteit. Leeg laten voor alle."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Bewaking pauzeren",
+      "description": "Zet één bewaking uit tot ze wordt hervat.",
+      "fields": {
+        "watch_id": {
+          "name": "Bewaking",
+          "description": "De te pauzeren bewaking."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Bewaking hervatten",
+      "description": "Activeert een gepauzeerde bewaking weer.",
+      "fields": {
+        "watch_id": {
+          "name": "Bewaking",
+          "description": "De te hervatten bewaking."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Controle uitvoeren",
+      "description": "Lost alle doelen opnieuw op en beoordeelt meteen elke bewaking."
+    },
+    "export_config": {
+      "name": "Configuratie exporteren",
+      "description": "Geeft de volledige StateGuard-configuratie terug als reservekopie."
+    },
+    "import_config": {
+      "name": "Configuratie importeren",
+      "description": "Vervangt de huidige configuratie door een eerder geëxporteerde.",
+      "fields": {
+        "config": {
+          "name": "Configuratie",
+          "description": "Het configuratieobject uit „Configuratie exporteren”."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard is niet ingesteld."
+    },
+    "watch_not_found": {
+      "message": "Er is geen bewaking met de ID {watch_id}."
+    },
+    "invalid_config": {
+      "message": "De opgegeven configuratie is niet leesbaar: {error}"
+    }
+  }
+}

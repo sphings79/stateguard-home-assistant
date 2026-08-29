@@ -7,21 +7,28 @@ from custom_components.stateguard.l10n import STRINGS, translate
 PLACEHOLDER = re.compile(r"\{(\w+)\}")
 
 
-def test_languages_have_the_same_keys():
-    """A missing German key would quietly show English to a German user."""
+def test_every_language_has_the_same_keys():
+    """A missing key would quietly show English to someone expecting their own."""
     english = set(STRINGS["en"])
-    german = set(STRINGS["de"])
 
-    assert english - german == set()
-    assert german - english == set()
+    for code, catalogue in STRINGS.items():
+        assert set(catalogue) == english, f"keys differ for {code}"
 
 
 def test_placeholders_match_between_languages():
     """A translated string must take the same values as the original."""
-    for key, source in STRINGS["en"].items():
-        expected = set(PLACEHOLDER.findall(source))
-        actual = set(PLACEHOLDER.findall(STRINGS["de"][key]))
-        assert actual == expected, f"placeholders differ for {key}"
+    for code, catalogue in STRINGS.items():
+        for key, source in STRINGS["en"].items():
+            expected = set(PLACEHOLDER.findall(source))
+            actual = set(PLACEHOLDER.findall(catalogue[key]))
+            assert actual == expected, f"placeholders differ for {code}/{key}"
+
+
+def test_no_language_is_empty():
+    """An empty string would render as nothing at all in the interface."""
+    for code, catalogue in STRINGS.items():
+        for key, value in catalogue.items():
+            assert value.strip(), f"{code}/{key} is empty"
 
 
 def test_translate_fills_in_values():
@@ -34,7 +41,13 @@ def test_translate_fills_in_values():
 
 def test_translate_falls_back_to_english():
     """An unknown language still produces readable text."""
-    assert translate("fr", "link.device") == STRINGS["en"]["link.device"]
+    assert translate("ja", "link.device") == STRINGS["en"]["link.device"]
+
+
+def test_regional_codes_resolve_to_their_base_language():
+    """Home Assistant hands out codes like "de-CH"."""
+    assert translate("de-CH", "title.problem") == STRINGS["de"]["title.problem"]
+    assert translate("pt-BR", "title.problem") == STRINGS["pt"]["title.problem"]
 
 
 def test_translate_returns_key_when_unknown():

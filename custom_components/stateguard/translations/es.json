@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurar StateGuard",
+        "description": "StateGuard vigila entidades y dispositivos etiquetados y avisa cuando dejan de estar disponibles, dejan de enviar datos o superan un umbral. Todo lo demás se configura después en el panel de StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard ya está configurado. Basta con una instancia."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemas"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Vigilancia"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Posponer",
+      "description": "Retiene los avisos un rato sin desactivar la vigilancia.",
+      "fields": {
+        "watch_id": {
+          "name": "Vigilancia",
+          "description": "Limitar a una vigilancia. Déjalo vacío para todas."
+        },
+        "entity_id": {
+          "name": "Entidad",
+          "description": "Limitar a una entidad. Déjalo vacío para todas."
+        },
+        "duration": {
+          "name": "Duración",
+          "description": "Cuánto tiempo permanecen callados los avisos."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Confirmar",
+      "description": "Marca un problema como conocido. No habrá más avisos hasta que se resuelva.",
+      "fields": {
+        "watch_id": {
+          "name": "Vigilancia",
+          "description": "Limitar a una vigilancia. Déjalo vacío para todas."
+        },
+        "entity_id": {
+          "name": "Entidad",
+          "description": "Limitar a una entidad. Déjalo vacío para todas."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Retirar la confirmación",
+      "description": "Retira una confirmación y una posposición en curso.",
+      "fields": {
+        "watch_id": {
+          "name": "Vigilancia",
+          "description": "Limitar a una vigilancia. Déjalo vacío para todas."
+        },
+        "entity_id": {
+          "name": "Entidad",
+          "description": "Limitar a una entidad. Déjalo vacío para todas."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Pausar la vigilancia",
+      "description": "Desactiva una vigilancia hasta que se reanude.",
+      "fields": {
+        "watch_id": {
+          "name": "Vigilancia",
+          "description": "La vigilancia que se va a pausar."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Reanudar la vigilancia",
+      "description": "Vuelve a activar una vigilancia pausada.",
+      "fields": {
+        "watch_id": {
+          "name": "Vigilancia",
+          "description": "La vigilancia que se va a reanudar."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Ejecutar comprobación",
+      "description": "Vuelve a resolver todos los objetivos y evalúa cada vigilancia al momento."
+    },
+    "export_config": {
+      "name": "Exportar la configuración",
+      "description": "Devuelve la configuración completa de StateGuard como copia de seguridad."
+    },
+    "import_config": {
+      "name": "Importar la configuración",
+      "description": "Sustituye la configuración actual por una exportada anteriormente.",
+      "fields": {
+        "config": {
+          "name": "Configuración",
+          "description": "El objeto de configuración de «Exportar la configuración»."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard no está configurado."
+    },
+    "watch_not_found": {
+      "message": "No existe ninguna vigilancia con el identificador {watch_id}."
+    },
+    "invalid_config": {
+      "message": "No se ha podido leer la configuración indicada: {error}"
+    }
+  }
+}

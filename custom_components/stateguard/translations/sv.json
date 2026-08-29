@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ställ in StateGuard",
+        "description": "StateGuard bevakar märkta entiteter och enheter och larmar när de blir otillgängliga, slutar skicka data eller passerar en gräns. Allt annat ställs in efteråt i StateGuard-panelen."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard är redan uppsatt. En instans räcker."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problem"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Bevakning"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Skjut upp",
+      "description": "Håller tillbaka larm en stund utan att stänga av bevakningen.",
+      "fields": {
+        "watch_id": {
+          "name": "Bevakning",
+          "description": "Begränsa till en bevakning. Lämna tomt för alla."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begränsa till en entitet. Lämna tomt för alla."
+        },
+        "duration": {
+          "name": "Längd",
+          "description": "Hur länge larmen ska vara tysta."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Kvittera",
+      "description": "Markerar ett problem som känt. Inga fler larm förrän det är löst.",
+      "fields": {
+        "watch_id": {
+          "name": "Bevakning",
+          "description": "Begränsa till en bevakning. Lämna tomt för alla."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begränsa till en entitet. Lämna tomt för alla."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Ta bort kvittering",
+      "description": "Tar bort en kvittering och ett pågående uppskov.",
+      "fields": {
+        "watch_id": {
+          "name": "Bevakning",
+          "description": "Begränsa till en bevakning. Lämna tomt för alla."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begränsa till en entitet. Lämna tomt för alla."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Pausa bevakning",
+      "description": "Stänger av en enskild bevakning tills den återupptas.",
+      "fields": {
+        "watch_id": {
+          "name": "Bevakning",
+          "description": "Bevakningen som ska pausas."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Återuppta bevakning",
+      "description": "Aktiverar en pausad bevakning igen.",
+      "fields": {
+        "watch_id": {
+          "name": "Bevakning",
+          "description": "Bevakningen som ska återupptas."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Kör en kontroll",
+      "description": "Räknar om alla mål och bedömer varje bevakning direkt."
+    },
+    "export_config": {
+      "name": "Exportera konfigurationen",
+      "description": "Returnerar hela StateGuard-konfigurationen som säkerhetskopia."
+    },
+    "import_config": {
+      "name": "Importera konfiguration",
+      "description": "Ersätter den nuvarande konfigurationen med en tidigare exporterad.",
+      "fields": {
+        "config": {
+          "name": "Konfiguration",
+          "description": "Konfigurationsobjektet från ”Exportera konfigurationen”."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard är inte uppsatt."
+    },
+    "watch_not_found": {
+      "message": "Det finns ingen bevakning med id:t {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Den angivna konfigurationen går inte att läsa: {error}"
+    }
+  }
+}

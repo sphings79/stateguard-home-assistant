@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Opsæt StateGuard",
+        "description": "StateGuard overvåger mærkede entiteter og enheder og melder, når de bliver utilgængelige, holder op med at sende data eller overskrider en grænse. Alt andet indstilles bagefter i StateGuard-panelet."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard er allerede sat op. Én instans er nok."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemer"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Overvågning"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Udsæt",
+      "description": "Holder meldinger tilbage et stykke tid uden at slå overvågningen fra.",
+      "fields": {
+        "watch_id": {
+          "name": "Overvågning",
+          "description": "Begræns til én overvågning. Lad stå tomt for alle."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begræns til én entitet. Lad stå tomt for alle."
+        },
+        "duration": {
+          "name": "Varighed",
+          "description": "Hvor længe meldingerne skal være tavse."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Kvittér",
+      "description": "Markerer et problem som kendt. Ingen flere meldinger, før det er løst.",
+      "fields": {
+        "watch_id": {
+          "name": "Overvågning",
+          "description": "Begræns til én overvågning. Lad stå tomt for alle."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begræns til én entitet. Lad stå tomt for alle."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Ophæv kvittering",
+      "description": "Ophæver en kvittering og en igangværende udsættelse.",
+      "fields": {
+        "watch_id": {
+          "name": "Overvågning",
+          "description": "Begræns til én overvågning. Lad stå tomt for alle."
+        },
+        "entity_id": {
+          "name": "Entitet",
+          "description": "Begræns til én entitet. Lad stå tomt for alle."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Sæt overvågning på pause",
+      "description": "Slår en enkelt overvågning fra, indtil den genoptages.",
+      "fields": {
+        "watch_id": {
+          "name": "Overvågning",
+          "description": "Den overvågning der skal sættes på pause."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Genoptag overvågning",
+      "description": "Aktiverer en pauset overvågning igen.",
+      "fields": {
+        "watch_id": {
+          "name": "Overvågning",
+          "description": "Den overvågning der skal genoptages."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Kør et tjek",
+      "description": "Udregner alle mål på ny og vurderer straks hver overvågning."
+    },
+    "export_config": {
+      "name": "Eksportér konfigurationen",
+      "description": "Returnerer hele StateGuard-konfigurationen som sikkerhedskopi."
+    },
+    "import_config": {
+      "name": "Importér konfiguration",
+      "description": "Erstatter den nuværende konfiguration med en tidligere eksporteret.",
+      "fields": {
+        "config": {
+          "name": "Konfiguration",
+          "description": "Konfigurationsobjektet fra “Eksportér konfigurationen”."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard er ikke sat op."
+    },
+    "watch_not_found": {
+      "message": "Der findes ingen overvågning med id’et {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Den angivne konfiguration kan ikke læses: {error}"
+    }
+  }
+}

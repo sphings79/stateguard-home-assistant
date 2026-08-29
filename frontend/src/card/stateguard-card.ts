@@ -1,6 +1,11 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { localize, type Localizer } from "../localize";
+import {
+  fallbackLocalizer,
+  loadCatalogue,
+  localize,
+  type Localizer,
+} from "../localize";
 import { colorOf } from "../styles";
 import type { CardData, HomeAssistant, Problem, Severity } from "../types";
 import "../components/entity-menu";
@@ -111,6 +116,8 @@ export class StateGuardCard extends LitElement {
   @property({ attribute: false }) hass!: HomeAssistant;
   @state() private cardConfig: CardConfig = { type: "" };
   @state() private data?: CardData;
+  @state() private translator: Localizer = fallbackLocalizer;
+  private loadedLanguage = "";
 
   private timer?: number;
 
@@ -153,11 +160,16 @@ export class StateGuardCard extends LitElement {
   }
 
   private get localize(): Localizer {
-    return localize(this.hass?.language || "en");
+    return this.translator;
   }
 
   private async load(): Promise<void> {
     if (!this.hass) return;
+    const language = this.hass.language || "en";
+    if (language !== this.loadedLanguage) {
+      this.loadedLanguage = language;
+      this.translator = localize(await loadCatalogue(language));
+    }
     try {
       // A command every user may call: an ordinary household member has to
       // be able to see the card too, not just administrators.

@@ -1,9 +1,25 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { sharedStyles } from "../styles";
+import { AVAILABLE_LANGUAGES } from "../localize";
 import type { Localizer } from "../localize";
 import type { QuietWindow, Settings } from "../types";
 import "../components/duration-input";
+
+/** Each language in its own name, the way language pickers are expected to read. */
+const LANGUAGE_NAMES: Record<string, string> = {
+  cs: "Čeština",
+  da: "Dansk",
+  de: "Deutsch",
+  en: "English",
+  es: "Español",
+  fr: "Français",
+  it: "Italiano",
+  nl: "Nederlands",
+  pl: "Polski",
+  pt: "Português",
+  sv: "Svenska",
+};
 
 /** Global settings: restart grace, connectivity entity, quiet hours, history. */
 @customElement("sg-settings")
@@ -288,12 +304,13 @@ export class SettingsView extends LitElement {
             <option value="auto" ?selected=${settings.ui_language === "auto"}>
               ${this.localize("settings.language_auto")}
             </option>
-            <option value="en" ?selected=${settings.ui_language === "en"}>
-              English
-            </option>
-            <option value="de" ?selected=${settings.ui_language === "de"}>
-              Deutsch
-            </option>
+            ${AVAILABLE_LANGUAGES.map(
+              (code) => html`
+                <option value=${code} ?selected=${settings.ui_language === code}>
+                  ${LANGUAGE_NAMES[code] ?? code}
+                </option>
+              `,
+            )}
           </select>
         </label>
 

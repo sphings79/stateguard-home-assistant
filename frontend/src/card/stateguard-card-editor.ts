@@ -1,6 +1,11 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { localize, type Localizer } from "../localize";
+import {
+  fallbackLocalizer,
+  loadCatalogue,
+  localize,
+  type Localizer,
+} from "../localize";
 import { sharedStyles, colorOf } from "../styles";
 import type { CardData, HomeAssistant } from "../types";
 import "../components/chip-select";
@@ -36,6 +41,7 @@ export class StateGuardCardEditor extends LitElement {
   @property({ attribute: false }) hass!: HomeAssistant;
   @state() private config: CardConfig = { type: "custom:stateguard-card" };
   @state() private data?: CardData;
+  @state() private translator: Localizer = fallbackLocalizer;
 
   /** Lovelace hands us the current YAML. */
   setConfig(config: CardConfig): void {
@@ -49,10 +55,11 @@ export class StateGuardCardEditor extends LitElement {
   }
 
   private get localize(): Localizer {
-    return localize(this.hass?.language || "en");
+    return this.translator;
   }
 
   private async load(): Promise<void> {
+    this.translator = localize(await loadCatalogue(this.hass?.language || "en"));
     try {
       this.data = await this.hass.callWS<CardData>({ type: "stateguard/card" });
     } catch {

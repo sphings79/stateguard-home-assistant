@@ -1,7 +1,13 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { sharedStyles } from "./styles";
-import { localize, type Localizer } from "./localize";
+import {
+  fallbackLocalizer,
+  loadCatalogue,
+  localize,
+  type Localizer,
+  type Strings,
+} from "./localize";
 import { StateGuardApi } from "./api";
 import type {
   CardData,
@@ -125,6 +131,8 @@ export class StateGuardPanel extends LitElement {
   @state() private historyTotal = 0;
 
   @state() private cardData?: CardData;
+  @state() private translator: Localizer = fallbackLocalizer;
+  private loadedLanguage = "";
 
   private api?: StateGuardApi;
   private timer?: number;
@@ -148,6 +156,7 @@ export class StateGuardPanel extends LitElement {
     if (changed.has("hass") && this.hass) {
       if (!this.api) {
         this.api = new StateGuardApi(this.hass);
+        void this.loadLanguage();
         void this.load();
       } else {
         this.api.update(this.hass);
@@ -156,10 +165,18 @@ export class StateGuardPanel extends LitElement {
   }
 
   private get localize(): Localizer {
+    return this.translator;
+  }
+
+  /** Fetch the catalogue for the effective language, once per change. */
+  private async loadLanguage(): Promise<void> {
     const preference = this.config?.settings.ui_language ?? "auto";
-    return localize(
-      preference === "auto" ? this.hass?.language || "en" : preference,
-    );
+    const language =
+      preference === "auto" ? this.hass?.language || "en" : preference;
+    if (language === this.loadedLanguage) return;
+    this.loadedLanguage = language;
+    const catalogue: Strings = await loadCatalogue(language);
+    this.translator = localize(catalogue);
   }
 
   private async load(): Promise<void> {
@@ -180,6 +197,8 @@ export class StateGuardPanel extends LitElement {
       this.config = config;
       this.meta = meta;
       this.status = await this.api.getStatus();
+      // The stored preference may differ from Home Assistant's language.
+      await this.loadLanguage();
       this.error = "";
     } catch (err) {
       this.error = this.describeError(err);

@@ -1,4 +1,4 @@
-import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l as H}from"./stateguard-shared.js";class K{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getCardData(){return this.hass.callWS({type:"stateguard/card"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}watchEntities(e){return this.hass.callWS({type:"stateguard/watch/entities",watch_id:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var Y=Object.defineProperty,Z=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?Z(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Y(e,i,a),a};let S=class extends f{constructor(){super(...arguments),this.readOnly=!1,this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return D(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
+import{s as b,i as x,n as c,r as d,a as f,d as D,A as r,c as l,t as y,C as J,e as H,f as K,b as Y,l as Z}from"./stateguard-shared.js";class X{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getCardData(){return this.hass.callWS({type:"stateguard/card"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}watchEntities(e){return this.hass.callWS({type:"stateguard/watch/entities",watch_id:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var ee=Object.defineProperty,te=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?te(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ee(e,i,a),a};let S=class extends f{constructor(){super(...arguments),this.readOnly=!1,this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return D(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
       <div class="problem">
         <ha-icon
           icon=${this.severityIcon(t)}
@@ -43,16 +43,16 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               </div>
             `:r}
       </div>
-    `}render(){const t=this.status.problems.filter(h=>["alerted","escalated"].includes(h.status)&&h.suppression==="none"),e=this.status.problems.filter(h=>h.suppression!=="none"),i=this.status.problems.filter(h=>h.status==="pending"&&h.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const h of t){const P=h.severity_id??"";n.set(P,(n.get(P)??0)+1)}let o="mdi:shield-check",u="var(--success-color, #4caf50)",w=this.localize("overview.healthy"),B=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",u="var(--secondary-text-color)",w=this.localize("overview.paused"),B=this.localize("overview.paused_sub");else if(t.length){const h=[...t].sort((P,V)=>V.severity_priority-P.severity_priority)[0];o=this.severityIcon(h),u=this.severityColor(h),w=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),B=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
+    `}render(){const t=this.status.problems.filter(h=>["alerted","escalated"].includes(h.status)&&h.suppression==="none"),e=this.status.problems.filter(h=>h.suppression!=="none"),i=this.status.problems.filter(h=>h.status==="pending"&&h.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const h of t){const T=h.severity_id??"";n.set(T,(n.get(T)??0)+1)}let o="mdi:shield-check",g="var(--success-color, #4caf50)",w=this.localize("overview.healthy"),B=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",g="var(--secondary-text-color)",w=this.localize("overview.paused"),B=this.localize("overview.paused_sub");else if(t.length){const h=[...t].sort((T,R)=>R.severity_priority-T.severity_priority)[0];o=this.severityIcon(h),g=this.severityColor(h),w=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),B=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
       <div class="card">
         <div class="hero">
-          <ha-icon icon=${o} style=${`color:${u}`}></ha-icon>
+          <ha-icon icon=${o} style=${`color:${g}`}></ha-icon>
           <div>
             <div class="headline">${w}</div>
             <div class="sub">${B}</div>
             ${n.size?l`
                   <div class="counts">
-                    ${this.config.severities.filter(h=>n.has(h.id)).sort((h,P)=>P.priority-h.priority).map(h=>l`
+                    ${this.config.severities.filter(h=>n.has(h.id)).sort((h,T)=>T.priority-h.priority).map(h=>l`
                           <span class="count">
                             <ha-icon
                               icon=${h.icon}
@@ -158,7 +158,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               ${e.map(h=>this.renderProblem(h,!0))}
             </div>
           `:r}
-    `}};S.styles=[b,z`
+    `}};S.styles=[b,x`
       .hero {
         display: flex;
         align-items: center;
@@ -286,7 +286,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
       .muted .problem .name {
         color: var(--secondary-text-color);
       }
-    `];q([c({attribute:!1})],S.prototype,"config",2);q([c({attribute:!1})],S.prototype,"status",2);q([c({attribute:!1})],S.prototype,"localize",2);q([c({type:Boolean})],S.prototype,"readOnly",2);q([d()],S.prototype,"now",2);S=q([y("sg-overview")],S);var X=Object.defineProperty,ee=Object.getOwnPropertyDescriptor,k=(t,e,i,s)=>{for(var a=s>1?void 0:s?ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&X(e,i,a),a};let $=class extends f{constructor(){super(...arguments),this.showTemplates=!1,this.expanded=null,this.entities=null,this.loading=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}toggleEntities(t){if(this.expanded===t.id){this.expanded=null,this.entities=null;return}this.expanded=t.id,this.entities=null,this.loading=!0,this.dispatchEvent(new CustomEvent("sg-watch-entities",{detail:{watchId:t.id,callback:e=>{this.loading=!1,this.expanded===t.id&&(this.entities=e?.entities??[])}},bubbles:!0,composed:!0}))}reasonText(t){const e=t.problem;return e?e.reason_key?this.localize(`reason.${e.reason_key}`,e.reason_params):e.reason:""}renderEntities(){const t=this.localize;return this.loading?l`<div class="note">${t("watches.loading")}</div>`:this.entities?.length?this.entities.map(e=>{const i=e.problem,s=i!==null&&i.status!=="ok";return l`
+    `];N([c({attribute:!1})],S.prototype,"config",2);N([c({attribute:!1})],S.prototype,"status",2);N([c({attribute:!1})],S.prototype,"localize",2);N([c({type:Boolean})],S.prototype,"readOnly",2);N([d()],S.prototype,"now",2);S=N([y("sg-overview")],S);var ie=Object.defineProperty,se=Object.getOwnPropertyDescriptor,k=(t,e,i,s)=>{for(var a=s>1?void 0:s?se(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ie(e,i,a),a};let $=class extends f{constructor(){super(...arguments),this.showTemplates=!1,this.expanded=null,this.entities=null,this.loading=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}toggleEntities(t){if(this.expanded===t.id){this.expanded=null,this.entities=null;return}this.expanded=t.id,this.entities=null,this.loading=!0,this.dispatchEvent(new CustomEvent("sg-watch-entities",{detail:{watchId:t.id,callback:e=>{this.loading=!1,this.expanded===t.id&&(this.entities=e?.entities??[])}},bubbles:!0,composed:!0}))}reasonText(t){const e=t.problem;return e?e.reason_key?this.localize(`reason.${e.reason_key}`,e.reason_params):e.reason:""}renderEntities(){const t=this.localize;return this.loading?l`<div class="note">${t("watches.loading")}</div>`:this.entities?.length?this.entities.map(e=>{const i=e.problem,s=i!==null&&i.status!=="ok";return l`
         <div class=${s?"entity bad":"entity"}>
           <sg-entity-menu
             .entityId=${e.entity_id}
@@ -407,7 +407,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               <div>${this.localize("watches.empty")}</div>
             </div>`}
       </div>
-    `}};$.styles=[b,z`
+    `}};$.styles=[b,x`
       .template {
         display: flex;
         align-items: flex-start;
@@ -509,7 +509,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         font-size: 0.85rem;
         color: var(--secondary-text-color);
       }
-    `];k([c({attribute:!1})],$.prototype,"config",2);k([c({attribute:!1})],$.prototype,"meta",2);k([c({attribute:!1})],$.prototype,"status",2);k([c({attribute:!1})],$.prototype,"localize",2);k([d()],$.prototype,"showTemplates",2);k([d()],$.prototype,"expanded",2);k([d()],$.prototype,"entities",2);k([d()],$.prototype,"loading",2);$=k([y("sg-watches")],$);var te=Object.defineProperty,ie=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?ie(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&te(e,i,a),a};let O=class extends f{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return r;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
+    `];k([c({attribute:!1})],$.prototype,"config",2);k([c({attribute:!1})],$.prototype,"meta",2);k([c({attribute:!1})],$.prototype,"status",2);k([c({attribute:!1})],$.prototype,"localize",2);k([d()],$.prototype,"showTemplates",2);k([d()],$.prototype,"expanded",2);k([d()],$.prototype,"entities",2);k([d()],$.prototype,"loading",2);$=k([y("sg-watches")],$);var ae=Object.defineProperty,le=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?le(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ae(e,i,a),a};let O=class extends f{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return r;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
       <div class="scroll">
         ${t.map(e=>l`
             <div class="entry">
@@ -536,7 +536,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
           >
             + ${this.entities.length-this.limit}
           </button>`:r}
-    `}};O.styles=[b,z`
+    `}};O.styles=[b,x`
       .scroll {
         max-height: 260px;
         overflow-y: auto;
@@ -573,7 +573,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
       .bad {
         color: var(--error-color, #db4437);
       }
-    `];N([c({attribute:!1})],O.prototype,"entities",2);N([c({attribute:!1})],O.prototype,"localize",2);N([c({type:Number})],O.prototype,"limit",2);N([d()],O.prototype,"expanded",2);O=N([y("sg-entity-list")],O);var se=Object.defineProperty,ae=Object.getOwnPropertyDescriptor,L=(t,e,i,s)=>{for(var a=s>1?void 0:s?ae(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&se(e,i,a),a};const F=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let I=class extends f{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of F)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
+    `];q([c({attribute:!1})],O.prototype,"entities",2);q([c({attribute:!1})],O.prototype,"localize",2);q([c({type:Number})],O.prototype,"limit",2);q([d()],O.prototype,"expanded",2);O=q([y("sg-entity-list")],O);var ne=Object.defineProperty,oe=Object.getOwnPropertyDescriptor,M=(t,e,i,s)=>{for(var a=s>1?void 0:s?oe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ne(e,i,a),a};const G=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let I=class extends f{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of G)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
       <div class="duration">
         <input
           type="number"
@@ -584,14 +584,14 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         <select
           @change=${e=>{const i=Number(e.target.value);this.emit(Math.round(this.value/t*i))}}
         >
-          ${F.filter(([,e])=>e>=this.minUnit).map(([e,i])=>l`
+          ${G.filter(([,e])=>e>=this.minUnit).map(([e,i])=>l`
               <option value=${i} ?selected=${i===t}>
                 ${this.localize(e)}
               </option>
             `)}
         </select>
       </div>
-    `}};I.styles=[b,z`
+    `}};I.styles=[b,x`
       .duration {
         display: flex;
         gap: 8px;
@@ -606,10 +606,10 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         width: auto;
         flex-shrink: 0;
       }
-    `];L([c({type:Number})],I.prototype,"value",2);L([c({attribute:!1})],I.prototype,"localize",2);L([c({type:Number})],I.prototype,"minUnit",2);I=L([y("sg-duration")],I);var le=Object.defineProperty,ne=Object.getOwnPropertyDescriptor,_=(t,e,i,s)=>{for(var a=s>1?void 0:s?ne(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&le(e,i,a),a};const oe=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],re=["unavailable","unknown","","none"],R=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),M=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),G=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:R(),conditions:[M("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends f{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=G(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:R(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...M("unavailable_state"),...s}))}}else this.draft=G(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
+    `];M([c({type:Number})],I.prototype,"value",2);M([c({attribute:!1})],I.prototype,"localize",2);M([c({type:Number})],I.prototype,"minUnit",2);I=M([y("sg-duration")],I);var re=Object.defineProperty,ce=Object.getOwnPropertyDescriptor,_=(t,e,i,s)=>{for(var a=s>1?void 0:s?ce(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&re(e,i,a),a};const de=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],he=["unavailable","unknown","","none"],Q=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),j=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),F=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:Q(),conditions:[j("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends f{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=F(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:Q(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...j("unavailable_state"),...s}))}}else this.draft=F(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
           <label class="field"><span>${this.localize("cond.states")}</span></label>
           <div class="chips">
-            ${re.map(i=>l`
+            ${he.map(i=>l`
                 <button
                   type="button"
                   class="chip"
@@ -851,7 +851,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
                   type="text"
                   .value=${t.entities.join(", ")}
                   placeholder="sensor.example, binary_sensor.other"
-                  @change=${e=>this.patchTarget({entities:Q(e.target.value)})}
+                  @change=${e=>this.patchTarget({entities:V(e.target.value)})}
                 />
               </label>
 
@@ -870,7 +870,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
                 <input
                   type="text"
                   .value=${t.exclude_entities.join(", ")}
-                  @change=${e=>this.patchTarget({exclude_entities:Q(e.target.value)})}
+                  @change=${e=>this.patchTarget({exclude_entities:V(e.target.value)})}
                 />
               </label>
             </div>
@@ -900,9 +900,9 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
                 <div class="row" style="margin-bottom:10px">
                   <select
                     style="flex:1"
-                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=M(a),this.patch({conditions:n})}}
+                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=j(a),this.patch({conditions:n})}}
                   >
-                    ${oe.map(s=>l`
+                    ${de.map(s=>l`
                         <option value=${s} ?selected=${e.type===s}>
                           ${this.localize(`cond.${s}`)}
                         </option>
@@ -920,7 +920,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
             `)}
           <button
             class="secondary"
-            @click=${()=>this.patch({conditions:[...this.draft.conditions,M("unavailable_state")]})}
+            @click=${()=>this.patch({conditions:[...this.draft.conditions,j("unavailable_state")]})}
           >
             <ha-icon icon="mdi:plus"></ha-icon>
             ${this.localize("editor.add_condition")}
@@ -1006,7 +1006,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
           </button>
         </div>
       </div>
-    `}};v.styles=[b,z`
+    `}};v.styles=[b,x`
       .section {
         border-top: var(--sg-border);
         padding-top: var(--sg-gap);
@@ -1057,18 +1057,18 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         gap: 10px;
         margin: var(--sg-gap) calc(-1 * var(--sg-gap)) calc(-1 * var(--sg-gap));
       }
-    `];_([c({attribute:!1})],v.prototype,"config",2);_([c({attribute:!1})],v.prototype,"meta",2);_([c({attribute:!1})],v.prototype,"localize",2);_([c({attribute:!1})],v.prototype,"watch",2);_([c({attribute:!1})],v.prototype,"template",2);_([d()],v.prototype,"draft",2);_([d()],v.prototype,"preview",2);_([d()],v.prototype,"previewCount",2);_([d()],v.prototype,"error",2);v=_([y("sg-watch-editor")],v);function U(t){const e=t.trim();if(!e)return null;const i=Number(e);return Number.isFinite(i)?i:null}function Q(t){return t.split(",").map(e=>e.trim()).filter(Boolean)}var ce=Object.defineProperty,de=Object.getOwnPropertyDescriptor,T=(t,e,i,s)=>{for(var a=s>1?void 0:s?de(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ce(e,i,a),a};const he=["ha_service","smtp","telegram","pushover","ntfy"],pe="__unchanged__",ue={ha_service:"mdi:home-assistant",smtp:"mdi:email-outline",telegram:"mdi:send",pushover:"mdi:cellphone-message",ntfy:"mdi:bell-ring-outline"},ge=()=>({id:"",name:"",kind:"ha_service",enabled:!0,config:{},title_template:"",template:""});let x=class extends f{constructor(){super(...arguments),this.editing=null,this.testState=null,this.testing=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t}),this.testState=null}patchConfig(t,e){this.editing&&this.patch({config:{...this.editing.config,[t]:e}})}usedBy(t){return this.config.severities.filter(e=>e.channels.includes(t.id)||e.escalation_channels.includes(t.id)).length}renderField(t,e){const i=this.localize(`field.${t.key}`),s=e.config[t.key],a=s==null?"":String(s);if(t.type==="select")return l`
+    `];_([c({attribute:!1})],v.prototype,"config",2);_([c({attribute:!1})],v.prototype,"meta",2);_([c({attribute:!1})],v.prototype,"localize",2);_([c({attribute:!1})],v.prototype,"watch",2);_([c({attribute:!1})],v.prototype,"template",2);_([d()],v.prototype,"draft",2);_([d()],v.prototype,"preview",2);_([d()],v.prototype,"previewCount",2);_([d()],v.prototype,"error",2);v=_([y("sg-watch-editor")],v);function U(t){const e=t.trim();if(!e)return null;const i=Number(e);return Number.isFinite(i)?i:null}function V(t){return t.split(",").map(e=>e.trim()).filter(Boolean)}var pe=Object.defineProperty,ue=Object.getOwnPropertyDescriptor,P=(t,e,i,s)=>{for(var a=s>1?void 0:s?ue(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&pe(e,i,a),a};const ge=["ha_service","smtp","telegram","pushover","ntfy"],ve="__unchanged__",$e={ha_service:"mdi:home-assistant",smtp:"mdi:email-outline",telegram:"mdi:send",pushover:"mdi:cellphone-message",ntfy:"mdi:bell-ring-outline"},me=()=>({id:"",name:"",kind:"ha_service",enabled:!0,config:{},title_template:"",template:""});let z=class extends f{constructor(){super(...arguments),this.editing=null,this.testState=null,this.testing=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t}),this.testState=null}patchConfig(t,e){this.editing&&this.patch({config:{...this.editing.config,[t]:e}})}usedBy(t){return this.config.severities.filter(e=>e.channels.includes(t.id)||e.escalation_channels.includes(t.id)).length}renderField(t,e){const i=this.localize(`field.${t.key}`),s=e.config[t.key],a=s==null?"":String(s);if(t.type==="select")return l`
         <label class="field">
           <span>${i}</span>
           <select
-            @change=${u=>this.patchConfig(t.key,u.target.value)}
+            @change=${g=>this.patchConfig(t.key,g.target.value)}
           >
-            ${(t.options??[]).map(u=>l`
+            ${(t.options??[]).map(g=>l`
                 <option
-                  value=${u}
-                  ?selected=${a===u||!a&&String(t.default??"")===u}
+                  value=${g}
+                  ?selected=${a===g||!a&&String(t.default??"")===g}
                 >
-                  ${u}
+                  ${g}
                 </option>
               `)}
           </select>
@@ -1079,17 +1079,17 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
           <textarea
             .value=${s?JSON.stringify(s,null,2):""}
             placeholder=${'{ "data": { "push": { "sound": "default" } } }'}
-            @change=${u=>{const w=u.target.value.trim();if(!w){this.patchConfig(t.key,void 0);return}try{this.patchConfig(t.key,JSON.parse(w))}catch{this.testState={ok:!1,text:"JSON?"}}}}
+            @change=${g=>{const w=g.target.value.trim();if(!w){this.patchConfig(t.key,void 0);return}try{this.patchConfig(t.key,JSON.parse(w))}catch{this.testState={ok:!1,text:"JSON?"}}}}
           ></textarea>
         </label>
-      `;const n=t.type==="secret",o=n&&a===pe;return l`
+      `;const n=t.type==="secret",o=n&&a===ve;return l`
       <label class="field">
         <span>${i}${t.required?" *":""}</span>
         <input
           type=${n?"password":t.type==="number"?"number":"text"}
           .value=${o?"":a}
           placeholder=${o?this.localize("ch.secret_kept"):t.example??String(t.default??"")}
-          @change=${u=>{const w=u.target.value;n&&!w&&o||this.patchConfig(t.key,w)}}
+          @change=${g=>{const w=g.target.value;n&&!w&&o||this.patchConfig(t.key,w)}}
         />
       </label>
     `}async test(){this.editing&&(this.testing=!0,this.testState=null,this.dispatchEvent(new CustomEvent("sg-test-channel",{detail:{channel:this.editing,callback:t=>{if(this.testing=!1,t.ok){this.testState={ok:!0,text:this.localize("ch.test_ok")};return}const e=t.error??"";this.testState={ok:!1,text:e.startsWith("missing:")?this.localize("ch.test_missing",{field:this.localize(`field.${e.slice(8)}`)}):this.localize("ch.test_failed",{error:e})}}},bubbles:!0,composed:!0})))}renderEditor(t){const e=this.meta.channel_fields[t.kind]??[];return l`
@@ -1110,7 +1110,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
             <select
               @change=${i=>this.patch({kind:i.target.value,config:{}})}
             >
-              ${he.map(i=>l`
+              ${ge.map(i=>l`
                   <option value=${i} ?selected=${t.kind===i}>
                     ${this.localize(`kind.${i}`)}
                   </option>
@@ -1178,7 +1178,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
     `}render(){return this.editing?this.renderEditor(this.editing):l`
       <div class="card">
         <button
-          @click=${()=>{this.editing=ge()}}
+          @click=${()=>{this.editing=me()}}
         >
           <ha-icon icon="mdi:plus"></ha-icon>
           ${this.localize("ch.add")}
@@ -1189,7 +1189,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         ${this.config.channels.length?this.config.channels.map(t=>{const e=this.usedBy(t);return l`
                 <div class="list-item">
                   <ha-icon
-                    icon=${ue[t.kind]}
+                    icon=${$e[t.kind]}
                     style=${`--mdc-icon-size:24px;color:${t.enabled?"var(--primary-color)":"var(--secondary-text-color)"}`}
                   ></ha-icon>
                   <div style="flex:1;min-width:0">
@@ -1222,7 +1222,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               <div>${this.localize("ch.empty")}</div>
             </div>`}
       </div>
-    `}};x.styles=[b,z`
+    `}};z.styles=[b,x`
       textarea {
         width: 100%;
         box-sizing: border-box;
@@ -1255,7 +1255,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
       .result.bad {
         color: var(--error-color, #db4437);
       }
-    `];T([c({attribute:!1})],x.prototype,"config",2);T([c({attribute:!1})],x.prototype,"meta",2);T([c({attribute:!1})],x.prototype,"localize",2);T([d()],x.prototype,"editing",2);T([d()],x.prototype,"testState",2);T([d()],x.prototype,"testing",2);x=T([y("sg-channels")],x);var ve=Object.defineProperty,$e=Object.getOwnPropertyDescriptor,C=(t,e,i,s)=>{for(var a=s>1?void 0:s?$e(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ve(e,i,a),a};const me=50,be=[1,7,30,90,365];let m=class extends f{constructor(){super(...arguments),this.incidents=[],this.total=0,this.watchId="",this.severityId="",this.days=30,this.openOnly=!1}request(t=0){this.dispatchEvent(new CustomEvent("sg-load-history",{detail:{limit:me,offset:t,watch_id:this.watchId||null,severity_id:this.severityId||null,days:this.days,open_only:this.openOnly,append:t>0},bubbles:!0,composed:!0}))}firstUpdated(){this.request()}duration(t){const e=Math.max(0,Math.round(t));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h ${Math.floor(e%3600/60)}m`:`${Math.floor(e/86400)}d ${Math.floor(e%86400/3600)}h`}when(t){return new Date(t*1e3).toLocaleString()}render(){const t=this.localize;return l`
+    `];P([c({attribute:!1})],z.prototype,"config",2);P([c({attribute:!1})],z.prototype,"meta",2);P([c({attribute:!1})],z.prototype,"localize",2);P([d()],z.prototype,"editing",2);P([d()],z.prototype,"testState",2);P([d()],z.prototype,"testing",2);z=P([y("sg-channels")],z);var be=Object.defineProperty,fe=Object.getOwnPropertyDescriptor,C=(t,e,i,s)=>{for(var a=s>1?void 0:s?fe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&be(e,i,a),a};const ye=50,_e=[1,7,30,90,365];let m=class extends f{constructor(){super(...arguments),this.incidents=[],this.total=0,this.watchId="",this.severityId="",this.days=30,this.openOnly=!1}request(t=0){this.dispatchEvent(new CustomEvent("sg-load-history",{detail:{limit:ye,offset:t,watch_id:this.watchId||null,severity_id:this.severityId||null,days:this.days,open_only:this.openOnly,append:t>0},bubbles:!0,composed:!0}))}firstUpdated(){this.request()}duration(t){const e=Math.max(0,Math.round(t));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h ${Math.floor(e%3600/60)}m`:`${Math.floor(e/86400)}d ${Math.floor(e%86400/3600)}h`}when(t){return new Date(t*1e3).toLocaleString()}render(){const t=this.localize;return l`
       <div class="card">
         <div class="filters">
           <label class="field" style="margin:0">
@@ -1292,7 +1292,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
             <select
               @change=${e=>{this.days=Number(e.target.value),this.request()}}
             >
-              ${be.map(e=>l`
+              ${_e.map(e=>l`
                   <option value=${e} ?selected=${this.days===e}>
                     ${t("hist.days",{count:e})}
                   </option>
@@ -1356,7 +1356,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               <div>${t("hist.empty")}</div>
             </div>`}
       </div>
-    `}};m.styles=[b,z`
+    `}};m.styles=[b,x`
       .filters {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1419,7 +1419,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
       .open {
         color: var(--warning-color, #ffa600);
       }
-    `];C([c({attribute:!1})],m.prototype,"config",2);C([c({attribute:!1})],m.prototype,"localize",2);C([c({attribute:!1})],m.prototype,"incidents",2);C([c({type:Number})],m.prototype,"total",2);C([d()],m.prototype,"watchId",2);C([d()],m.prototype,"severityId",2);C([d()],m.prototype,"days",2);C([d()],m.prototype,"openOnly",2);m=C([y("sg-history")],m);var fe=Object.defineProperty,ye=Object.getOwnPropertyDescriptor,A=(t,e,i,s)=>{for(var a=s>1?void 0:s?ye(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&fe(e,i,a),a};const _e=()=>({id:"",name:"",priority:50,color:"amber",icon:"mdi:alert-outline",channels:[],ignore_quiet_hours:!1,persistent_notification:!0,bundle_window:60,repeat_interval:0,escalation_after:0,escalation_channels:[]});let W=class extends f{constructor(){super(...arguments),this.editing=null}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t})}usedBy(t){return this.config.watches.filter(e=>e.severity_id===t.id).length}renderEditor(t){return l`
+    `];C([c({attribute:!1})],m.prototype,"config",2);C([c({attribute:!1})],m.prototype,"localize",2);C([c({attribute:!1})],m.prototype,"incidents",2);C([c({type:Number})],m.prototype,"total",2);C([d()],m.prototype,"watchId",2);C([d()],m.prototype,"severityId",2);C([d()],m.prototype,"days",2);C([d()],m.prototype,"openOnly",2);m=C([y("sg-history")],m);var we=Object.defineProperty,ze=Object.getOwnPropertyDescriptor,A=(t,e,i,s)=>{for(var a=s>1?void 0:s?ze(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&we(e,i,a),a};const xe=()=>({id:"",name:"",priority:50,color:"amber",icon:"mdi:alert-outline",channels:[],ignore_quiet_hours:!1,persistent_notification:!0,bundle_window:60,repeat_interval:0,escalation_after:0,escalation_channels:[]});let W=class extends f{constructor(){super(...arguments),this.editing=null}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t})}usedBy(t){return this.config.watches.filter(e=>e.severity_id===t.id).length}renderEditor(t){return l`
       <div class="card">
         <h2>${t.name||this.localize("sev.add")}</h2>
         <div class="grid">
@@ -1550,7 +1550,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
     `}render(){return this.editing?this.renderEditor(this.editing):l`
       <div class="card">
         <button
-          @click=${()=>{this.editing=_e()}}
+          @click=${()=>{this.editing=xe()}}
         >
           <ha-icon icon="mdi:plus"></ha-icon>
           ${this.localize("sev.add")}
@@ -1591,7 +1591,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
               </div>
             `})}
       </div>
-    `}};W.styles=b;A([c({attribute:!1})],W.prototype,"config",2);A([c({attribute:!1})],W.prototype,"localize",2);A([d()],W.prototype,"editing",2);W=A([y("sg-severities")],W);var we=Object.defineProperty,xe=Object.getOwnPropertyDescriptor,j=(t,e,i,s)=>{for(var a=s>1?void 0:s?xe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&we(e,i,a),a};let E=class extends f{constructor(){super(...arguments),this.saved=!1}get current(){return this.draft??this.settings}patch(t){this.draft={...this.current,...t},this.saved=!1}patchQuiet(t){this.patch({quiet_hours:{...this.current.quiet_hours,...t}})}patchWindow(t,e){const i=this.current.quiet_hours.windows.map((s,a)=>a===t?{...s,...e}:s);this.patchQuiet({windows:i})}wraps(t){return t.end<=t.start}renderWindow(t,e){const i=this.localize;return l`
+    `}};W.styles=b;A([c({attribute:!1})],W.prototype,"config",2);A([c({attribute:!1})],W.prototype,"localize",2);A([d()],W.prototype,"editing",2);W=A([y("sg-severities")],W);var ke=Object.defineProperty,Ce=Object.getOwnPropertyDescriptor,L=(t,e,i,s)=>{for(var a=s>1?void 0:s?Ce(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ke(e,i,a),a};const Se={cs:"Čeština",da:"Dansk",de:"Deutsch",en:"English",es:"Español",fr:"Français",it:"Italiano",nl:"Nederlands",pl:"Polski",pt:"Português",sv:"Svenska"};let E=class extends f{constructor(){super(...arguments),this.saved=!1}get current(){return this.draft??this.settings}patch(t){this.draft={...this.current,...t},this.saved=!1}patchQuiet(t){this.patch({quiet_hours:{...this.current.quiet_hours,...t}})}patchWindow(t,e){const i=this.current.quiet_hours.windows.map((s,a)=>a===t?{...s,...e}:s);this.patchQuiet({windows:i})}wraps(t){return t.end<=t.start}renderWindow(t,e){const i=this.localize;return l`
       <div class="window">
         <div class="grid">
           <label class="field" style="margin:0">
@@ -1755,12 +1755,11 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
             <option value="auto" ?selected=${t.ui_language==="auto"}>
               ${this.localize("settings.language_auto")}
             </option>
-            <option value="en" ?selected=${t.ui_language==="en"}>
-              English
-            </option>
-            <option value="de" ?selected=${t.ui_language==="de"}>
-              Deutsch
-            </option>
+            ${H.map(i=>l`
+                <option value=${i} ?selected=${t.ui_language===i}>
+                  ${Se[i]??i}
+                </option>
+              `)}
           </select>
         </label>
 
@@ -1773,14 +1772,14 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
           ${this.saved?l`<span class="badge">${this.localize("settings.saved")}</span>`:r}
         </div>
       </div>
-    `}};E.styles=[b,z`
+    `}};E.styles=[b,x`
       .window {
         border: var(--sg-border);
         border-radius: 10px;
         padding: 12px;
         margin-bottom: 12px;
       }
-    `];j([c({attribute:!1})],E.prototype,"settings",2);j([c({attribute:!1})],E.prototype,"localize",2);j([d()],E.prototype,"draft",2);j([d()],E.prototype,"saved",2);E=j([y("sg-settings")],E);var ze=Object.defineProperty,ke=Object.getOwnPropertyDescriptor,g=(t,e,i,s)=>{for(var a=s>1?void 0:s?ke(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ze(e,i,a),a};const Ce=5e3;let p=class extends f{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0}get isAdmin(){return this.hass?.user?.is_admin!==!1}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Ce)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new K(this.hass),this.load()))}get localize(){const t=this.config?.settings.ui_language??"auto";return H(t==="auto"?this.hass?.language||"en":t)}async load(){if(this.api){if(!this.isAdmin){try{this.cardData=await this.api.getCardData(),this.error=""}catch(t){this.error=this.describeError(t)}return}try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),this.error=""}catch(t){this.error=this.describeError(t)}}}async refreshStatus(){if(this.api)try{if(!this.isAdmin){this.cardData=await this.api.getCardData();return}this.config&&(this.status=await this.api.getStatus())}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.isAdmin)return this.cardData?l`
+    `];L([c({attribute:!1})],E.prototype,"settings",2);L([c({attribute:!1})],E.prototype,"localize",2);L([d()],E.prototype,"draft",2);L([d()],E.prototype,"saved",2);E=L([y("sg-settings")],E);var Oe=Object.defineProperty,Ee=Object.getOwnPropertyDescriptor,u=(t,e,i,s)=>{for(var a=s>1?void 0:s?Ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Oe(e,i,a),a};const Pe=5e3;let p=class extends f{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0,this.translator=K,this.loadedLanguage=""}get isAdmin(){return this.hass?.user?.is_admin!==!1}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Pe)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new X(this.hass),this.loadLanguage(),this.load()))}get localize(){return this.translator}async loadLanguage(){const t=this.config?.settings.ui_language??"auto",e=t==="auto"?this.hass?.language||"en":t;if(e===this.loadedLanguage)return;this.loadedLanguage=e;const i=await Y(e);this.translator=Z(i)}async load(){if(this.api){if(!this.isAdmin){try{this.cardData=await this.api.getCardData(),this.error=""}catch(t){this.error=this.describeError(t)}return}try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),await this.loadLanguage(),this.error=""}catch(t){this.error=this.describeError(t)}}}async refreshStatus(){if(this.api)try{if(!this.isAdmin){this.cardData=await this.api.getCardData();return}this.config&&(this.status=await this.api.getStatus())}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.isAdmin)return this.cardData?l`
         <sg-overview
           .config=${{severities:this.cardData.severities,watches:[],channels:[],settings:{internet_entity:null}}}
           .status=${{problems:this.cardData.problems,watched_entity_count:this.cardData.watched_entity_count,resolved:{},monitoring_enabled:this.cardData.monitoring_enabled,restart_grace_until:this.cardData.restart_grace_until,internet_down:this.cardData.internet_down}}
@@ -1880,7 +1879,7 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
           ${this.renderView()}
         </div>
       </div>
-    `}};p.styles=[b,z`
+    `}};p.styles=[b,x`
       :host {
         background: var(--primary-background-color);
         min-height: 100vh;
@@ -1947,4 +1946,4 @@ import{s as b,i as z,n as c,r as d,a as f,c as D,A as r,b as l,t as y,C as J,l a
         text-align: center;
         color: var(--secondary-text-color);
       }
-    `];g([c({attribute:!1})],p.prototype,"hass",2);g([c({type:Boolean})],p.prototype,"narrow",2);g([d()],p.prototype,"config",2);g([d()],p.prototype,"meta",2);g([d()],p.prototype,"status",2);g([d()],p.prototype,"view",2);g([d()],p.prototype,"editingWatch",2);g([d()],p.prototype,"editingTemplate",2);g([d()],p.prototype,"editorOpen",2);g([d()],p.prototype,"error",2);g([d()],p.prototype,"incidents",2);g([d()],p.prototype,"historyTotal",2);g([d()],p.prototype,"cardData",2);p=g([y("stateguard-panel")],p);
+    `];u([c({attribute:!1})],p.prototype,"hass",2);u([c({type:Boolean})],p.prototype,"narrow",2);u([d()],p.prototype,"config",2);u([d()],p.prototype,"meta",2);u([d()],p.prototype,"status",2);u([d()],p.prototype,"view",2);u([d()],p.prototype,"editingWatch",2);u([d()],p.prototype,"editingTemplate",2);u([d()],p.prototype,"editorOpen",2);u([d()],p.prototype,"error",2);u([d()],p.prototype,"incidents",2);u([d()],p.prototype,"historyTotal",2);u([d()],p.prototype,"cardData",2);u([d()],p.prototype,"translator",2);p=u([y("stateguard-panel")],p);

@@ -305,9 +305,11 @@ In `stateguard_history.db` neben deiner Konfiguration, bewusst nicht in der Reco
 
 Die Zugangsdaten der Kanäle liegen im Speicher von Home Assistant, dort, wo jede andere Integration ihre Geheimnisse ablegt. An den Browser gehen sie nie zurück: Das Panel zeigt einen Platzhalter, und wer ihn nicht anfasst, behält den gespeicherten Wert.
 
-### Kann ich es auf Deutsch und Englisch nutzen?
+### Welche Sprachen kann es?
 
-Beides. Das Panel folgt deiner Home-Assistant-Sprache und lässt sich in den Einstellungen festnageln. Auch die Benachrichtigungstexte sind übersetzt.
+Englisch, Deutsch, Niederländisch, Französisch, Spanisch, Italienisch, Polnisch, Dänisch, Schwedisch, Tschechisch und Portugiesisch. Das Panel folgt deiner Home-Assistant-Sprache und lässt sich in den Einstellungen auf eine davon festnageln. Übersetzt ist alles, auch die Benachrichtigungstexte und die Beschreibungen der Dienste.
+
+Die Kataloge werden bei Bedarf geladen, einer je Sprache — eine deutsche Installation holt nie den polnischen, die zusätzlichen Sprachen kosten also nichts an Ladegewicht.
 
 ## Weitere Home-Assistant-Projekte
 

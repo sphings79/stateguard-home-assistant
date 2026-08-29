@@ -6,6 +6,24 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-29
+
+### Added
+
+- Nine more languages: Dutch, French, Spanish, Italian, Polish, Danish,
+  Swedish, Czech and Portuguese, alongside the existing English and German.
+  Everything is translated — the panel, the card, the notification texts
+  assembled at runtime, and the config flow and service descriptions Home
+  Assistant shows.
+- The panel language can be pinned to any of them in the settings, or left
+  following Home Assistant.
+
+### Changed
+
+- Catalogues are now loaded on demand, one chunk per language. A German
+  installation never fetches the Polish catalogue, so eleven languages cost
+  the panel nothing: it is still 16 kB gzipped, and the Lovelace card 3 kB.
+
 ## [0.1.3] - 2026-08-29
 
 ### Added
@@ -76,7 +94,8 @@ First release.
 - Entities (`binary_sensor` per watch, problem counters, a monitoring switch),
   services and events for use in automations.
 
-[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.0...v0.1.1

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "rm -f ../custom_components/stateguard/frontend/*.js",
     "build": "vite build",
     "watch": "vite build --watch"
   },

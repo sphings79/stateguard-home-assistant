@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Skonfiguruj StateGuard",
+        "description": "StateGuard pilnuje oznaczonych encji i urządzeń oraz zgłasza, gdy przestają być dostępne, przestają nadawać dane lub przekraczają próg. Resztę ustawisz potem w panelu StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard jest już skonfigurowany. Wystarczy jedna instancja."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemy"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Monitorowanie"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Odłóż",
+      "description": "Wstrzymuje zgłoszenia na jakiś czas bez wyłączania monitora.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitor",
+          "description": "Ogranicz do jednego monitora. Zostaw puste dla wszystkich."
+        },
+        "entity_id": {
+          "name": "Encja",
+          "description": "Ogranicz do jednej encji. Zostaw puste dla wszystkich."
+        },
+        "duration": {
+          "name": "Czas trwania",
+          "description": "Jak długo zgłoszenia mają milczeć."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Potwierdź",
+      "description": "Oznacza problem jako znany. Do rozwiązania nie będzie kolejnych zgłoszeń.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitor",
+          "description": "Ogranicz do jednego monitora. Zostaw puste dla wszystkich."
+        },
+        "entity_id": {
+          "name": "Encja",
+          "description": "Ogranicz do jednej encji. Zostaw puste dla wszystkich."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Cofnij potwierdzenie",
+      "description": "Cofa potwierdzenie i trwające odłożenie.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitor",
+          "description": "Ogranicz do jednego monitora. Zostaw puste dla wszystkich."
+        },
+        "entity_id": {
+          "name": "Encja",
+          "description": "Ogranicz do jednej encji. Zostaw puste dla wszystkich."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Wstrzymaj monitor",
+      "description": "Wyłącza pojedynczy monitor do czasu wznowienia.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitor",
+          "description": "Monitor do wstrzymania."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Wznów monitor",
+      "description": "Ponownie włącza wstrzymany monitor.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitor",
+          "description": "Monitor do wznowienia."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Wykonaj sprawdzenie",
+      "description": "Ponownie wyznacza wszystkie cele i od razu ocenia każdy monitor."
+    },
+    "export_config": {
+      "name": "Wyeksportuj konfigurację",
+      "description": "Zwraca pełną konfigurację StateGuard jako kopię zapasową."
+    },
+    "import_config": {
+      "name": "Zaimportuj konfigurację",
+      "description": "Zastępuje bieżącą konfigurację wcześniej wyeksportowaną.",
+      "fields": {
+        "config": {
+          "name": "Konfiguracja",
+          "description": "Obiekt konfiguracji z „Wyeksportuj konfigurację”."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard nie jest skonfigurowany."
+    },
+    "watch_not_found": {
+      "message": "Nie ma monitora o identyfikatorze {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Nie udało się odczytać podanej konfiguracji: {error}"
+    }
+  }
+}

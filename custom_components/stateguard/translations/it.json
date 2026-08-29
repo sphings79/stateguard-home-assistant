@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configura StateGuard",
+        "description": "StateGuard sorveglia entità e dispositivi etichettati e segnala quando diventano non disponibili, smettono di trasmettere o superano una soglia. Tutto il resto si imposta poi nel pannello StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard è già configurato. Ne basta un’istanza."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemi"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Monitoraggio"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Rinvia",
+      "description": "Trattiene le segnalazioni per un po’ senza spegnere il monitoraggio.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitoraggio",
+          "description": "Limita a un monitoraggio. Lascia vuoto per tutti."
+        },
+        "entity_id": {
+          "name": "Entità",
+          "description": "Limita a un’entità. Lascia vuoto per tutte."
+        },
+        "duration": {
+          "name": "Durata",
+          "description": "Per quanto tempo le segnalazioni restano silenziose."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Conferma",
+      "description": "Segna un problema come noto. Nessuna altra segnalazione finché non è risolto.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitoraggio",
+          "description": "Limita a un monitoraggio. Lascia vuoto per tutti."
+        },
+        "entity_id": {
+          "name": "Entità",
+          "description": "Limita a un’entità. Lascia vuoto per tutte."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Annulla la conferma",
+      "description": "Annulla una conferma e un rinvio in corso.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitoraggio",
+          "description": "Limita a un monitoraggio. Lascia vuoto per tutti."
+        },
+        "entity_id": {
+          "name": "Entità",
+          "description": "Limita a un’entità. Lascia vuoto per tutte."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Metti in pausa un monitoraggio",
+      "description": "Disattiva un singolo monitoraggio finché non viene ripreso.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitoraggio",
+          "description": "Il monitoraggio da mettere in pausa."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Riprendi un monitoraggio",
+      "description": "Riattiva un monitoraggio in pausa.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitoraggio",
+          "description": "Il monitoraggio da riprendere."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Esegui un controllo",
+      "description": "Ricalcola tutti gli obiettivi e valuta subito ogni monitoraggio."
+    },
+    "export_config": {
+      "name": "Esporta la configurazione",
+      "description": "Restituisce l’intera configurazione di StateGuard come copia di sicurezza."
+    },
+    "import_config": {
+      "name": "Importa la configurazione",
+      "description": "Sostituisce la configurazione attuale con una esportata in precedenza.",
+      "fields": {
+        "config": {
+          "name": "Configurazione",
+          "description": "L’oggetto di configurazione da «Esporta la configurazione»."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard non è configurato."
+    },
+    "watch_not_found": {
+      "message": "Non esiste alcun monitoraggio con l’identificativo {watch_id}."
+    },
+    "invalid_config": {
+      "message": "La configurazione fornita non è leggibile: {error}"
+    }
+  }
+}

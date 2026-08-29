@@ -303,9 +303,11 @@ In `stateguard_history.db` next to your configuration, deliberately not in the r
 
 Channel credentials live in Home Assistant's own storage, the same place every other integration keeps its secrets. They are never sent back to the browser: the panel shows a placeholder, and leaving it untouched keeps the stored value.
 
-### Can I use it in English and German?
+### Which languages does it speak?
 
-Both. The panel follows your Home Assistant language and can be pinned to either in the settings. Notification texts are translated too.
+English, German, Dutch, French, Spanish, Italian, Polish, Danish, Swedish, Czech and Portuguese. The panel follows your Home Assistant language and can be pinned to any of them in the settings. Everything is translated, including the notification texts and the service descriptions.
+
+Catalogues load on demand, one per language — a German installation never fetches the Polish one, so the extra languages cost nothing in page weight.
 
 ## More Home Assistant projects
 

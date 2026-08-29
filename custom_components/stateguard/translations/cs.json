@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nastavit StateGuard",
+        "description": "StateGuard hlídá označené entity a zařízení a hlásí, když přestanou být dostupné, přestanou posílat data nebo překročí mez. Vše ostatní se nastavuje potom v panelu StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "StateGuard je už nastaven. Jedna instance stačí."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problémy"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Hlídání"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Odložit",
+      "description": "Na chvíli zadrží hlášení, aniž by vypnul hlídání.",
+      "fields": {
+        "watch_id": {
+          "name": "Hlídání",
+          "description": "Omezit na jedno hlídání. Nechte prázdné pro všechna."
+        },
+        "entity_id": {
+          "name": "Entita",
+          "description": "Omezit na jednu entitu. Nechte prázdné pro všechny."
+        },
+        "duration": {
+          "name": "Doba",
+          "description": "Jak dlouho mají hlášení mlčet."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Potvrdit",
+      "description": "Označí problém jako známý. Až do vyřešení nepřijdou další hlášení.",
+      "fields": {
+        "watch_id": {
+          "name": "Hlídání",
+          "description": "Omezit na jedno hlídání. Nechte prázdné pro všechna."
+        },
+        "entity_id": {
+          "name": "Entita",
+          "description": "Omezit na jednu entitu. Nechte prázdné pro všechny."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Zrušit potvrzení",
+      "description": "Zruší potvrzení i probíhající odložení.",
+      "fields": {
+        "watch_id": {
+          "name": "Hlídání",
+          "description": "Omezit na jedno hlídání. Nechte prázdné pro všechna."
+        },
+        "entity_id": {
+          "name": "Entita",
+          "description": "Omezit na jednu entitu. Nechte prázdné pro všechny."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Pozastavit hlídání",
+      "description": "Vypne jedno hlídání, dokud se neobnoví.",
+      "fields": {
+        "watch_id": {
+          "name": "Hlídání",
+          "description": "Hlídání, které se má pozastavit."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Obnovit hlídání",
+      "description": "Znovu zapne pozastavené hlídání.",
+      "fields": {
+        "watch_id": {
+          "name": "Hlídání",
+          "description": "Hlídání, které se má obnovit."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Spustit kontrolu",
+      "description": "Znovu vyhodnotí všechny cíle a okamžitě posoudí každé hlídání."
+    },
+    "export_config": {
+      "name": "Exportovat konfiguraci",
+      "description": "Vrátí celou konfiguraci StateGuardu jako zálohu."
+    },
+    "import_config": {
+      "name": "Importovat konfiguraci",
+      "description": "Nahradí současnou konfiguraci dříve exportovanou.",
+      "fields": {
+        "config": {
+          "name": "Konfigurace",
+          "description": "Objekt konfigurace z „Exportovat konfiguraci“."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "StateGuard není nastaven."
+    },
+    "watch_not_found": {
+      "message": "Neexistuje hlídání s ID {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Zadanou konfiguraci nelze přečíst: {error}"
+    }
+  }
+}

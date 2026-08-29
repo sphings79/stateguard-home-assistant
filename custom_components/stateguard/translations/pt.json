@@ -1,0 +1,122 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurar o StateGuard",
+        "description": "O StateGuard monitoriza entidades e dispositivos etiquetados e avisa quando ficam indisponíveis, deixam de enviar dados ou ultrapassam um limiar. Tudo o resto configura-se depois no painel do StateGuard."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "O StateGuard já está configurado. Basta uma instância."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "problems": {
+        "name": "Problemas"
+      }
+    },
+    "switch": {
+      "monitoring": {
+        "name": "Monitorização"
+      }
+    }
+  },
+  "services": {
+    "snooze": {
+      "name": "Adiar",
+      "description": "Retém os avisos durante algum tempo sem desligar a monitorização.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitorização",
+          "description": "Limitar a uma monitorização. Deixe vazio para todas."
+        },
+        "entity_id": {
+          "name": "Entidade",
+          "description": "Limitar a uma entidade. Deixe vazio para todas."
+        },
+        "duration": {
+          "name": "Duração",
+          "description": "Durante quanto tempo os avisos ficam em silêncio."
+        }
+      }
+    },
+    "acknowledge": {
+      "name": "Confirmar",
+      "description": "Marca um problema como conhecido. Não haverá mais avisos até estar resolvido.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitorização",
+          "description": "Limitar a uma monitorização. Deixe vazio para todas."
+        },
+        "entity_id": {
+          "name": "Entidade",
+          "description": "Limitar a uma entidade. Deixe vazio para todas."
+        }
+      }
+    },
+    "clear_acknowledgement": {
+      "name": "Retirar a confirmação",
+      "description": "Retira uma confirmação e um adiamento em curso.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitorização",
+          "description": "Limitar a uma monitorização. Deixe vazio para todas."
+        },
+        "entity_id": {
+          "name": "Entidade",
+          "description": "Limitar a uma entidade. Deixe vazio para todas."
+        }
+      }
+    },
+    "pause_watch": {
+      "name": "Pôr a monitorização em pausa",
+      "description": "Desliga uma monitorização até ser retomada.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitorização",
+          "description": "A monitorização a pôr em pausa."
+        }
+      }
+    },
+    "resume_watch": {
+      "name": "Retomar a monitorização",
+      "description": "Volta a ativar uma monitorização em pausa.",
+      "fields": {
+        "watch_id": {
+          "name": "Monitorização",
+          "description": "A monitorização a retomar."
+        }
+      }
+    },
+    "run_check": {
+      "name": "Executar uma verificação",
+      "description": "Volta a resolver todos os alvos e avalia de imediato cada monitorização."
+    },
+    "export_config": {
+      "name": "Exportar a configuração",
+      "description": "Devolve toda a configuração do StateGuard como cópia de segurança."
+    },
+    "import_config": {
+      "name": "Importar configuração",
+      "description": "Substitui a configuração atual por uma exportada anteriormente.",
+      "fields": {
+        "config": {
+          "name": "Configuração",
+          "description": "O objeto de configuração de «Exportar a configuração»."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "not_set_up": {
+      "message": "O StateGuard não está configurado."
+    },
+    "watch_not_found": {
+      "message": "Não existe nenhuma monitorização com o identificador {watch_id}."
+    },
+    "invalid_config": {
+      "message": "Não foi possível ler a configuração indicada: {error}"
+    }
+  }
+}
