@@ -219,6 +219,25 @@ export interface HistoryPage {
   incidents: Incident[];
 }
 
+/** One entity a watch covers, with its problem if it has one. */
+export interface WatchEntity {
+  entity_id: string;
+  friendly_name: string;
+  state: string | null;
+  problem: {
+    status: string;
+    suppression: string;
+    reason: string;
+    reason_key: string;
+    reason_params: Record<string, string>;
+    since: number;
+  } | null;
+  device_id: string | null;
+  device_name: string | null;
+  integration_domain: string | null;
+  integration_title: string | null;
+}
+
 export interface PreviewEntity {
   entity_id: string;
   friendly_name: string;

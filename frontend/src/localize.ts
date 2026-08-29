@@ -136,6 +136,11 @@ const en: Strings = {
   "editor.restart_grace_global": "Use the global grace period after a restart",
 
   "watches.paused": "paused",
+  "watches.show_entities": "Show the entities this covers",
+  "watches.hide_entities": "Hide the list",
+  "watches.entities_none": "This watch currently covers no entities.",
+  "watches.entity_ok": "fine",
+  "watches.loading": "Loading…",
   "watches.edit": "Edit",
   "watches.delete": "Delete",
   "watches.confirm_delete": "Delete watch “{name}”?",
@@ -447,6 +452,11 @@ const de: Strings = {
   "editor.restart_grace_global": "Globale Karenzzeit nach Neustart verwenden",
 
   "watches.paused": "pausiert",
+  "watches.show_entities": "Erfasste Entitäten anzeigen",
+  "watches.hide_entities": "Liste ausblenden",
+  "watches.entities_none": "Diese Überwachung erfasst derzeit keine Entitäten.",
+  "watches.entity_ok": "in Ordnung",
+  "watches.loading": "Wird geladen…",
   "watches.edit": "Bearbeiten",
   "watches.delete": "Löschen",
   "watches.confirm_delete": "Überwachung „{name}“ löschen?",

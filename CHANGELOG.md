@@ -6,6 +6,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-08-29
+
+### Added
+
+- A watch in the list can be opened to see what it actually covers: every
+  entity with its name, its id, its current state, and the reason for any
+  problem. Previously the row said "covers 12 entities" without saying which
+  twelve, and the only way to find out was to open the editor.
+  The list is fetched when opened rather than shipped with every status
+  update, because a watch over a whole domain can cover thousands of
+  entities. Problems are sorted to the top.
+
 ## [0.1.2] - 2026-08-29
 
 ### Added
@@ -64,7 +76,8 @@ First release.
 - Entities (`binary_sensor` per watch, problem counters, a monitoring switch),
   services and events for use in automations.
 
-[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sphings79/stateguard-home-assistant/releases/tag/v0.1.0

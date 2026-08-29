@@ -120,7 +120,7 @@ Five templates cover the usual cases: Availability, Battery low, No data, Securi
 
 ### What a watch selects
 
-Labels are the main selector, and the editor shows a **live preview** of exactly which entities the current selection covers — before you save.
+Labels are the main selector, and the editor shows a **live preview** of exactly which entities the current selection covers — before you save. Afterwards, opening a watch in the list shows the same thing for the saved rule: every entity with its name, its id, its current state, and the reason for any problem.
 
 | Setting | Effect |
 | --- | --- |

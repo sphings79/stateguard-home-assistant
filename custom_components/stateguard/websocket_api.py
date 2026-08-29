@@ -46,6 +46,7 @@ def async_register_websocket_api(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, ws_history)
     websocket_api.async_register_command(hass, ws_history_stats)
     websocket_api.async_register_command(hass, ws_card_data)
+    websocket_api.async_register_command(hass, ws_watch_entities)
 
 
 @callback
@@ -664,3 +665,63 @@ async def ws_card_data(
             ),
         },
     )
+
+
+@websocket_api.require_admin
+@websocket_api.websocket_command(
+    {
+        vol.Required("type"): "stateguard/watch/entities",
+        vol.Required("watch_id"): str,
+    }
+)
+@websocket_api.async_response
+async def ws_watch_entities(
+    hass: HomeAssistant,
+    connection: websocket_api.ActiveConnection,
+    msg: dict[str, Any],
+) -> None:
+    """List what a watch currently covers, and how each entity is doing.
+
+    Loaded on demand rather than shipped with every status update: a watch
+    over a whole domain can cover thousands of entities.
+    """
+    engine = _engine(hass)
+    if engine is None:
+        connection.send_error(msg["id"], "not_loaded", "")
+        return
+
+    watch_id = msg["watch_id"]
+    if engine.config.watch(watch_id) is None:
+        connection.send_error(msg["id"], "not_found", watch_id)
+        return
+
+    entities = []
+    for entity_id in sorted(engine.resolved.get(watch_id, set())):
+        state = hass.states.get(entity_id)
+        problem = engine.problems.get((watch_id, entity_id))
+        entities.append(
+            {
+                "entity_id": entity_id,
+                "friendly_name": (
+                    state.attributes.get("friendly_name") if state else None
+                )
+                or entity_id,
+                "state": state.state if state else None,
+                "problem": {
+                    "status": problem.status,
+                    "suppression": problem.suppression,
+                    "reason": problem.reason,
+                    "reason_key": problem.reason_key,
+                    "reason_params": problem.reason_params,
+                    "since": problem.since,
+                }
+                if problem is not None
+                else None,
+                **async_links(hass, entity_id).as_dict(),
+            }
+        )
+
+    # Problems first, then alphabetically — the interesting ones stay on top
+    # even in a long list.
+    entities.sort(key=lambda item: (item["problem"] is None, item["friendly_name"]))
+    connection.send_result(msg["id"], {"count": len(entities), "entities": entities})

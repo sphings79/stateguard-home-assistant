@@ -411,6 +411,16 @@ export class StateGuardPanel extends LitElement {
               this.error = this.describeError(err);
             });
         }}
+        @sg-watch-entities=${(event: CustomEvent) => {
+          const { watchId, callback } = event.detail as {
+            watchId: string;
+            callback: (result: unknown) => void;
+          };
+          this.api
+            ?.watchEntities(watchId)
+            .then(callback)
+            .catch(() => callback(null));
+        }}
         @sg-save-severity=${(event: CustomEvent) =>
           this.run(() => this.api!.saveSeverity(event.detail.severity as Severity))}
         @sg-delete-severity=${(event: CustomEvent) => {

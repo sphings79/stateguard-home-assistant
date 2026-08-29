@@ -120,7 +120,7 @@ Fünf Vorlagen decken die üblichen Fälle ab: Verfügbarkeit, Batterie schwach,
 
 ### Was eine Überwachung erfasst
 
-Labels sind der Hauptselektor, und der Editor zeigt eine **Live-Vorschau**, welche Entitäten die aktuelle Auswahl genau erfasst — noch vor dem Speichern.
+Labels sind der Hauptselektor, und der Editor zeigt eine **Live-Vorschau**, welche Entitäten die aktuelle Auswahl genau erfasst — noch vor dem Speichern. Danach kannst du eine Überwachung in der Liste aufklappen und siehst dasselbe für die gespeicherte Regel: jede Entität mit Name, ID, aktuellem Zustand und dem Grund, falls etwas nicht stimmt.
 
 | Einstellung | Wirkung |
 | --- | --- |
