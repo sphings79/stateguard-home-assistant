@@ -14,7 +14,7 @@ from .const import (
     STORAGE_VERSION_CONFIG,
     STORAGE_VERSION_STATE,
 )
-from .models import Config, ProblemState, Severity
+from .models import Config, ProblemState, Severity, new_id
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -106,7 +106,33 @@ class StateGuardStore:
             _LOGGER.debug("No stored configuration found, seeded default severities")
         else:
             self.config = Config.from_dict(data)
+            if self._repair_ids():
+                await self.async_save()
         return self.config
+
+    def _repair_ids(self) -> bool:
+        """Give an identifier to anything stored without one.
+
+        Versions up to 0.2.0 could save a watch, severity or channel with an
+        empty id, and everything created afterwards would overwrite it.
+        """
+        repaired = False
+        for collection in (
+            self.config.watches,
+            self.config.severities,
+            self.config.channels,
+        ):
+            for item in collection:
+                if not item.id:
+                    item.id = new_id()
+                    repaired = True
+                    _LOGGER.warning(
+                        "Repaired a stored entry that had no identifier; it is "
+                        "now %s. Anything saved before this fix may have "
+                        "overwritten it.",
+                        item.id,
+                    )
+        return repaired
 
     async def async_save(self) -> None:
         """Write the configuration to disk."""

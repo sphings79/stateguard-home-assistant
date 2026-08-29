@@ -55,6 +55,7 @@ const emptyCondition = (type: ConditionType): Condition => ({
   recovery_value: null,
 });
 
+// A new watch carries no id; the backend assigns one on save.
 const emptyWatch = (severityId: string): Watch => ({
   id: "",
   name: "",

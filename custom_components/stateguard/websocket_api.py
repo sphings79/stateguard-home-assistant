@@ -244,7 +244,10 @@ async def ws_save_watch(
         return
 
     raw = dict(msg["watch"])
-    raw.setdefault("id", new_id())
+    # An empty id means "new". setdefault would keep it, and every new watch
+    # would then collide on the same empty id and overwrite the previous one.
+    if not raw.get("id"):
+        raw["id"] = new_id()
     watch = Watch.from_dict(raw)
 
     watches = engine.config.watches
@@ -306,7 +309,8 @@ async def ws_save_severity(
         return
 
     raw = dict(msg["severity"])
-    raw.setdefault("id", new_id())
+    if not raw.get("id"):
+        raw["id"] = new_id()
     severity = Severity.from_dict(raw)
 
     severities = engine.config.severities
@@ -459,7 +463,8 @@ async def ws_save_channel(
         return
 
     raw = dict(msg["channel"])
-    raw.setdefault("id", new_id())
+    if not raw.get("id"):
+        raw["id"] = new_id()
     channel = _unmask(engine, Channel.from_dict(raw))
 
     channels = engine.config.channels

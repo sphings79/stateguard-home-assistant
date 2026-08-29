@@ -1,5 +1,18 @@
 import type { CardData, Channel, Config, HistoryPage, Meta, PreviewEntity, Severity, Settings, Status, Watch, WatchEntity, HomeAssistant } from "./types";
 
+/**
+ * Drop an empty id before sending.
+ *
+ * An empty string is not "no id" to the server — it is an id that every new
+ * object would share, so each would overwrite the previous one. Leaving the
+ * key out entirely says "this is new" unambiguously.
+ */
+function withoutEmptyId<T extends { id: string }>(item: T): Partial<T> {
+  if (item.id) return item;
+  const { id: _unused, ...rest } = item;
+  return rest as Partial<T>;
+}
+
 /** Thin wrapper around the panel's WebSocket commands. */
 export class StateGuardApi {
   constructor(private hass: HomeAssistant) {}
@@ -23,7 +36,10 @@ export class StateGuardApi {
   }
 
   saveWatch(watch: Watch): Promise<{ watch: Watch }> {
-    return this.hass.callWS({ type: "stateguard/watch/save", watch });
+    return this.hass.callWS({
+      type: "stateguard/watch/save",
+      watch: withoutEmptyId(watch),
+    });
   }
 
   deleteWatch(watchId: string): Promise<{ deleted: string }> {
@@ -31,7 +47,10 @@ export class StateGuardApi {
   }
 
   saveSeverity(severity: Severity): Promise<{ severity: Severity }> {
-    return this.hass.callWS({ type: "stateguard/severity/save", severity });
+    return this.hass.callWS({
+      type: "stateguard/severity/save",
+      severity: withoutEmptyId(severity),
+    });
   }
 
   deleteSeverity(severityId: string): Promise<{ deleted: string }> {
@@ -57,7 +76,10 @@ export class StateGuardApi {
   }
 
   saveChannel(channel: Channel): Promise<{ channel_id: string }> {
-    return this.hass.callWS({ type: "stateguard/channel/save", channel });
+    return this.hass.callWS({
+      type: "stateguard/channel/save",
+      channel: withoutEmptyId(channel),
+    });
   }
 
   deleteChannel(channelId: string): Promise<{ deleted: string }> {
