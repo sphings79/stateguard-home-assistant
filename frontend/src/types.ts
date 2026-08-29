@@ -179,6 +179,7 @@ export interface Problem {
 export interface CardData {
   problems: Problem[];
   severities: Pick<Severity, "id" | "name" | "color" | "icon" | "priority">[];
+  watches: { id: string; name: string }[];
   watch_count: number;
   watched_entity_count: number;
   monitoring_enabled: boolean;

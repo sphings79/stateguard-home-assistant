@@ -217,7 +217,11 @@ action:
 
 <img src="assets/dashboard.svg" alt="Dashboard-Entwurf mit der StateGuard-Lovelace-Karte mit drei aktuellen Problemen und der Panel-Übersicht mit zwei aktiven Problemen und sichtbarem Countdown der Neustart-Karenzzeit" width="100%">
 
-Die Karte wird automatisch registriert — sie taucht in der Kartenauswahl auf, ohne dass du eine Ressource hinzufügen musst:
+Die Karte wird automatisch registriert — sie taucht in der Kartenauswahl auf,
+ohne dass du eine Ressource hinzufügen musst, und bringt einen visuellen Editor
+mit. Der lohnt sich vor allem für die beiden Filter: Überwachungs-IDs sind
+Zufallszeichenfolgen, da ist Auswählen deutlich angenehmer als Nachschlagen.
+Das YAML dahinter:
 
 ```yaml
 type: custom:stateguard-card

@@ -216,7 +216,10 @@ action:
 
 <img src="assets/dashboard.svg" alt="Dashboard mockup showing the StateGuard Lovelace card with three current problems and the panel overview with two active problems and a visible restart grace period countdown" width="100%">
 
-The card is registered automatically — it appears in the card picker with no resource to add:
+The card is registered automatically — it appears in the card picker with no
+resource to add, and comes with a visual editor. Use it especially for the two
+filters: watch ids are random strings, so picking a name from a list beats
+looking one up. The YAML behind it:
 
 ```yaml
 type: custom:stateguard-card

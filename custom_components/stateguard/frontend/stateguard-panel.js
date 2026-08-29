@@ -1,4 +1,4 @@
-import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l as Y}from"./stateguard-shared.js";class Z{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getCardData(){return this.hass.callWS({type:"stateguard/card"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var X=Object.defineProperty,ee=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&X(e,i,a),a};let k=class extends b{constructor(){super(...arguments),this.readOnly=!1,this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return O(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
+import{s as m,i as z,n as c,r as h,a as b,c as E,A as r,b as l,t as f,C as J,l as H}from"./stateguard-shared.js";class K{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getCardData(){return this.hass.callWS({type:"stateguard/card"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var Y=Object.defineProperty,Z=Object.getOwnPropertyDescriptor,W=(t,e,i,s)=>{for(var a=s>1?void 0:s?Z(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Y(e,i,a),a};let k=class extends b{constructor(){super(...arguments),this.readOnly=!1,this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return E(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
       <div class="problem">
         <ha-icon
           icon=${this.severityIcon(t)}
@@ -22,7 +22,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             ${this.since(t)}
             ${i?l` · <span class="badge"
                     >${this.localize(`sup.${t.suppression}`)}</span
-                  >`:c}
+                  >`:r}
           </div>
         </div>
         ${!e&&!this.readOnly?l`
@@ -41,28 +41,28 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   <ha-icon icon="mdi:check-circle-outline"></ha-icon>
                 </button>
               </div>
-            `:c}
+            `:r}
       </div>
-    `}render(){const t=this.status.problems.filter(d=>["alerted","escalated"].includes(d.status)&&d.suppression==="none"),e=this.status.problems.filter(d=>d.suppression!=="none"),i=this.status.problems.filter(d=>d.status==="pending"&&d.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const d of t){const D=d.severity_id??"";n.set(D,(n.get(D)??0)+1)}let o="mdi:shield-check",u="var(--success-color, #4caf50)",_=this.localize("overview.healthy"),F=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",u="var(--secondary-text-color)",_=this.localize("overview.paused"),F=this.localize("overview.paused_sub");else if(t.length){const d=[...t].sort((D,H)=>H.severity_priority-D.severity_priority)[0];o=this.severityIcon(d),u=this.severityColor(d),_=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),F=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
+    `}render(){const t=this.status.problems.filter(d=>["alerted","escalated"].includes(d.status)&&d.suppression==="none"),e=this.status.problems.filter(d=>d.suppression!=="none"),i=this.status.problems.filter(d=>d.status==="pending"&&d.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const d of t){const T=d.severity_id??"";n.set(T,(n.get(T)??0)+1)}let o="mdi:shield-check",u="var(--success-color, #4caf50)",_=this.localize("overview.healthy"),B=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",u="var(--secondary-text-color)",_=this.localize("overview.paused"),B=this.localize("overview.paused_sub");else if(t.length){const d=[...t].sort((T,V)=>V.severity_priority-T.severity_priority)[0];o=this.severityIcon(d),u=this.severityColor(d),_=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),B=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
       <div class="card">
         <div class="hero">
           <ha-icon icon=${o} style=${`color:${u}`}></ha-icon>
           <div>
             <div class="headline">${_}</div>
-            <div class="sub">${F}</div>
+            <div class="sub">${B}</div>
             ${n.size?l`
                   <div class="counts">
-                    ${this.config.severities.filter(d=>n.has(d.id)).sort((d,D)=>D.priority-d.priority).map(d=>l`
+                    ${this.config.severities.filter(d=>n.has(d.id)).sort((d,T)=>T.priority-d.priority).map(d=>l`
                           <span class="count">
                             <ha-icon
                               icon=${d.icon}
-                              style=${`color:${O(d.color)};--mdc-icon-size:16px`}
+                              style=${`color:${E(d.color)};--mdc-icon-size:16px`}
                             ></ha-icon>
                             <b>${n.get(d.id)}</b> ${d.name}
                           </span>
                         `)}
                   </div>
-                `:c}
+                `:r}
           </div>
         </div>
         <div
@@ -99,7 +99,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 </div>
               </div>
             </div>
-          `:c}
+          `:r}
       ${this.status.internet_down?l`
             <div class="card flush">
               <div class="notice">
@@ -114,11 +114,11 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 </div>
               </div>
             </div>
-          `:c}
+          `:r}
 
       ${this.readOnly?l`<p class="hint" style="margin:0 0 var(--sg-gap)">
             ${this.localize("overview.read_only")}
-          </p>`:c}
+          </p>`:r}
 
       ${!this.readOnly&&!this.config.watches.length?l`
             <div class="card">
@@ -132,7 +132,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 </button>
               </div>
             </div>
-          `:c}
+          `:r}
 
       ${t.length?l`
             <div class="card flush">
@@ -141,7 +141,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               </h2>
               ${t.map(d=>this.renderProblem(d,!1))}
             </div>
-          `:c}
+          `:r}
       ${i.length?l`
             <div class="card flush muted">
               <h2 style="padding:var(--sg-gap) var(--sg-gap) 4px">
@@ -149,7 +149,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               </h2>
               ${i.map(d=>this.renderProblem(d,!0))}
             </div>
-          `:c}
+          `:r}
       ${e.length?l`
             <div class="card flush muted">
               <h2 style="padding:var(--sg-gap) var(--sg-gap) 4px">
@@ -157,7 +157,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               </h2>
               ${e.map(d=>this.renderProblem(d,!0))}
             </div>
-          `:c}
+          `:r}
     `}};k.styles=[m,z`
       .hero {
         display: flex;
@@ -286,7 +286,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
       .muted .problem .name {
         color: var(--secondary-text-color);
       }
-    `];q([r({attribute:!1})],k.prototype,"config",2);q([r({attribute:!1})],k.prototype,"status",2);q([r({attribute:!1})],k.prototype,"localize",2);q([r({type:Boolean})],k.prototype,"readOnly",2);q([h()],k.prototype,"now",2);k=q([f("sg-overview")],k);var te=Object.defineProperty,ie=Object.getOwnPropertyDescriptor,j=(t,e,i,s)=>{for(var a=s>1?void 0:s?ie(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&te(e,i,a),a};let C=class extends b{constructor(){super(...arguments),this.showTemplates=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}problemsFor(t){return this.status.problems.filter(e=>e.watch_id===t.id&&["alerted","escalated"].includes(e.status)&&e.suppression==="none").length}render(){return l`
+    `];W([c({attribute:!1})],k.prototype,"config",2);W([c({attribute:!1})],k.prototype,"status",2);W([c({attribute:!1})],k.prototype,"localize",2);W([c({type:Boolean})],k.prototype,"readOnly",2);W([h()],k.prototype,"now",2);k=W([f("sg-overview")],k);var X=Object.defineProperty,ee=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&X(e,i,a),a};let C=class extends b{constructor(){super(...arguments),this.showTemplates=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}problemsFor(t){return this.status.problems.filter(e=>e.watch_id===t.id&&["alerted","escalated"].includes(e.status)&&e.suppression==="none").length}render(){return l`
       <div class="card">
         <div class="row wrap">
           <button @click=${()=>this.fire("sg-edit-watch",{watch:null})}>
@@ -322,7 +322,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   </div>
                 `)}
             </div>
-          `:c}
+          `:r}
 
       <div class="card flush">
         ${this.config.watches.length?this.config.watches.map(t=>{const e=this.config.severities.find(a=>a.id===t.severity_id),i=this.problemsFor(t),s=this.status.resolved[t.id]??0;return l`
@@ -330,19 +330,19 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   <ha-icon
                     class="watch-icon"
                     icon=${e?.icon||"mdi:shield-outline"}
-                    style=${`color:${i?O(e?.color):"var(--secondary-text-color)"}`}
+                    style=${`color:${i?E(e?.color):"var(--secondary-text-color)"}`}
                   ></ha-icon>
                   <div style="flex:1;min-width:0">
                     <div class="title">
                       ${t.name}
-                      ${t.enabled?c:l`<span class="badge"
+                      ${t.enabled?r:l`<span class="badge"
                             >${this.localize("watches.paused")}</span
                           >`}
                       ${i?l`<span
                             class="badge"
-                            style=${`background:${O(e?.color)};color:#fff`}
+                            style=${`background:${E(e?.color)};color:#fff`}
                             >${i}</span
-                          >`:c}
+                          >`:r}
                     </div>
                     <div class="subtitle">
                       ${e?.name??"—"} ·
@@ -409,33 +409,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         border-radius: 50%;
         flex-shrink: 0;
       }
-    `];j([r({attribute:!1})],C.prototype,"config",2);j([r({attribute:!1})],C.prototype,"meta",2);j([r({attribute:!1})],C.prototype,"status",2);j([r({attribute:!1})],C.prototype,"localize",2);j([h()],C.prototype,"showTemplates",2);C=j([f("sg-watches")],C);var se=Object.defineProperty,ae=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?ae(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&se(e,i,a),a};let S=class extends b{constructor(){super(...arguments),this.options=[],this.selected=[],this.searchLabel="Search…",this.searchThreshold=12,this.filter=""}toggle(t){const e=this.selected.includes(t)?this.selected.filter(i=>i!==t):[...this.selected,t];this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:e}}))}render(){const t=this.filter.trim().toLowerCase(),e=t?this.options.filter(i=>i.name.toLowerCase().includes(t)||i.id.toLowerCase().includes(t)||this.selected.includes(i.id)):this.options;return l`
-      ${this.options.length>=this.searchThreshold?l`
-            <input
-              type="text"
-              .value=${this.filter}
-              placeholder=${this.searchLabel}
-              style="margin-bottom:8px"
-              @input=${i=>{this.filter=i.target.value}}
-            />
-          `:c}
-      <div class="chips">
-        ${e.map(i=>l`
-            <button
-              type="button"
-              class="chip"
-              data-selected=${this.selected.includes(i.id)}
-              @click=${()=>this.toggle(i.id)}
-            >
-              ${i.icon?l`<ha-icon
-                    icon=${i.icon}
-                    style=${`color:${this.selected.includes(i.id)?"inherit":O(i.color)}`}
-                  ></ha-icon>`:c}
-              ${i.name}
-            </button>
-          `)}
-      </div>
-    `}};S.styles=m;N([r({attribute:!1})],S.prototype,"options",2);N([r({attribute:!1})],S.prototype,"selected",2);N([r()],S.prototype,"searchLabel",2);N([r({type:Number})],S.prototype,"searchThreshold",2);N([h()],S.prototype,"filter",2);S=N([f("sg-chip-select")],S);var le=Object.defineProperty,ne=Object.getOwnPropertyDescriptor,M=(t,e,i,s)=>{for(var a=s>1?void 0:s?ne(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&le(e,i,a),a};let P=class extends b{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return c;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
+    `];q([c({attribute:!1})],C.prototype,"config",2);q([c({attribute:!1})],C.prototype,"meta",2);q([c({attribute:!1})],C.prototype,"status",2);q([c({attribute:!1})],C.prototype,"localize",2);q([h()],C.prototype,"showTemplates",2);C=q([f("sg-watches")],C);var te=Object.defineProperty,ie=Object.getOwnPropertyDescriptor,j=(t,e,i,s)=>{for(var a=s>1?void 0:s?ie(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&te(e,i,a),a};let S=class extends b{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return r;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
       <div class="scroll">
         ${t.map(e=>l`
             <div class="entry">
@@ -461,8 +435,8 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             @click=${()=>{this.expanded=!0}}
           >
             + ${this.entities.length-this.limit}
-          </button>`:c}
-    `}};P.styles=[m,z`
+          </button>`:r}
+    `}};S.styles=[m,z`
       .scroll {
         max-height: 260px;
         overflow-y: auto;
@@ -499,7 +473,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
       .bad {
         color: var(--error-color, #db4437);
       }
-    `];M([r({attribute:!1})],P.prototype,"entities",2);M([r({attribute:!1})],P.prototype,"localize",2);M([r({type:Number})],P.prototype,"limit",2);M([h()],P.prototype,"expanded",2);P=M([f("sg-entity-list")],P);var oe=Object.defineProperty,re=Object.getOwnPropertyDescriptor,B=(t,e,i,s)=>{for(var a=s>1?void 0:s?re(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&oe(e,i,a),a};const Q=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let I=class extends b{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of Q)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
+    `];j([c({attribute:!1})],S.prototype,"entities",2);j([c({attribute:!1})],S.prototype,"localize",2);j([c({type:Number})],S.prototype,"limit",2);j([h()],S.prototype,"expanded",2);S=j([f("sg-entity-list")],S);var se=Object.defineProperty,ae=Object.getOwnPropertyDescriptor,L=(t,e,i,s)=>{for(var a=s>1?void 0:s?ae(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&se(e,i,a),a};const F=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let D=class extends b{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of F)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
       <div class="duration">
         <input
           type="number"
@@ -510,14 +484,14 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         <select
           @change=${e=>{const i=Number(e.target.value);this.emit(Math.round(this.value/t*i))}}
         >
-          ${Q.filter(([,e])=>e>=this.minUnit).map(([e,i])=>l`
+          ${F.filter(([,e])=>e>=this.minUnit).map(([e,i])=>l`
               <option value=${i} ?selected=${i===t}>
                 ${this.localize(e)}
               </option>
             `)}
         </select>
       </div>
-    `}};I.styles=[m,z`
+    `}};D.styles=[m,z`
       .duration {
         display: flex;
         gap: 8px;
@@ -532,10 +506,10 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         width: auto;
         flex-shrink: 0;
       }
-    `];B([r({type:Number})],I.prototype,"value",2);B([r({attribute:!1})],I.prototype,"localize",2);B([r({type:Number})],I.prototype,"minUnit",2);I=B([f("sg-duration")],I);var ce=Object.defineProperty,he=Object.getOwnPropertyDescriptor,y=(t,e,i,s)=>{for(var a=s>1?void 0:s?he(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ce(e,i,a),a};const de=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],pe=["unavailable","unknown","","none"],J=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),A=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),R=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:J(),conditions:[A("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends b{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=R(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:J(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...A("unavailable_state"),...s}))}}else this.draft=R(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
+    `];L([c({type:Number})],D.prototype,"value",2);L([c({attribute:!1})],D.prototype,"localize",2);L([c({type:Number})],D.prototype,"minUnit",2);D=L([f("sg-duration")],D);var le=Object.defineProperty,ne=Object.getOwnPropertyDescriptor,y=(t,e,i,s)=>{for(var a=s>1?void 0:s?ne(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&le(e,i,a),a};const oe=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],re=["unavailable","unknown","","none"],R=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),M=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),G=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:R(),conditions:[M("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends b{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=G(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:R(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...M("unavailable_state"),...s}))}}else this.draft=G(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
           <label class="field"><span>${this.localize("cond.states")}</span></label>
           <div class="chips">
-            ${pe.map(i=>l`
+            ${re.map(i=>l`
                 <button
                   type="button"
                   class="chip"
@@ -596,7 +570,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 type="number"
                 step="any"
                 .value=${t.value===null?"":String(t.value)}
-                @change=${i=>this.patchCondition(e,{value:G(i.target.value)})}
+                @change=${i=>this.patchCondition(e,{value:U(i.target.value)})}
               />
             </label>
             ${["outside","inside"].includes(t.operator)?l`
@@ -606,17 +580,17 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                       type="number"
                       step="any"
                       .value=${t.value2===null?"":String(t.value2)}
-                      @change=${i=>this.patchCondition(e,{value2:G(i.target.value)})}
+                      @change=${i=>this.patchCondition(e,{value2:U(i.target.value)})}
                     />
                   </label>
-                `:c}
+                `:r}
             <label class="field">
               <span>${this.localize("cond.recovery_value")}</span>
               <input
                 type="number"
                 step="any"
                 .value=${t.recovery_value===null?"":String(t.recovery_value)}
-                @change=${i=>this.patchCondition(e,{recovery_value:G(i.target.value)})}
+                @change=${i=>this.patchCondition(e,{recovery_value:U(i.target.value)})}
               />
             </label>
           </div>
@@ -657,7 +631,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               @value-changed=${i=>this.patchCondition(e,{duration:i.detail.value})}
             ></sg-duration>
           </label>
-        `;default:return c}}render(){const t=this.draft.target;return l`
+        `;default:return r}}render(){const t=this.draft.target;return l`
       <div class="card">
         <h2>${this.draft.name||this.localize("editor.new")}</h2>
 
@@ -711,7 +685,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                     </option>
                   </select>
                 </label>
-              `:c}
+              `:r}
 
           <label class="checkbox" style="margin-top:12px">
             <input
@@ -777,7 +751,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   type="text"
                   .value=${t.entities.join(", ")}
                   placeholder="sensor.example, binary_sensor.other"
-                  @change=${e=>this.patchTarget({entities:V(e.target.value)})}
+                  @change=${e=>this.patchTarget({entities:Q(e.target.value)})}
                 />
               </label>
 
@@ -796,7 +770,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 <input
                   type="text"
                   .value=${t.exclude_entities.join(", ")}
-                  @change=${e=>this.patchTarget({exclude_entities:V(e.target.value)})}
+                  @change=${e=>this.patchTarget({exclude_entities:Q(e.target.value)})}
                 />
               </label>
             </div>
@@ -826,9 +800,9 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 <div class="row" style="margin-bottom:10px">
                   <select
                     style="flex:1"
-                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=A(a),this.patch({conditions:n})}}
+                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=M(a),this.patch({conditions:n})}}
                   >
-                    ${de.map(s=>l`
+                    ${oe.map(s=>l`
                         <option value=${s} ?selected=${e.type===s}>
                           ${this.localize(`cond.${s}`)}
                         </option>
@@ -846,7 +820,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             `)}
           <button
             class="secondary"
-            @click=${()=>this.patch({conditions:[...this.draft.conditions,A("unavailable_state")]})}
+            @click=${()=>this.patch({conditions:[...this.draft.conditions,M("unavailable_state")]})}
           >
             <ha-icon icon="mdi:plus"></ha-icon>
             ${this.localize("editor.add_condition")}
@@ -882,7 +856,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                         @value-changed=${e=>this.patch({restart_grace:e.detail.value})}
                       ></sg-duration>
                     </label>
-                  `:c}
+                  `:r}
               <label class="field">
                 <span>${this.localize("editor.channels")}</span>
               </label>
@@ -923,7 +897,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
           </details>
         </div>
 
-        ${this.error?l`<p class="error">${this.error}</p>`:c}
+        ${this.error?l`<p class="error">${this.error}</p>`:r}
 
         <div class="sticky">
           <button @click=${this.save}>${this.localize("editor.save")}</button>
@@ -983,7 +957,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         gap: 10px;
         margin: var(--sg-gap) calc(-1 * var(--sg-gap)) calc(-1 * var(--sg-gap));
       }
-    `];y([r({attribute:!1})],v.prototype,"config",2);y([r({attribute:!1})],v.prototype,"meta",2);y([r({attribute:!1})],v.prototype,"localize",2);y([r({attribute:!1})],v.prototype,"watch",2);y([r({attribute:!1})],v.prototype,"template",2);y([h()],v.prototype,"draft",2);y([h()],v.prototype,"preview",2);y([h()],v.prototype,"previewCount",2);y([h()],v.prototype,"error",2);v=y([f("sg-watch-editor")],v);function G(t){const e=t.trim();if(!e)return null;const i=Number(e);return Number.isFinite(i)?i:null}function V(t){return t.split(",").map(e=>e.trim()).filter(Boolean)}var ue=Object.defineProperty,ge=Object.getOwnPropertyDescriptor,E=(t,e,i,s)=>{for(var a=s>1?void 0:s?ge(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ue(e,i,a),a};const ve=["ha_service","smtp","telegram","pushover","ntfy"],$e="__unchanged__",me={ha_service:"mdi:home-assistant",smtp:"mdi:email-outline",telegram:"mdi:send",pushover:"mdi:cellphone-message",ntfy:"mdi:bell-ring-outline"},be=()=>({id:"",name:"",kind:"ha_service",enabled:!0,config:{},title_template:"",template:""});let w=class extends b{constructor(){super(...arguments),this.editing=null,this.testState=null,this.testing=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t}),this.testState=null}patchConfig(t,e){this.editing&&this.patch({config:{...this.editing.config,[t]:e}})}usedBy(t){return this.config.severities.filter(e=>e.channels.includes(t.id)||e.escalation_channels.includes(t.id)).length}renderField(t,e){const i=this.localize(`field.${t.key}`),s=e.config[t.key],a=s==null?"":String(s);if(t.type==="select")return l`
+    `];y([c({attribute:!1})],v.prototype,"config",2);y([c({attribute:!1})],v.prototype,"meta",2);y([c({attribute:!1})],v.prototype,"localize",2);y([c({attribute:!1})],v.prototype,"watch",2);y([c({attribute:!1})],v.prototype,"template",2);y([h()],v.prototype,"draft",2);y([h()],v.prototype,"preview",2);y([h()],v.prototype,"previewCount",2);y([h()],v.prototype,"error",2);v=y([f("sg-watch-editor")],v);function U(t){const e=t.trim();if(!e)return null;const i=Number(e);return Number.isFinite(i)?i:null}function Q(t){return t.split(",").map(e=>e.trim()).filter(Boolean)}var ce=Object.defineProperty,he=Object.getOwnPropertyDescriptor,P=(t,e,i,s)=>{for(var a=s>1?void 0:s?he(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ce(e,i,a),a};const de=["ha_service","smtp","telegram","pushover","ntfy"],pe="__unchanged__",ue={ha_service:"mdi:home-assistant",smtp:"mdi:email-outline",telegram:"mdi:send",pushover:"mdi:cellphone-message",ntfy:"mdi:bell-ring-outline"},ge=()=>({id:"",name:"",kind:"ha_service",enabled:!0,config:{},title_template:"",template:""});let w=class extends b{constructor(){super(...arguments),this.editing=null,this.testState=null,this.testing=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t}),this.testState=null}patchConfig(t,e){this.editing&&this.patch({config:{...this.editing.config,[t]:e}})}usedBy(t){return this.config.severities.filter(e=>e.channels.includes(t.id)||e.escalation_channels.includes(t.id)).length}renderField(t,e){const i=this.localize(`field.${t.key}`),s=e.config[t.key],a=s==null?"":String(s);if(t.type==="select")return l`
         <label class="field">
           <span>${i}</span>
           <select
@@ -1008,7 +982,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             @change=${u=>{const _=u.target.value.trim();if(!_){this.patchConfig(t.key,void 0);return}try{this.patchConfig(t.key,JSON.parse(_))}catch{this.testState={ok:!1,text:"JSON?"}}}}
           ></textarea>
         </label>
-      `;const n=t.type==="secret",o=n&&a===$e;return l`
+      `;const n=t.type==="secret",o=n&&a===pe;return l`
       <label class="field">
         <span>${i}${t.required?" *":""}</span>
         <input
@@ -1036,7 +1010,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             <select
               @change=${i=>this.patch({kind:i.target.value,config:{}})}
             >
-              ${ve.map(i=>l`
+              ${de.map(i=>l`
                   <option value=${i} ?selected=${t.kind===i}>
                     ${this.localize(`kind.${i}`)}
                   </option>
@@ -1099,12 +1073,12 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         </div>
         ${this.testState?l`<p class=${this.testState.ok?"result ok":"result bad"}>
               ${this.testState.text}
-            </p>`:c}
+            </p>`:r}
       </div>
     `}render(){return this.editing?this.renderEditor(this.editing):l`
       <div class="card">
         <button
-          @click=${()=>{this.editing=be()}}
+          @click=${()=>{this.editing=ge()}}
         >
           <ha-icon icon="mdi:plus"></ha-icon>
           ${this.localize("ch.add")}
@@ -1115,13 +1089,13 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         ${this.config.channels.length?this.config.channels.map(t=>{const e=this.usedBy(t);return l`
                 <div class="list-item">
                   <ha-icon
-                    icon=${me[t.kind]}
+                    icon=${ue[t.kind]}
                     style=${`--mdc-icon-size:24px;color:${t.enabled?"var(--primary-color)":"var(--secondary-text-color)"}`}
                   ></ha-icon>
                   <div style="flex:1;min-width:0">
                     <div class="title">
                       ${t.name}
-                      ${t.enabled?c:l`<span class="badge"
+                      ${t.enabled?r:l`<span class="badge"
                             >${this.localize("watches.paused")}</span
                           >`}
                     </div>
@@ -1181,7 +1155,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
       .result.bad {
         color: var(--error-color, #db4437);
       }
-    `];E([r({attribute:!1})],w.prototype,"config",2);E([r({attribute:!1})],w.prototype,"meta",2);E([r({attribute:!1})],w.prototype,"localize",2);E([h()],w.prototype,"editing",2);E([h()],w.prototype,"testState",2);E([h()],w.prototype,"testing",2);w=E([f("sg-channels")],w);var fe=Object.defineProperty,ye=Object.getOwnPropertyDescriptor,x=(t,e,i,s)=>{for(var a=s>1?void 0:s?ye(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&fe(e,i,a),a};const _e=50,we=[1,7,30,90,365];let $=class extends b{constructor(){super(...arguments),this.incidents=[],this.total=0,this.watchId="",this.severityId="",this.days=30,this.openOnly=!1}request(t=0){this.dispatchEvent(new CustomEvent("sg-load-history",{detail:{limit:_e,offset:t,watch_id:this.watchId||null,severity_id:this.severityId||null,days:this.days,open_only:this.openOnly,append:t>0},bubbles:!0,composed:!0}))}firstUpdated(){this.request()}duration(t){const e=Math.max(0,Math.round(t));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h ${Math.floor(e%3600/60)}m`:`${Math.floor(e/86400)}d ${Math.floor(e%86400/3600)}h`}when(t){return new Date(t*1e3).toLocaleString()}render(){const t=this.localize;return l`
+    `];P([c({attribute:!1})],w.prototype,"config",2);P([c({attribute:!1})],w.prototype,"meta",2);P([c({attribute:!1})],w.prototype,"localize",2);P([h()],w.prototype,"editing",2);P([h()],w.prototype,"testState",2);P([h()],w.prototype,"testing",2);w=P([f("sg-channels")],w);var ve=Object.defineProperty,$e=Object.getOwnPropertyDescriptor,x=(t,e,i,s)=>{for(var a=s>1?void 0:s?$e(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ve(e,i,a),a};const me=50,be=[1,7,30,90,365];let $=class extends b{constructor(){super(...arguments),this.incidents=[],this.total=0,this.watchId="",this.severityId="",this.days=30,this.openOnly=!1}request(t=0){this.dispatchEvent(new CustomEvent("sg-load-history",{detail:{limit:me,offset:t,watch_id:this.watchId||null,severity_id:this.severityId||null,days:this.days,open_only:this.openOnly,append:t>0},bubbles:!0,composed:!0}))}firstUpdated(){this.request()}duration(t){const e=Math.max(0,Math.round(t));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h ${Math.floor(e%3600/60)}m`:`${Math.floor(e/86400)}d ${Math.floor(e%86400/3600)}h`}when(t){return new Date(t*1e3).toLocaleString()}render(){const t=this.localize;return l`
       <div class="card">
         <div class="filters">
           <label class="field" style="margin:0">
@@ -1218,7 +1192,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             <select
               @change=${e=>{this.days=Number(e.target.value),this.request()}}
             >
-              ${we.map(e=>l`
+              ${be.map(e=>l`
                   <option value=${e} ?selected=${this.days===e}>
                     ${t("hist.days",{count:e})}
                   </option>
@@ -1245,7 +1219,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   <div class="incident">
                     <ha-icon
                       icon=${i?.icon||"mdi:alert-circle-outline"}
-                      style=${`color:${s?"var(--secondary-text-color)":O(i?.color)}`}
+                      style=${`color:${s?"var(--secondary-text-color)":E(i?.color)}`}
                     ></ha-icon>
                     <div class="body">
                       <div class="name">
@@ -1258,7 +1232,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                       </div>
                       <div class="meta">
                         ${e.watch_name} · ${e.reason_text}
-                        ${e.escalated_at?l` · <span class="badge">${t("hist.escalated")}</span>`:c}
+                        ${e.escalated_at?l` · <span class="badge">${t("hist.escalated")}</span>`:r}
                       </div>
                     </div>
                     <div class="when">
@@ -1276,7 +1250,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                         ${t("hist.more")}
                       </button>
                     </div>
-                  `:c}
+                  `:r}
             `:l`<div class="empty">
               <ha-icon icon="mdi:history"></ha-icon>
               <div>${t("hist.empty")}</div>
@@ -1345,7 +1319,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
       .open {
         color: var(--warning-color, #ffa600);
       }
-    `];x([r({attribute:!1})],$.prototype,"config",2);x([r({attribute:!1})],$.prototype,"localize",2);x([r({attribute:!1})],$.prototype,"incidents",2);x([r({type:Number})],$.prototype,"total",2);x([h()],$.prototype,"watchId",2);x([h()],$.prototype,"severityId",2);x([h()],$.prototype,"days",2);x([h()],$.prototype,"openOnly",2);$=x([f("sg-history")],$);var ze=Object.defineProperty,xe=Object.getOwnPropertyDescriptor,U=(t,e,i,s)=>{for(var a=s>1?void 0:s?xe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ze(e,i,a),a};const ke=()=>({id:"",name:"",priority:50,color:"amber",icon:"mdi:alert-outline",channels:[],ignore_quiet_hours:!1,persistent_notification:!0,bundle_window:60,repeat_interval:0,escalation_after:0,escalation_channels:[]});let W=class extends b{constructor(){super(...arguments),this.editing=null}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t})}usedBy(t){return this.config.watches.filter(e=>e.severity_id===t.id).length}renderEditor(t){return l`
+    `];x([c({attribute:!1})],$.prototype,"config",2);x([c({attribute:!1})],$.prototype,"localize",2);x([c({attribute:!1})],$.prototype,"incidents",2);x([c({type:Number})],$.prototype,"total",2);x([h()],$.prototype,"watchId",2);x([h()],$.prototype,"severityId",2);x([h()],$.prototype,"days",2);x([h()],$.prototype,"openOnly",2);$=x([f("sg-history")],$);var fe=Object.defineProperty,ye=Object.getOwnPropertyDescriptor,A=(t,e,i,s)=>{for(var a=s>1?void 0:s?ye(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&fe(e,i,a),a};const _e=()=>({id:"",name:"",priority:50,color:"amber",icon:"mdi:alert-outline",channels:[],ignore_quiet_hours:!1,persistent_notification:!0,bundle_window:60,repeat_interval:0,escalation_after:0,escalation_channels:[]});let I=class extends b{constructor(){super(...arguments),this.editing=null}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}patch(t){this.editing&&(this.editing={...this.editing,...t})}usedBy(t){return this.config.watches.filter(e=>e.severity_id===t.id).length}renderEditor(t){return l`
       <div class="card">
         <h2>${t.name||this.localize("sev.add")}</h2>
         <div class="grid">
@@ -1372,7 +1346,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             <select
               @change=${e=>this.patch({color:e.target.value})}
             >
-              ${Object.keys(K).map(e=>l`
+              ${Object.keys(J).map(e=>l`
                   <option value=${e} ?selected=${t.color===e}>
                     ${this.localize(`color.${e}`)}
                   </option>
@@ -1457,7 +1431,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 .searchLabel=${this.localize("common.search")}
                 @value-changed=${e=>this.patch({escalation_channels:e.detail.value})}
               ></sg-chip-select>
-            `:c}
+            `:r}
 
         <div class="row" style="margin-top:16px">
           <button
@@ -1476,7 +1450,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
     `}render(){return this.editing?this.renderEditor(this.editing):l`
       <div class="card">
         <button
-          @click=${()=>{this.editing=ke()}}
+          @click=${()=>{this.editing=_e()}}
         >
           <ha-icon icon="mdi:plus"></ha-icon>
           ${this.localize("sev.add")}
@@ -1489,7 +1463,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               <div class="list-item">
                 <ha-icon
                   icon=${t.icon}
-                  style=${`color:${O(t.color)};--mdc-icon-size:24px`}
+                  style=${`color:${E(t.color)};--mdc-icon-size:24px`}
                 ></ha-icon>
                 <div style="flex:1;min-width:0">
                   <div class="title">
@@ -1498,7 +1472,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   </div>
                   <div class="subtitle">
                     ${this.localize(e===1?"sev.in_use_one":"sev.in_use",{count:e})}
-                    ${t.ignore_quiet_hours?l` · ${this.localize("sev.ignore_quiet_hours")}`:c}
+                    ${t.ignore_quiet_hours?l` · ${this.localize("sev.ignore_quiet_hours")}`:r}
                   </div>
                 </div>
                 <button
@@ -1517,7 +1491,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               </div>
             `})}
       </div>
-    `}};W.styles=m;U([r({attribute:!1})],W.prototype,"config",2);U([r({attribute:!1})],W.prototype,"localize",2);U([h()],W.prototype,"editing",2);W=U([f("sg-severities")],W);var Ce=Object.defineProperty,Se=Object.getOwnPropertyDescriptor,L=(t,e,i,s)=>{for(var a=s>1?void 0:s?Se(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Ce(e,i,a),a};let T=class extends b{constructor(){super(...arguments),this.saved=!1}get current(){return this.draft??this.settings}patch(t){this.draft={...this.current,...t},this.saved=!1}patchQuiet(t){this.patch({quiet_hours:{...this.current.quiet_hours,...t}})}patchWindow(t,e){const i=this.current.quiet_hours.windows.map((s,a)=>a===t?{...s,...e}:s);this.patchQuiet({windows:i})}wraps(t){return t.end<=t.start}renderWindow(t,e){const i=this.localize;return l`
+    `}};I.styles=m;A([c({attribute:!1})],I.prototype,"config",2);A([c({attribute:!1})],I.prototype,"localize",2);A([h()],I.prototype,"editing",2);I=A([f("sg-severities")],I);var we=Object.defineProperty,ze=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?ze(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&we(e,i,a),a};let O=class extends b{constructor(){super(...arguments),this.saved=!1}get current(){return this.draft??this.settings}patch(t){this.draft={...this.current,...t},this.saved=!1}patchQuiet(t){this.patch({quiet_hours:{...this.current.quiet_hours,...t}})}patchWindow(t,e){const i=this.current.quiet_hours.windows.map((s,a)=>a===t?{...s,...e}:s);this.patchQuiet({windows:i})}wraps(t){return t.end<=t.start}renderWindow(t,e){const i=this.localize;return l`
       <div class="window">
         <div class="grid">
           <label class="field" style="margin:0">
@@ -1537,7 +1511,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             />
           </label>
         </div>
-        ${this.wraps(t)?l`<p class="hint">↪ ${i("settings.window_wraps")}</p>`:c}
+        ${this.wraps(t)?l`<p class="hint">↪ ${i("settings.window_wraps")}</p>`:r}
 
         <label class="field" style="margin-top:12px">
           <span>${i("settings.weekdays")}</span>
@@ -1554,7 +1528,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
               </button>
             `)}
         </div>
-        ${t.weekdays.length?c:l`<p class="error">${i("settings.window_no_days")}</p>`}
+        ${t.weekdays.length?r:l`<p class="error">${i("settings.window_no_days")}</p>`}
 
         <button
           class="plain"
@@ -1617,7 +1591,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                   </option>
                 </select>
               </label>
-            `:c}
+            `:r}
       </div>
 
       <div class="card">
@@ -1642,7 +1616,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 ${this.localize("settings.add_window")}
               </button>
               <p class="hint">${this.localize("settings.quiet_hint")}</p>
-            `:c}
+            `:r}
       </div>
 
       <div class="card">
@@ -1696,17 +1670,17 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
           >
             ${this.localize("settings.save")}
           </button>
-          ${this.saved?l`<span class="badge">${this.localize("settings.saved")}</span>`:c}
+          ${this.saved?l`<span class="badge">${this.localize("settings.saved")}</span>`:r}
         </div>
       </div>
-    `}};T.styles=[m,z`
+    `}};O.styles=[m,z`
       .window {
         border: var(--sg-border);
         border-radius: 10px;
         padding: 12px;
         margin-bottom: 12px;
       }
-    `];L([r({attribute:!1})],T.prototype,"settings",2);L([r({attribute:!1})],T.prototype,"localize",2);L([h()],T.prototype,"draft",2);L([h()],T.prototype,"saved",2);T=L([f("sg-settings")],T);var Oe=Object.defineProperty,Pe=Object.getOwnPropertyDescriptor,g=(t,e,i,s)=>{for(var a=s>1?void 0:s?Pe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Oe(e,i,a),a};const Te=5e3;let p=class extends b{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0}get isAdmin(){return this.hass?.user?.is_admin!==!1}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Te)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new Z(this.hass),this.load()))}get localize(){const t=this.config?.settings.ui_language??"auto";return Y(t==="auto"?this.hass?.language||"en":t)}async load(){if(this.api){if(!this.isAdmin){try{this.cardData=await this.api.getCardData(),this.error=""}catch(t){this.error=this.describeError(t)}return}try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),this.error=""}catch(t){this.error=this.describeError(t)}}}async refreshStatus(){if(this.api)try{if(!this.isAdmin){this.cardData=await this.api.getCardData();return}this.config&&(this.status=await this.api.getStatus())}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.isAdmin)return this.cardData?l`
+    `];N([c({attribute:!1})],O.prototype,"settings",2);N([c({attribute:!1})],O.prototype,"localize",2);N([h()],O.prototype,"draft",2);N([h()],O.prototype,"saved",2);O=N([f("sg-settings")],O);var xe=Object.defineProperty,ke=Object.getOwnPropertyDescriptor,g=(t,e,i,s)=>{for(var a=s>1?void 0:s?ke(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&xe(e,i,a),a};const Ce=5e3;let p=class extends b{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0}get isAdmin(){return this.hass?.user?.is_admin!==!1}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Ce)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new K(this.hass),this.load()))}get localize(){const t=this.config?.settings.ui_language??"auto";return H(t==="auto"?this.hass?.language||"en":t)}async load(){if(this.api){if(!this.isAdmin){try{this.cardData=await this.api.getCardData(),this.error=""}catch(t){this.error=this.describeError(t)}return}try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),this.error=""}catch(t){this.error=this.describeError(t)}}}async refreshStatus(){if(this.api)try{if(!this.isAdmin){this.cardData=await this.api.getCardData();return}this.config&&(this.status=await this.api.getStatus())}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.isAdmin)return this.cardData?l`
         <sg-overview
           .config=${{severities:this.cardData.severities,watches:[],channels:[],settings:{internet_entity:null}}}
           .status=${{problems:this.cardData.problems,watched_entity_count:this.cardData.watched_entity_count,resolved:{},monitoring_enabled:this.cardData.monitoring_enabled,restart_grace_until:this.cardData.restart_grace_until,internet_down:this.cardData.internet_down}}
@@ -1786,7 +1760,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
                 >
                   <ha-icon icon="mdi:menu"></ha-icon>
                 </button>
-              `:c}
+              `:r}
           <span>StateGuard</span>
         </div>
         <div class="tabs" ?hidden=${!e.length}>
@@ -1801,7 +1775,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
             `)}
         </div>
         <div class="content">
-          ${this.error?l`<p class="error">${this.error}</p>`:c}
+          ${this.error?l`<p class="error">${this.error}</p>`:r}
           ${this.renderView()}
         </div>
       </div>
@@ -1872,4 +1846,4 @@ import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l a
         text-align: center;
         color: var(--secondary-text-color);
       }
-    `];g([r({attribute:!1})],p.prototype,"hass",2);g([r({type:Boolean})],p.prototype,"narrow",2);g([h()],p.prototype,"config",2);g([h()],p.prototype,"meta",2);g([h()],p.prototype,"status",2);g([h()],p.prototype,"view",2);g([h()],p.prototype,"editingWatch",2);g([h()],p.prototype,"editingTemplate",2);g([h()],p.prototype,"editorOpen",2);g([h()],p.prototype,"error",2);g([h()],p.prototype,"incidents",2);g([h()],p.prototype,"historyTotal",2);g([h()],p.prototype,"cardData",2);p=g([f("stateguard-panel")],p);
+    `];g([c({attribute:!1})],p.prototype,"hass",2);g([c({type:Boolean})],p.prototype,"narrow",2);g([h()],p.prototype,"config",2);g([h()],p.prototype,"meta",2);g([h()],p.prototype,"status",2);g([h()],p.prototype,"view",2);g([h()],p.prototype,"editingWatch",2);g([h()],p.prototype,"editingTemplate",2);g([h()],p.prototype,"editorOpen",2);g([h()],p.prototype,"error",2);g([h()],p.prototype,"incidents",2);g([h()],p.prototype,"historyTotal",2);g([h()],p.prototype,"cardData",2);p=g([f("stateguard-panel")],p);

@@ -4,20 +4,8 @@ import { localize, type Localizer } from "../localize";
 import { colorOf } from "../styles";
 import type { CardData, HomeAssistant, Problem, Severity } from "../types";
 import "../components/entity-menu";
-
-interface CardConfig {
-  type: string;
-  title?: string;
-  /** Only show problems of these severities. Empty means all. */
-  severities?: string[];
-  /** Only show problems from these watches. Empty means all. */
-  watches?: string[];
-  /** Hide the card entirely while there is nothing to report. */
-  hide_when_healthy?: boolean;
-  /** Show problems that are held back (snoozed, grace period, …). */
-  show_suppressed?: boolean;
-  max?: number;
-}
+import "./stateguard-card-editor";
+import type { CardConfig } from "./stateguard-card-editor";
 
 const REFRESH_INTERVAL = 10000;
 
@@ -136,13 +124,27 @@ export class StateGuardCard extends LitElement {
   }
 
   static getStubConfig(): CardConfig {
-    return { type: "custom:stateguard-card", hide_when_healthy: false };
+    return { type: "custom:stateguard-card" };
+  }
+
+  /** Lovelace asks for this to show a visual editor instead of raw YAML. */
+  static getConfigElement(): HTMLElement {
+    return document.createElement("stateguard-card-editor");
   }
 
   connectedCallback(): void {
     super.connectedCallback();
     void this.load();
     this.timer = window.setInterval(() => void this.load(), REFRESH_INTERVAL);
+  }
+
+  protected willUpdate(changed: Map<string, unknown>): void {
+    // Lovelace sets hass after inserting the card, so the load in
+    // connectedCallback finds nothing. Without this the card would sit
+    // empty until the next refresh tick.
+    if (changed.has("hass") && this.hass && !this.data) {
+      void this.load();
+    }
   }
 
   disconnectedCallback(): void {

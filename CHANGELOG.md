@@ -6,6 +6,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-29
+
+### Added
+
+- The Lovelace card now has a visual editor. It matters most for the two
+  filters: watch ids are random strings, so picking "Front door" from a list
+  beats looking up `56e55bdabdf0` and typing it into YAML.
+
+### Fixed
+
+- The card stayed empty for up to ten seconds after being placed. It loaded
+  once when inserted, but Lovelace sets its data afterwards, so the first
+  attempt found nothing and it waited for the next refresh.
+
 ## [0.1.1] - 2026-08-29
 
 ### Fixed
@@ -50,6 +64,7 @@ First release.
 - Entities (`binary_sensor` per watch, problem counters, a monitoring switch),
   services and events for use in automations.
 
-[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sphings79/stateguard-home-assistant/releases/tag/v0.1.0

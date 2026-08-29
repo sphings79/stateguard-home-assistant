@@ -650,6 +650,12 @@ async def ws_card_data(
                 }
                 for severity in engine.config.severities
             ],
+            # Names and ids only: the card editor needs them to offer a
+            # picker instead of making people type a hex id into YAML.
+            "watches": [
+                {"id": watch.id, "name": watch.name}
+                for watch in engine.config.watches
+            ],
             "watch_count": len(engine.config.watches),
             "watched_entity_count": len(engine.watched_entities),
             "monitoring_enabled": engine.config.settings.monitoring_enabled,
