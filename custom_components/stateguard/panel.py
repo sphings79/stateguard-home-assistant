@@ -23,6 +23,7 @@ PANEL_TITLE = "StateGuard"
 PANEL_ICON = "mdi:shield-search"
 
 DATA_PANEL_REGISTERED = "panel_registered"
+DATA_PANEL_ADMIN_ONLY = "panel_admin_only"
 DATA_STATIC_REGISTERED = "static_registered"
 
 
@@ -36,7 +37,9 @@ async def _version(hass: HomeAssistant) -> str:
     return str(integration.version or "dev")
 
 
-async def async_register_panel(hass: HomeAssistant) -> None:
+async def async_register_panel(
+    hass: HomeAssistant, *, require_admin: bool = True
+) -> None:
     """Serve the bundle and add StateGuard to the sidebar."""
     data = hass.data.setdefault(DOMAIN, {})
     frontend_dir = Path(__file__).parent / "frontend"
@@ -49,7 +52,11 @@ async def async_register_panel(hass: HomeAssistant) -> None:
         data[DATA_STATIC_REGISTERED] = True
 
     if data.get(DATA_PANEL_REGISTERED):
-        return
+        if data.get(DATA_PANEL_ADMIN_ONLY) == require_admin:
+            return
+        # Visibility changed: the panel has to be replaced, it cannot be
+        # updated in place.
+        frontend.async_remove_panel(hass, PANEL_URL_PATH)
 
     await panel_custom.async_register_panel(
         hass,
@@ -58,9 +65,10 @@ async def async_register_panel(hass: HomeAssistant) -> None:
         module_url=f"{STATIC_URL}/{BUNDLE_NAME}?v={await _version(hass)}",
         sidebar_title=PANEL_TITLE,
         sidebar_icon=PANEL_ICON,
-        require_admin=True,
+        require_admin=require_admin,
     )
     data[DATA_PANEL_REGISTERED] = True
+    data[DATA_PANEL_ADMIN_ONLY] = require_admin
     _LOGGER.debug("Panel registered at /%s", PANEL_URL_PATH)
 
 

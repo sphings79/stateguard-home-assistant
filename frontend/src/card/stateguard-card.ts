@@ -2,7 +2,7 @@ import { LitElement, html, css, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { localize, type Localizer } from "../localize";
 import { colorOf } from "../styles";
-import type { Config, HomeAssistant, Problem, Severity, Status } from "../types";
+import type { CardData, HomeAssistant, Problem, Severity } from "../types";
 import "../components/entity-menu";
 
 interface CardConfig {
@@ -122,8 +122,7 @@ export class StateGuardCard extends LitElement {
 
   @property({ attribute: false }) hass!: HomeAssistant;
   @state() private cardConfig: CardConfig = { type: "" };
-  @state() private status?: Status;
-  @state() private config?: Config;
+  @state() private data?: CardData;
 
   private timer?: number;
 
@@ -158,28 +157,24 @@ export class StateGuardCard extends LitElement {
   private async load(): Promise<void> {
     if (!this.hass) return;
     try {
-      if (!this.config) {
-        const result = await this.hass.callWS<{ config: Config }>({
-          type: "stateguard/config/get",
-        });
-        this.config = result.config;
-      }
-      this.status = await this.hass.callWS<Status>({ type: "stateguard/status" });
+      // A command every user may call: an ordinary household member has to
+      // be able to see the card too, not just administrators.
+      this.data = await this.hass.callWS<CardData>({ type: "stateguard/card" });
     } catch {
-      // Not set up, or no permission — the card simply stays empty.
+      // Not set up yet — the card simply stays empty.
     }
   }
 
-  private severity(problem: Problem): Severity | undefined {
-    return this.config?.severities.find((item) => item.id === problem.severity_id);
+  private severity(problem: Problem): Partial<Severity> | undefined {
+    return this.data?.severities.find((item) => item.id === problem.severity_id);
   }
 
   private visible(): Problem[] {
-    if (!this.status) return [];
+    if (!this.data) return [];
     const wantedSeverities = this.cardConfig.severities ?? [];
     const wantedWatches = this.cardConfig.watches ?? [];
 
-    let problems = this.status.problems.filter((problem) =>
+    let problems = this.data.problems.filter((problem) =>
       this.cardConfig.show_suppressed
         ? problem.status !== "pending"
         : ["alerted", "escalated"].includes(problem.status) &&
@@ -215,7 +210,7 @@ export class StateGuardCard extends LitElement {
   }
 
   render() {
-    if (!this.status || !this.config) return nothing;
+    if (!this.data) return nothing;
     const problems = this.visible();
     const t = this.localize;
 

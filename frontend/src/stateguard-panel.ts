@@ -4,6 +4,7 @@ import { sharedStyles } from "./styles";
 import { localize, type Localizer } from "./localize";
 import { StateGuardApi } from "./api";
 import type {
+  CardData,
   Channel,
   Config,
   Incident,
@@ -123,8 +124,15 @@ export class StateGuardPanel extends LitElement {
   @state() private incidents: Incident[] = [];
   @state() private historyTotal = 0;
 
+  @state() private cardData?: CardData;
+
   private api?: StateGuardApi;
   private timer?: number;
+
+  /** Non-admins may look, not change. */
+  private get isAdmin(): boolean {
+    return this.hass?.user?.is_admin !== false;
+  }
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -156,6 +164,17 @@ export class StateGuardPanel extends LitElement {
 
   private async load(): Promise<void> {
     if (!this.api) return;
+    if (!this.isAdmin) {
+      // Only the command every user may call — the configuration itself
+      // never reaches a non-admin browser.
+      try {
+        this.cardData = await this.api.getCardData();
+        this.error = "";
+      } catch (err) {
+        this.error = this.describeError(err);
+      }
+      return;
+    }
     try {
       const { config, meta } = await this.api.getConfig();
       this.config = config;
@@ -168,9 +187,13 @@ export class StateGuardPanel extends LitElement {
   }
 
   private async refreshStatus(): Promise<void> {
-    if (!this.api || !this.config) return;
+    if (!this.api) return;
     try {
-      this.status = await this.api.getStatus();
+      if (!this.isAdmin) {
+        this.cardData = await this.api.getCardData();
+        return;
+      }
+      if (this.config) this.status = await this.api.getStatus();
     } catch {
       // A dropped connection recovers on the next tick.
     }
@@ -206,6 +229,29 @@ export class StateGuardPanel extends LitElement {
   }
 
   private renderView() {
+    if (!this.isAdmin) {
+      if (!this.cardData) return html`<div class="loading">…</div>`;
+      return html`
+        <sg-overview
+          .config=${{
+            severities: this.cardData.severities,
+            watches: [],
+            channels: [],
+            settings: { internet_entity: null },
+          }}
+          .status=${{
+            problems: this.cardData.problems,
+            watched_entity_count: this.cardData.watched_entity_count,
+            resolved: {},
+            monitoring_enabled: this.cardData.monitoring_enabled,
+            restart_grace_until: this.cardData.restart_grace_until,
+            internet_down: this.cardData.internet_down,
+          }}
+          .localize=${this.localize}
+          .readOnly=${true}
+        ></sg-overview>
+      `;
+    }
     if (!this.config || !this.meta || !this.status) {
       return html`<div class="loading">…</div>`;
     }
@@ -276,14 +322,17 @@ export class StateGuardPanel extends LitElement {
 
   render() {
     const t = this.localize;
-    const views: [View, string][] = [
-      ["overview", "nav.overview"],
-      ["watches", "nav.watches"],
-      ["channels", "nav.channels"],
-      ["severities", "nav.severities"],
-      ["history", "nav.history"],
-      ["settings", "nav.settings"],
-    ];
+    // Non-admins only get the overview, so the tab bar is pointless for them.
+    const views: [View, string][] = this.isAdmin
+      ? [
+          ["overview", "nav.overview"],
+          ["watches", "nav.watches"],
+          ["channels", "nav.channels"],
+          ["severities", "nav.severities"],
+          ["history", "nav.history"],
+          ["settings", "nav.settings"],
+        ]
+      : [];
 
     return html`
       <div
@@ -401,7 +450,7 @@ export class StateGuardPanel extends LitElement {
             : nothing}
           <span>StateGuard</span>
         </div>
-        <div class="tabs">
+        <div class="tabs" ?hidden=${!views.length}>
           ${views.map(
             ([id, label]) => html`
               <button

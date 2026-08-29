@@ -133,6 +133,17 @@ Labels are the main selector, and the editor shows a **live preview** of exactly
 
 Filled-in categories combine with **AND**; individually listed entities are added with **OR**.
 
+### Who can see it
+
+By default the sidebar entry is for administrators only. In the settings you
+can open it to everyone — non-administrators then get a read-only overview and
+cannot change anything. Editing stays with administrators either way, and the
+change takes effect without a restart.
+
+The **Lovelace card works for every user regardless of this setting**, so you
+can put the current problems on a family dashboard without handing out the
+configuration.
+
 ### Severities
 
 Freely definable, each with a priority that decides who wins when two watches cover the same entity. Attached to a severity: its channels, whether it ignores quiet hours, whether it raises a Home Assistant notification, the bundling window, the repeat interval, and the escalation step.

@@ -1,19 +1,19 @@
-import{i as p,n as f,r as h,a as y,l as v,A as c,c as g,b as n,t as w}from"./stateguard-shared.js";var m=Object.defineProperty,x=Object.getOwnPropertyDescriptor,o=(e,i,t,s)=>{for(var a=s>1?void 0:s?x(i,t):i,d=e.length-1,l;d>=0;d--)(l=e[d])&&(a=(s?l(i,t,a):l(a))||a);return s&&a&&m(i,t,a),a};const $=1e4;let r=class extends y{constructor(){super(...arguments),this.cardConfig={type:""}}setConfig(e){this.cardConfig={...e}}getCardSize(){return 1+Math.min(this.visible().length,6)}static getStubConfig(){return{type:"custom:stateguard-card",hide_when_healthy:!1}}connectedCallback(){super.connectedCallback(),this.load(),this.timer=window.setInterval(()=>void this.load(),$)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}get localize(){return v(this.hass?.language||"en")}async load(){if(this.hass)try{if(!this.config){const e=await this.hass.callWS({type:"stateguard/config/get"});this.config=e.config}this.status=await this.hass.callWS({type:"stateguard/status"})}catch{}}severity(e){return this.config?.severities.find(i=>i.id===e.severity_id)}visible(){if(!this.status)return[];const e=this.cardConfig.severities??[],i=this.cardConfig.watches??[];let t=this.status.problems.filter(s=>this.cardConfig.show_suppressed?s.status!=="pending":["alerted","escalated"].includes(s.status)&&s.suppression==="none");return e.length&&(t=t.filter(s=>s.severity_id!==null&&e.includes(s.severity_id))),i.length&&(t=t.filter(s=>i.includes(s.watch_id))),t.sort((s,a)=>a.severity_priority-s.severity_priority||s.since-a.since),this.cardConfig.max?t.slice(0,this.cardConfig.max):t}age(e){const i=Math.max(0,Math.floor(Date.now()/1e3-e.since));return i<60?`${i}s`:i<3600?`${Math.floor(i/60)}m`:i<86400?`${Math.floor(i/3600)}h`:`${Math.floor(i/86400)}d`}reason(e){return e.reason_key?this.localize(`reason.${e.reason_key}`,e.reason_params):e.reason}render(){if(!this.status||!this.config)return c;const e=this.visible(),i=this.localize;return!e.length&&this.cardConfig.hide_when_healthy?c:n`
+import{i as g,n as f,r as p,a as v,l as y,A as o,c as h,b as n,t as w}from"./stateguard-shared.js";var m=Object.defineProperty,x=Object.getOwnPropertyDescriptor,c=(e,i,t,a)=>{for(var s=a>1?void 0:a?x(i,t):i,d=e.length-1,l;d>=0;d--)(l=e[d])&&(s=(a?l(i,t,s):l(s))||s);return a&&s&&m(i,t,s),s};const $=1e4;let r=class extends v{constructor(){super(...arguments),this.cardConfig={type:""}}setConfig(e){this.cardConfig={...e}}getCardSize(){return 1+Math.min(this.visible().length,6)}static getStubConfig(){return{type:"custom:stateguard-card",hide_when_healthy:!1}}connectedCallback(){super.connectedCallback(),this.load(),this.timer=window.setInterval(()=>void this.load(),$)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}get localize(){return y(this.hass?.language||"en")}async load(){if(this.hass)try{this.data=await this.hass.callWS({type:"stateguard/card"})}catch{}}severity(e){return this.data?.severities.find(i=>i.id===e.severity_id)}visible(){if(!this.data)return[];const e=this.cardConfig.severities??[],i=this.cardConfig.watches??[];let t=this.data.problems.filter(a=>this.cardConfig.show_suppressed?a.status!=="pending":["alerted","escalated"].includes(a.status)&&a.suppression==="none");return e.length&&(t=t.filter(a=>a.severity_id!==null&&e.includes(a.severity_id))),i.length&&(t=t.filter(a=>i.includes(a.watch_id))),t.sort((a,s)=>s.severity_priority-a.severity_priority||a.since-s.since),this.cardConfig.max?t.slice(0,this.cardConfig.max):t}age(e){const i=Math.max(0,Math.floor(Date.now()/1e3-e.since));return i<60?`${i}s`:i<3600?`${Math.floor(i/60)}m`:i<86400?`${Math.floor(i/3600)}h`:`${Math.floor(i/86400)}d`}reason(e){return e.reason_key?this.localize(`reason.${e.reason_key}`,e.reason_params):e.reason}render(){if(!this.data)return o;const e=this.visible(),i=this.localize;return!e.length&&this.cardConfig.hide_when_healthy?o:n`
       <ha-card>
         <div class="head">
           <ha-icon
             icon=${e.length?"mdi:shield-alert":"mdi:shield-check"}
-            style=${`color:${e.length?g(this.severity(e[0])?.color):"var(--success-color, #43a047)"}`}
+            style=${`color:${e.length?h(this.severity(e[0])?.color):"var(--success-color, #43a047)"}`}
           ></ha-icon>
           <span>${this.cardConfig.title??"StateGuard"}</span>
-          ${e.length?n`<span class="count">${e.length}</span>`:c}
+          ${e.length?n`<span class="count">${e.length}</span>`:o}
         </div>
 
-        ${e.length?e.map(t=>{const s=this.severity(t),a=t.suppression!=="none";return n`
-                <div class=${a?"row muted":"row"}>
+        ${e.length?e.map(t=>{const a=this.severity(t),s=t.suppression!=="none";return n`
+                <div class=${s?"row muted":"row"}>
                   <ha-icon
-                    icon=${s?.icon||"mdi:alert-circle-outline"}
-                    style=${`color:${a?"var(--secondary-text-color)":g(s?.color)}`}
+                    icon=${a?.icon||"mdi:alert-circle-outline"}
+                    style=${`color:${s?"var(--secondary-text-color)":h(a?.color)}`}
                   ></ha-icon>
                   <div class="body">
                     <div class="name">
@@ -30,7 +30,7 @@ import{i as p,n as f,r as h,a as y,l as v,A as c,c as g,b as n,t as w}from"./sta
                     </div>
                     <div class="why">
                       ${t.watch_name} · ${this.reason(t)}
-                      ${a?n` · ${i(`sup.${t.suppression}`)}`:c}
+                      ${s?n` · ${i(`sup.${t.suppression}`)}`:o}
                     </div>
                   </div>
                   <span class="age">${this.age(t)}</span>
@@ -42,7 +42,7 @@ import{i as p,n as f,r as h,a as y,l as v,A as c,c as g,b as n,t as w}from"./sta
               </div>
             `}
       </ha-card>
-    `}};r.styles=p`
+    `}};r.styles=g`
     :host {
       display: block;
     }
@@ -133,4 +133,4 @@ import{i as p,n as f,r as h,a as y,l as v,A as c,c as g,b as n,t as w}from"./sta
       --mdc-icon-size: 26px;
       color: var(--success-color, #43a047);
     }
-  `;o([f({attribute:!1})],r.prototype,"hass",2);o([h()],r.prototype,"cardConfig",2);o([h()],r.prototype,"status",2);o([h()],r.prototype,"config",2);r=o([w("stateguard-card")],r);const u=window.customCards??[];u.push({type:"stateguard-card",name:"StateGuard",description:"Current problems reported by StateGuard.",preview:!0});window.customCards=u;
+  `;c([f({attribute:!1})],r.prototype,"hass",2);c([p()],r.prototype,"cardConfig",2);c([p()],r.prototype,"data",2);r=c([w("stateguard-card")],r);const u=window.customCards??[];u.push({type:"stateguard-card",name:"StateGuard",description:"Current problems reported by StateGuard.",preview:!0});window.customCards=u;

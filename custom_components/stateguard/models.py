@@ -198,6 +198,10 @@ class Settings:
     quiet_hours: QuietHours = field(default_factory=QuietHours)
     history_retention_days: int = DEFAULT_HISTORY_RETENTION_DAYS
     ui_language: str = "auto"
+    # "admin": only administrators see the sidebar entry.
+    # "all": everyone sees it, but non-admins get a read-only overview —
+    # changing anything stays with administrators either way.
+    panel_access: str = "admin"
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Settings:

@@ -259,6 +259,25 @@ export class SettingsView extends LitElement {
           </div>
         </label>
         <label class="field">
+          <span>${this.localize("settings.panel_access")}</span>
+          <select
+            @change=${(event: Event) =>
+              this.patch({
+                panel_access: (event.target as HTMLSelectElement)
+                  .value as Settings["panel_access"],
+              })}
+          >
+            <option value="admin" ?selected=${settings.panel_access !== "all"}>
+              ${this.localize("settings.panel_admin")}
+            </option>
+            <option value="all" ?selected=${settings.panel_access === "all"}>
+              ${this.localize("settings.panel_all")}
+            </option>
+          </select>
+          <p class="hint">${this.localize("settings.panel_hint")}</p>
+        </label>
+
+        <label class="field">
           <span>${this.localize("settings.language")}</span>
           <select
             @change=${(event: Event) =>

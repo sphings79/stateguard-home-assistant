@@ -88,6 +88,7 @@ export interface Settings {
   quiet_hours: QuietHours;
   history_retention_days: number;
   ui_language: string;
+  panel_access: "admin" | "all";
 }
 
 export interface Channel {
@@ -174,6 +175,17 @@ export interface Problem {
   integration_title: string | null;
 }
 
+/** What the card and the read-only overview get. No credentials in here. */
+export interface CardData {
+  problems: Problem[];
+  severities: Pick<Severity, "id" | "name" | "color" | "icon" | "priority">[];
+  watch_count: number;
+  watched_entity_count: number;
+  monitoring_enabled: boolean;
+  restart_grace_until: number | null;
+  internet_down: boolean;
+}
+
 export interface Status {
   problems: Problem[];
   watched_entity_count: number;
@@ -219,6 +231,7 @@ export interface PreviewEntity {
 /** The slice of the Home Assistant frontend object this panel relies on. */
 export interface HomeAssistant {
   language: string;
+  user?: { is_admin: boolean; name: string };
   states: Record<string, { state: string; attributes: Record<string, unknown> }>;
   callWS<T>(message: Record<string, unknown>): Promise<T>;
   callService(

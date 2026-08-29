@@ -1,4 +1,4 @@
-import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l as Y}from"./stateguard-shared.js";class Z{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var X=Object.defineProperty,ee=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&X(e,i,a),a};let O=class extends b{constructor(){super(...arguments),this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return S(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
+import{s as m,i as z,n as r,r as h,a as b,c as O,A as c,b as l,t as f,C as K,l as Y}from"./stateguard-shared.js";class Z{constructor(e){this.hass=e}update(e){this.hass=e}getConfig(){return this.hass.callWS({type:"stateguard/config/get"})}getCardData(){return this.hass.callWS({type:"stateguard/card"})}getStatus(){return this.hass.callWS({type:"stateguard/status"})}saveWatch(e){return this.hass.callWS({type:"stateguard/watch/save",watch:e})}deleteWatch(e){return this.hass.callWS({type:"stateguard/watch/delete",watch_id:e})}saveSeverity(e){return this.hass.callWS({type:"stateguard/severity/save",severity:e})}deleteSeverity(e){return this.hass.callWS({type:"stateguard/severity/delete",severity_id:e})}saveSettings(e){return this.hass.callWS({type:"stateguard/settings/save",settings:e})}preview(e){return this.hass.callWS({type:"stateguard/preview",target:e})}saveChannel(e){return this.hass.callWS({type:"stateguard/channel/save",channel:e})}deleteChannel(e){return this.hass.callWS({type:"stateguard/channel/delete",channel_id:e})}testChannel(e){return this.hass.callWS({type:"stateguard/channel/test",channel:e})}history(e){return this.hass.callWS({type:"stateguard/history",...e})}runCheck(){return this.hass.callService("stateguard","run_check",{})}setMonitoring(e){return this.hass.callWS({type:"stateguard/monitoring/set",enabled:e})}snooze(e,i,s){const a={duration:s};return e&&(a.watch_id=e),i&&(a.entity_id=i),this.hass.callService("stateguard","snooze",a)}acknowledge(e,i){return this.hass.callService("stateguard","acknowledge",{watch_id:e,entity_id:i})}}var X=Object.defineProperty,ee=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?ee(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&X(e,i,a),a};let k=class extends b{constructor(){super(...arguments),this.readOnly=!1,this.now=Date.now()/1e3}connectedCallback(){super.connectedCallback(),this.ticker=window.setInterval(()=>{this.now=Date.now()/1e3},1e3)}disconnectedCallback(){super.disconnectedCallback(),this.ticker&&window.clearInterval(this.ticker)}countdown(t){const e=Math.max(0,Math.ceil(t)),i=e%60,s=Math.floor(e/60)%60,a=Math.floor(e/3600),n=o=>String(o).padStart(2,"0");return a?`${a}:${n(s)}:${n(i)}`:`${s}:${n(i)}`}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}since(t){const e=Math.max(0,Math.floor(Date.now()/1e3-t.since));return e<60?`${e}s`:e<3600?`${Math.floor(e/60)}m`:e<86400?`${Math.floor(e/3600)}h`:`${Math.floor(e/86400)}d`}reasonText(t){return t.reason_key?this.localize(`reason.${t.reason_key}`,t.reason_params):t.reason}severityColor(t){const e=this.config.severities.find(i=>i.id===t.severity_id);return O(e?.color)}severityIcon(t){return this.config.severities.find(i=>i.id===t.severity_id)?.icon||"mdi:alert-circle-outline"}renderProblem(t,e){const i=t.suppression!=="none";return l`
       <div class="problem">
         <ha-icon
           icon=${this.severityIcon(t)}
@@ -25,7 +25,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                   >`:c}
           </div>
         </div>
-        ${e?c:l`
+        ${!e&&!this.readOnly?l`
               <div class="actions">
                 <button
                   class="plain"
@@ -41,9 +41,9 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                   <ha-icon icon="mdi:check-circle-outline"></ha-icon>
                 </button>
               </div>
-            `}
+            `:c}
       </div>
-    `}render(){const t=this.status.problems.filter(d=>["alerted","escalated"].includes(d.status)&&d.suppression==="none"),e=this.status.problems.filter(d=>d.suppression!=="none"),i=this.status.problems.filter(d=>d.status==="pending"&&d.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const d of t){const I=d.severity_id??"";n.set(I,(n.get(I)??0)+1)}let o="mdi:shield-check",u="var(--success-color, #4caf50)",_=this.localize("overview.healthy"),F=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",u="var(--secondary-text-color)",_=this.localize("overview.paused"),F=this.localize("overview.paused_sub");else if(t.length){const d=[...t].sort((I,H)=>H.severity_priority-I.severity_priority)[0];o=this.severityIcon(d),u=this.severityColor(d),_=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),F=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
+    `}render(){const t=this.status.problems.filter(d=>["alerted","escalated"].includes(d.status)&&d.suppression==="none"),e=this.status.problems.filter(d=>d.suppression!=="none"),i=this.status.problems.filter(d=>d.status==="pending"&&d.suppression==="none"),s=!this.status.monitoring_enabled,a=this.status.watched_entity_count,n=new Map;for(const d of t){const D=d.severity_id??"";n.set(D,(n.get(D)??0)+1)}let o="mdi:shield-check",u="var(--success-color, #4caf50)",_=this.localize("overview.healthy"),F=this.localize("overview.healthy_sub",{watched:a});if(s)o="mdi:shield-off-outline",u="var(--secondary-text-color)",_=this.localize("overview.paused"),F=this.localize("overview.paused_sub");else if(t.length){const d=[...t].sort((D,H)=>H.severity_priority-D.severity_priority)[0];o=this.severityIcon(d),u=this.severityColor(d),_=this.localize(t.length===1?"overview.problems":"overview.problems_plural",{count:t.length}),F=this.localize("overview.watching",{watched:a,watches:this.config.watches.length})}return l`
       <div class="card">
         <div class="hero">
           <ha-icon icon=${o} style=${`color:${u}`}></ha-icon>
@@ -52,11 +52,11 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             <div class="sub">${F}</div>
             ${n.size?l`
                   <div class="counts">
-                    ${this.config.severities.filter(d=>n.has(d.id)).sort((d,I)=>I.priority-d.priority).map(d=>l`
+                    ${this.config.severities.filter(d=>n.has(d.id)).sort((d,D)=>D.priority-d.priority).map(d=>l`
                           <span class="count">
                             <ha-icon
                               icon=${d.icon}
-                              style=${`color:${S(d.color)};--mdc-icon-size:16px`}
+                              style=${`color:${O(d.color)};--mdc-icon-size:16px`}
                             ></ha-icon>
                             <b>${n.get(d.id)}</b> ${d.name}
                           </span>
@@ -65,7 +65,11 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                 `:c}
           </div>
         </div>
-        <div class="row wrap" style="padding:0 var(--sg-gap) var(--sg-gap)">
+        <div
+          class="row wrap"
+          style="padding:0 var(--sg-gap) var(--sg-gap)"
+          ?hidden=${this.readOnly}
+        >
           <button class="secondary" @click=${()=>this.fire("sg-run-check")}>
             <ha-icon icon="mdi:refresh"></ha-icon>
             ${this.localize("overview.run_check")}
@@ -112,7 +116,11 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             </div>
           `:c}
 
-      ${this.config.watches.length?c:l`
+      ${this.readOnly?l`<p class="hint" style="margin:0 0 var(--sg-gap)">
+            ${this.localize("overview.read_only")}
+          </p>`:c}
+
+      ${!this.readOnly&&!this.config.watches.length?l`
             <div class="card">
               <div class="empty">
                 <ha-icon icon="mdi:shield-plus-outline"></ha-icon>
@@ -124,7 +132,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                 </button>
               </div>
             </div>
-          `}
+          `:c}
 
       ${t.length?l`
             <div class="card flush">
@@ -150,7 +158,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
               ${e.map(d=>this.renderProblem(d,!0))}
             </div>
           `:c}
-    `}};O.styles=[m,z`
+    `}};k.styles=[m,z`
       .hero {
         display: flex;
         align-items: center;
@@ -278,7 +286,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
       .muted .problem .name {
         color: var(--secondary-text-color);
       }
-    `];N([r({attribute:!1})],O.prototype,"config",2);N([r({attribute:!1})],O.prototype,"status",2);N([r({attribute:!1})],O.prototype,"localize",2);N([h()],O.prototype,"now",2);O=N([f("sg-overview")],O);var te=Object.defineProperty,ie=Object.getOwnPropertyDescriptor,q=(t,e,i,s)=>{for(var a=s>1?void 0:s?ie(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&te(e,i,a),a};let k=class extends b{constructor(){super(...arguments),this.showTemplates=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}problemsFor(t){return this.status.problems.filter(e=>e.watch_id===t.id&&["alerted","escalated"].includes(e.status)&&e.suppression==="none").length}render(){return l`
+    `];q([r({attribute:!1})],k.prototype,"config",2);q([r({attribute:!1})],k.prototype,"status",2);q([r({attribute:!1})],k.prototype,"localize",2);q([r({type:Boolean})],k.prototype,"readOnly",2);q([h()],k.prototype,"now",2);k=q([f("sg-overview")],k);var te=Object.defineProperty,ie=Object.getOwnPropertyDescriptor,j=(t,e,i,s)=>{for(var a=s>1?void 0:s?ie(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&te(e,i,a),a};let C=class extends b{constructor(){super(...arguments),this.showTemplates=!1}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}problemsFor(t){return this.status.problems.filter(e=>e.watch_id===t.id&&["alerted","escalated"].includes(e.status)&&e.suppression==="none").length}render(){return l`
       <div class="card">
         <div class="row wrap">
           <button @click=${()=>this.fire("sg-edit-watch",{watch:null})}>
@@ -322,7 +330,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                   <ha-icon
                     class="watch-icon"
                     icon=${e?.icon||"mdi:shield-outline"}
-                    style=${`color:${i?S(e?.color):"var(--secondary-text-color)"}`}
+                    style=${`color:${i?O(e?.color):"var(--secondary-text-color)"}`}
                   ></ha-icon>
                   <div style="flex:1;min-width:0">
                     <div class="title">
@@ -332,7 +340,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                           >`}
                       ${i?l`<span
                             class="badge"
-                            style=${`background:${S(e?.color)};color:#fff`}
+                            style=${`background:${O(e?.color)};color:#fff`}
                             >${i}</span
                           >`:c}
                     </div>
@@ -367,7 +375,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
               <div>${this.localize("watches.empty")}</div>
             </div>`}
       </div>
-    `}};k.styles=[m,z`
+    `}};C.styles=[m,z`
       .template {
         display: flex;
         align-items: flex-start;
@@ -401,7 +409,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
         border-radius: 50%;
         flex-shrink: 0;
       }
-    `];q([r({attribute:!1})],k.prototype,"config",2);q([r({attribute:!1})],k.prototype,"meta",2);q([r({attribute:!1})],k.prototype,"status",2);q([r({attribute:!1})],k.prototype,"localize",2);q([h()],k.prototype,"showTemplates",2);k=q([f("sg-watches")],k);var se=Object.defineProperty,ae=Object.getOwnPropertyDescriptor,j=(t,e,i,s)=>{for(var a=s>1?void 0:s?ae(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&se(e,i,a),a};let C=class extends b{constructor(){super(...arguments),this.options=[],this.selected=[],this.searchLabel="Search…",this.searchThreshold=12,this.filter=""}toggle(t){const e=this.selected.includes(t)?this.selected.filter(i=>i!==t):[...this.selected,t];this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:e}}))}render(){const t=this.filter.trim().toLowerCase(),e=t?this.options.filter(i=>i.name.toLowerCase().includes(t)||i.id.toLowerCase().includes(t)||this.selected.includes(i.id)):this.options;return l`
+    `];j([r({attribute:!1})],C.prototype,"config",2);j([r({attribute:!1})],C.prototype,"meta",2);j([r({attribute:!1})],C.prototype,"status",2);j([r({attribute:!1})],C.prototype,"localize",2);j([h()],C.prototype,"showTemplates",2);C=j([f("sg-watches")],C);var se=Object.defineProperty,ae=Object.getOwnPropertyDescriptor,N=(t,e,i,s)=>{for(var a=s>1?void 0:s?ae(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&se(e,i,a),a};let S=class extends b{constructor(){super(...arguments),this.options=[],this.selected=[],this.searchLabel="Search…",this.searchThreshold=12,this.filter=""}toggle(t){const e=this.selected.includes(t)?this.selected.filter(i=>i!==t):[...this.selected,t];this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:e}}))}render(){const t=this.filter.trim().toLowerCase(),e=t?this.options.filter(i=>i.name.toLowerCase().includes(t)||i.id.toLowerCase().includes(t)||this.selected.includes(i.id)):this.options;return l`
       ${this.options.length>=this.searchThreshold?l`
             <input
               type="text"
@@ -421,13 +429,13 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             >
               ${i.icon?l`<ha-icon
                     icon=${i.icon}
-                    style=${`color:${this.selected.includes(i.id)?"inherit":S(i.color)}`}
+                    style=${`color:${this.selected.includes(i.id)?"inherit":O(i.color)}`}
                   ></ha-icon>`:c}
               ${i.name}
             </button>
           `)}
       </div>
-    `}};C.styles=m;j([r({attribute:!1})],C.prototype,"options",2);j([r({attribute:!1})],C.prototype,"selected",2);j([r()],C.prototype,"searchLabel",2);j([r({type:Number})],C.prototype,"searchThreshold",2);j([h()],C.prototype,"filter",2);C=j([f("sg-chip-select")],C);var le=Object.defineProperty,ne=Object.getOwnPropertyDescriptor,M=(t,e,i,s)=>{for(var a=s>1?void 0:s?ne(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&le(e,i,a),a};let P=class extends b{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return c;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
+    `}};S.styles=m;N([r({attribute:!1})],S.prototype,"options",2);N([r({attribute:!1})],S.prototype,"selected",2);N([r()],S.prototype,"searchLabel",2);N([r({type:Number})],S.prototype,"searchThreshold",2);N([h()],S.prototype,"filter",2);S=N([f("sg-chip-select")],S);var le=Object.defineProperty,ne=Object.getOwnPropertyDescriptor,M=(t,e,i,s)=>{for(var a=s>1?void 0:s?ne(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&le(e,i,a),a};let P=class extends b{constructor(){super(...arguments),this.entities=[],this.limit=200,this.expanded=!1}render(){if(!this.entities.length)return c;const t=this.expanded?this.entities:this.entities.slice(0,this.limit);return l`
       <div class="scroll">
         ${t.map(e=>l`
             <div class="entry">
@@ -491,7 +499,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
       .bad {
         color: var(--error-color, #db4437);
       }
-    `];M([r({attribute:!1})],P.prototype,"entities",2);M([r({attribute:!1})],P.prototype,"localize",2);M([r({type:Number})],P.prototype,"limit",2);M([h()],P.prototype,"expanded",2);P=M([f("sg-entity-list")],P);var oe=Object.defineProperty,re=Object.getOwnPropertyDescriptor,A=(t,e,i,s)=>{for(var a=s>1?void 0:s?re(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&oe(e,i,a),a};const Q=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let D=class extends b{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of Q)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
+    `];M([r({attribute:!1})],P.prototype,"entities",2);M([r({attribute:!1})],P.prototype,"localize",2);M([r({type:Number})],P.prototype,"limit",2);M([h()],P.prototype,"expanded",2);P=M([f("sg-entity-list")],P);var oe=Object.defineProperty,re=Object.getOwnPropertyDescriptor,B=(t,e,i,s)=>{for(var a=s>1?void 0:s?re(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&oe(e,i,a),a};const Q=[["unit.seconds",1],["unit.minutes",60],["unit.hours",3600],["unit.days",86400]];let I=class extends b{constructor(){super(...arguments),this.value=0,this.minUnit=1}get factor(){let t=this.minUnit;for(const[,e]of Q)e<this.minUnit||this.value!==0&&this.value%e===0&&(t=e);return t}emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:Math.max(0,t)}}))}render(){const t=this.factor;return l`
       <div class="duration">
         <input
           type="number"
@@ -509,7 +517,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             `)}
         </select>
       </div>
-    `}};D.styles=[m,z`
+    `}};I.styles=[m,z`
       .duration {
         display: flex;
         gap: 8px;
@@ -524,7 +532,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
         width: auto;
         flex-shrink: 0;
       }
-    `];A([r({type:Number})],D.prototype,"value",2);A([r({attribute:!1})],D.prototype,"localize",2);A([r({type:Number})],D.prototype,"minUnit",2);D=A([f("sg-duration")],D);var ce=Object.defineProperty,he=Object.getOwnPropertyDescriptor,y=(t,e,i,s)=>{for(var a=s>1?void 0:s?he(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ce(e,i,a),a};const de=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],pe=["unavailable","unknown","","none"],J=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),B=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),R=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:J(),conditions:[B("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends b{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=R(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:J(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...B("unavailable_state"),...s}))}}else this.draft=R(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
+    `];B([r({type:Number})],I.prototype,"value",2);B([r({attribute:!1})],I.prototype,"localize",2);B([r({type:Number})],I.prototype,"minUnit",2);I=B([f("sg-duration")],I);var ce=Object.defineProperty,he=Object.getOwnPropertyDescriptor,y=(t,e,i,s)=>{for(var a=s>1?void 0:s?he(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&ce(e,i,a),a};const de=["unavailable_state","stale","numeric_threshold","state_match","state_duration","entity_missing"],pe=["unavailable","unknown","","none"],J=()=>({labels:[],label_mode:"any",areas:[],floors:[],domains:[],integrations:[],entities:[],include_device_entities:!0,include_diagnostic:!1,exclude_labels:[],exclude_entities:[]}),A=t=>({type:t,states:t==="unavailable_state"?["unavailable","unknown"]:[],negate:!1,time_basis:"last_reported",duration:t==="stale"?86400:600,target_state:null,source:"state",operator:"le",value:t==="numeric_threshold"?25:null,value2:null,recovery_value:null}),R=t=>({id:"",name:"",enabled:!0,severity_id:t,order:0,target:J(),conditions:[A("unavailable_state")],grace_period:300,restart_grace:null,overlap_mode:"all",notify_on_clear:!0,suppress_by_parent:!0,group_alerts:!0,channels:[]});let v=class extends b{constructor(){super(...arguments),this.watch=null,this.template=null,this.preview=[],this.previewCount=0,this.error=""}connectedCallback(){super.connectedCallback();const t=[...this.config.severities].sort((i,s)=>i.priority-s.priority),e=t[Math.floor(t.length/2)]?.id??t[0]?.id??"";if(this.watch)this.draft=structuredClone(this.watch);else if(this.template){const i=R(e);this.draft={...i,...this.template.watch,name:this.localize(`template.${this.template.template_id}.name`),target:J(),conditions:(this.template.watch.conditions??i.conditions).map(s=>({...A("unavailable_state"),...s}))}}else this.draft=R(e);this.requestPreview()}disconnectedCallback(){super.disconnectedCallback(),this.previewTimer&&window.clearTimeout(this.previewTimer)}fire(t,e={}){this.dispatchEvent(new CustomEvent(t,{detail:e,bubbles:!0,composed:!0}))}requestPreview(){this.previewTimer&&window.clearTimeout(this.previewTimer),this.previewTimer=window.setTimeout(()=>{this.dispatchEvent(new CustomEvent("sg-preview",{detail:{target:this.draft.target,callback:t=>{this.previewCount=t.count,this.preview=t.entities}},bubbles:!0,composed:!0}))},250)}patch(t){this.draft={...this.draft,...t}}patchTarget(t){this.draft={...this.draft,target:{...this.draft.target,...t}},this.requestPreview()}patchCondition(t,e){const i=this.draft.conditions.map((s,a)=>a===t?{...s,...e}:s);this.patch({conditions:i})}save(){if(!this.draft.name.trim()){this.error=this.localize("editor.needs_name");return}if(!this.draft.conditions.length){this.error=this.localize("editor.no_conditions");return}this.error="",this.fire("sg-save-watch",{watch:this.draft})}renderConditionBody(t,e){switch(t.type){case"unavailable_state":return l`
           <label class="field"><span>${this.localize("cond.states")}</span></label>
           <div class="chips">
             ${pe.map(i=>l`
@@ -818,7 +826,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                 <div class="row" style="margin-bottom:10px">
                   <select
                     style="flex:1"
-                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=B(a),this.patch({conditions:n})}}
+                    @change=${s=>{const a=s.target.value,n=[...this.draft.conditions];n[i]=A(a),this.patch({conditions:n})}}
                   >
                     ${de.map(s=>l`
                         <option value=${s} ?selected=${e.type===s}>
@@ -838,7 +846,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             `)}
           <button
             class="secondary"
-            @click=${()=>this.patch({conditions:[...this.draft.conditions,B("unavailable_state")]})}
+            @click=${()=>this.patch({conditions:[...this.draft.conditions,A("unavailable_state")]})}
           >
             <ha-icon icon="mdi:plus"></ha-icon>
             ${this.localize("editor.add_condition")}
@@ -1237,7 +1245,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
                   <div class="incident">
                     <ha-icon
                       icon=${i?.icon||"mdi:alert-circle-outline"}
-                      style=${`color:${s?"var(--secondary-text-color)":S(i?.color)}`}
+                      style=${`color:${s?"var(--secondary-text-color)":O(i?.color)}`}
                     ></ha-icon>
                     <div class="body">
                       <div class="name">
@@ -1481,7 +1489,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
               <div class="list-item">
                 <ha-icon
                   icon=${t.icon}
-                  style=${`color:${S(t.color)};--mdc-icon-size:24px`}
+                  style=${`color:${O(t.color)};--mdc-icon-size:24px`}
                 ></ha-icon>
                 <div style="flex:1;min-width:0">
                   <div class="title">
@@ -1651,6 +1659,21 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
           </div>
         </label>
         <label class="field">
+          <span>${this.localize("settings.panel_access")}</span>
+          <select
+            @change=${i=>this.patch({panel_access:i.target.value})}
+          >
+            <option value="admin" ?selected=${t.panel_access!=="all"}>
+              ${this.localize("settings.panel_admin")}
+            </option>
+            <option value="all" ?selected=${t.panel_access==="all"}>
+              ${this.localize("settings.panel_all")}
+            </option>
+          </select>
+          <p class="hint">${this.localize("settings.panel_hint")}</p>
+        </label>
+
+        <label class="field">
           <span>${this.localize("settings.language")}</span>
           <select
             @change=${i=>this.patch({ui_language:i.target.value})}
@@ -1683,7 +1706,14 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
         padding: 12px;
         margin-bottom: 12px;
       }
-    `];L([r({attribute:!1})],T.prototype,"settings",2);L([r({attribute:!1})],T.prototype,"localize",2);L([h()],T.prototype,"draft",2);L([h()],T.prototype,"saved",2);T=L([f("sg-settings")],T);var Oe=Object.defineProperty,Pe=Object.getOwnPropertyDescriptor,g=(t,e,i,s)=>{for(var a=s>1?void 0:s?Pe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Oe(e,i,a),a};const Te=5e3;let p=class extends b{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Te)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new Z(this.hass),this.load()))}get localize(){const t=this.config?.settings.ui_language??"auto";return Y(t==="auto"?this.hass?.language||"en":t)}async load(){if(this.api)try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),this.error=""}catch(t){this.error=this.describeError(t)}}async refreshStatus(){if(!(!this.api||!this.config))try{this.status=await this.api.getStatus()}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.config||!this.meta||!this.status)return l`<div class="loading">…</div>`;if(this.editorOpen)return l`
+    `];L([r({attribute:!1})],T.prototype,"settings",2);L([r({attribute:!1})],T.prototype,"localize",2);L([h()],T.prototype,"draft",2);L([h()],T.prototype,"saved",2);T=L([f("sg-settings")],T);var Oe=Object.defineProperty,Pe=Object.getOwnPropertyDescriptor,g=(t,e,i,s)=>{for(var a=s>1?void 0:s?Pe(e,i):e,n=t.length-1,o;n>=0;n--)(o=t[n])&&(a=(s?o(e,i,a):o(a))||a);return s&&a&&Oe(e,i,a),a};const Te=5e3;let p=class extends b{constructor(){super(...arguments),this.narrow=!1,this.view="overview",this.editingWatch=null,this.editingTemplate=null,this.editorOpen=!1,this.error="",this.incidents=[],this.historyTotal=0}get isAdmin(){return this.hass?.user?.is_admin!==!1}connectedCallback(){super.connectedCallback(),this.timer=window.setInterval(()=>this.refreshStatus(),Te)}disconnectedCallback(){super.disconnectedCallback(),this.timer&&window.clearInterval(this.timer)}willUpdate(t){t.has("hass")&&this.hass&&(this.api?this.api.update(this.hass):(this.api=new Z(this.hass),this.load()))}get localize(){const t=this.config?.settings.ui_language??"auto";return Y(t==="auto"?this.hass?.language||"en":t)}async load(){if(this.api){if(!this.isAdmin){try{this.cardData=await this.api.getCardData(),this.error=""}catch(t){this.error=this.describeError(t)}return}try{const{config:t,meta:e}=await this.api.getConfig();this.config=t,this.meta=e,this.status=await this.api.getStatus(),this.error=""}catch(t){this.error=this.describeError(t)}}}async refreshStatus(){if(this.api)try{if(!this.isAdmin){this.cardData=await this.api.getCardData();return}this.config&&(this.status=await this.api.getStatus())}catch{}}async run(t){try{await t(),await this.load()}catch(e){this.error=this.describeError(e)}}describeError(t){const e=t;return e?.code==="in_use"?this.localize("error.in_use",{names:e.message??""}):e?.code&&["not_loaded","not_found"].includes(e.code)?this.localize(`error.${e.code}`):this.localize("common.error",{message:String(e?.message??t)})}closeEditor(){this.editorOpen=!1,this.editingWatch=null,this.editingTemplate=null}renderView(){if(!this.isAdmin)return this.cardData?l`
+        <sg-overview
+          .config=${{severities:this.cardData.severities,watches:[],channels:[],settings:{internet_entity:null}}}
+          .status=${{problems:this.cardData.problems,watched_entity_count:this.cardData.watched_entity_count,resolved:{},monitoring_enabled:this.cardData.monitoring_enabled,restart_grace_until:this.cardData.restart_grace_until,internet_down:this.cardData.internet_down}}
+          .localize=${this.localize}
+          .readOnly=${!0}
+        ></sg-overview>
+      `:l`<div class="loading">…</div>`;if(!this.config||!this.meta||!this.status)return l`<div class="loading">…</div>`;if(this.editorOpen)return l`
         <sg-watch-editor
           .config=${this.config}
           .meta=${this.meta}
@@ -1727,7 +1757,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
             .status=${this.status}
             .localize=${this.localize}
           ></sg-overview>
-        `}}render(){const t=this.localize,e=[["overview","nav.overview"],["watches","nav.watches"],["channels","nav.channels"],["severities","nav.severities"],["history","nav.history"],["settings","nav.settings"]];return l`
+        `}}render(){const t=this.localize,e=this.isAdmin?[["overview","nav.overview"],["watches","nav.watches"],["channels","nav.channels"],["severities","nav.severities"],["history","nav.history"],["settings","nav.settings"]]:[];return l`
       <div
         @sg-navigate=${i=>{this.view=i.detail.view}}
         @sg-run-check=${()=>this.run(()=>this.api.runCheck())}
@@ -1759,7 +1789,7 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
               `:c}
           <span>StateGuard</span>
         </div>
-        <div class="tabs">
+        <div class="tabs" ?hidden=${!e.length}>
           ${e.map(([i,s])=>l`
               <button
                 class="tab"
@@ -1842,4 +1872,4 @@ import{s as m,i as z,n as r,r as h,a as b,c as S,A as c,b as l,t as f,C as K,l a
         text-align: center;
         color: var(--secondary-text-color);
       }
-    `];g([r({attribute:!1})],p.prototype,"hass",2);g([r({type:Boolean})],p.prototype,"narrow",2);g([h()],p.prototype,"config",2);g([h()],p.prototype,"meta",2);g([h()],p.prototype,"status",2);g([h()],p.prototype,"view",2);g([h()],p.prototype,"editingWatch",2);g([h()],p.prototype,"editingTemplate",2);g([h()],p.prototype,"editorOpen",2);g([h()],p.prototype,"error",2);g([h()],p.prototype,"incidents",2);g([h()],p.prototype,"historyTotal",2);p=g([f("stateguard-panel")],p);
+    `];g([r({attribute:!1})],p.prototype,"hass",2);g([r({type:Boolean})],p.prototype,"narrow",2);g([h()],p.prototype,"config",2);g([h()],p.prototype,"meta",2);g([h()],p.prototype,"status",2);g([h()],p.prototype,"view",2);g([h()],p.prototype,"editingWatch",2);g([h()],p.prototype,"editingTemplate",2);g([h()],p.prototype,"editorOpen",2);g([h()],p.prototype,"error",2);g([h()],p.prototype,"incidents",2);g([h()],p.prototype,"historyTotal",2);g([h()],p.prototype,"cardData",2);p=g([f("stateguard-panel")],p);

@@ -6,6 +6,22 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-29
+
+### Fixed
+
+- The Lovelace card stayed empty for anyone who is not an administrator.
+  Every websocket command required admin rights, including the two the card
+  reads. There is now a separate read-only command carrying just what a
+  problem needs to be displayed — no channels, no credentials, no settings.
+
+### Added
+
+- **Who sees StateGuard in the sidebar** is now a setting: administrators
+  only, or everyone. Non-administrators get a read-only overview; changing
+  anything stays with administrators either way. The change takes effect
+  without a restart.
+
 ## [0.1.0] - 2026-08-29
 
 First release.
@@ -34,5 +50,6 @@ First release.
 - Entities (`binary_sensor` per watch, problem counters, a monitoring switch),
   services and events for use in automations.
 
-[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/sphings79/stateguard-home-assistant/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sphings79/stateguard-home-assistant/releases/tag/v0.1.0

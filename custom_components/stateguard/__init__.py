@@ -31,7 +31,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: StateGuardConfigEntry) -
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     async_register_services(hass)
     async_register_websocket_api(hass)
-    await async_register_panel(hass)
+    await async_register_panel(
+        hass, require_admin=store.config.settings.panel_access != "all"
+    )
     await async_register_card(hass)
 
     entry.async_on_unload(entry.add_update_listener(_async_update_listener))

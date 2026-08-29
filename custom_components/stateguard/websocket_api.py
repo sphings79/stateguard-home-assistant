@@ -22,6 +22,7 @@ from .const import DOMAIN
 from .engine import StateGuardEngine
 from .links import async_links
 from .models import Channel, Settings, Severity, Target, Watch, new_id
+from .panel import async_register_panel
 from .templates import TEMPLATES
 
 _LOGGER = logging.getLogger(__name__)
@@ -44,6 +45,7 @@ def async_register_websocket_api(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, ws_test_channel)
     websocket_api.async_register_command(hass, ws_history)
     websocket_api.async_register_command(hass, ws_history_stats)
+    websocket_api.async_register_command(hass, ws_card_data)
 
 
 @callback
@@ -372,6 +374,10 @@ async def ws_save_settings(
     engine.config.settings = Settings.from_dict(msg["settings"])
     await engine.store.async_save()
     await engine.async_config_changed()
+    # The sidebar entry has to be replaced when its visibility changes.
+    await async_register_panel(
+        hass, require_admin=engine.config.settings.panel_access != "all"
+    )
     connection.send_result(msg["id"], {"settings": asdict(engine.config.settings)})
 
 
@@ -581,3 +587,75 @@ async def ws_history_stats(
 
     stats = await engine.history.async_statistics(time.time() - msg["days"] * 86400)
     connection.send_result(msg["id"], stats)
+
+
+@websocket_api.websocket_command({vol.Required("type"): "stateguard/card"})
+@websocket_api.async_response
+async def ws_card_data(
+    hass: HomeAssistant,
+    connection: websocket_api.ActiveConnection,
+    msg: dict[str, Any],
+) -> None:
+    """Return what the card and the read-only overview need.
+
+    Deliberately not admin-only, otherwise the card stays empty for every
+    ordinary user. It carries only what is needed to display a problem —
+    no channels, no credentials, no settings beyond the two banners.
+    """
+    engine = _engine(hass)
+    if engine is None:
+        connection.send_error(msg["id"], "not_loaded", "")
+        return
+
+    problems = []
+    for problem in engine.problems.values():
+        watch = engine.config.watch(problem.watch_id)
+        severity = engine.config.severity(watch.severity_id) if watch else None
+        state = hass.states.get(problem.entity_id)
+        problems.append(
+            {
+                "watch_id": problem.watch_id,
+                "watch_name": watch.name if watch else problem.watch_id,
+                "entity_id": problem.entity_id,
+                "status": problem.status,
+                "suppression": problem.suppression,
+                "since": problem.since,
+                "reason": problem.reason,
+                "reason_key": problem.reason_key,
+                "reason_params": problem.reason_params,
+                "severity_id": watch.severity_id if watch else None,
+                "severity_name": severity.name if severity else None,
+                "severity_priority": severity.priority if severity else 0,
+                "friendly_name": (
+                    state.attributes.get("friendly_name") if state else None
+                )
+                or problem.entity_id,
+                "current_state": state.state if state else None,
+                **async_links(hass, problem.entity_id).as_dict(),
+            }
+        )
+    problems.sort(key=lambda item: (-item["severity_priority"], item["since"]))
+
+    connection.send_result(
+        msg["id"],
+        {
+            "problems": problems,
+            "severities": [
+                {
+                    "id": severity.id,
+                    "name": severity.name,
+                    "color": severity.color,
+                    "icon": severity.icon,
+                    "priority": severity.priority,
+                }
+                for severity in engine.config.severities
+            ],
+            "watch_count": len(engine.config.watches),
+            "watched_entity_count": len(engine.watched_entities),
+            "monitoring_enabled": engine.config.settings.monitoring_enabled,
+            "restart_grace_until": _restart_grace_until(engine),
+            "internet_down": engine.suppression.async_internet_down(
+                engine.config.settings.internet_entity
+            ),
+        },
+    )

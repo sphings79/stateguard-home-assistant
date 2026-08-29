@@ -1,4 +1,4 @@
-import type { Channel, Config, HistoryPage, Meta, PreviewEntity, Severity, Settings, Status, Watch, HomeAssistant } from "./types";
+import type { CardData, Channel, Config, HistoryPage, Meta, PreviewEntity, Severity, Settings, Status, Watch, HomeAssistant } from "./types";
 
 /** Thin wrapper around the panel's WebSocket commands. */
 export class StateGuardApi {
@@ -11,6 +11,11 @@ export class StateGuardApi {
 
   getConfig(): Promise<{ config: Config; meta: Meta }> {
     return this.hass.callWS({ type: "stateguard/config/get" });
+  }
+
+  /** Readable by every user; carries no configuration. */
+  getCardData(): Promise<CardData> {
+    return this.hass.callWS({ type: "stateguard/card" });
   }
 
   getStatus(): Promise<Status> {

@@ -133,6 +133,18 @@ Labels sind der Hauptselektor, und der Editor zeigt eine **Live-Vorschau**, welc
 
 Ausgefüllte Kategorien werden mit **UND** verknüpft, einzeln aufgeführte Entitäten mit **ODER** ergänzt.
 
+### Wer es sehen darf
+
+Standardmäßig ist der Eintrag in der Seitenleiste nur für Administratoren. In
+den Einstellungen kannst du ihn für alle freigeben — Nicht-Administratoren
+bekommen dann eine reine Statusansicht und können nichts ändern. Das Bearbeiten
+bleibt in jedem Fall bei Administratoren, und die Umstellung wirkt ohne
+Neustart.
+
+Die **Lovelace-Karte funktioniert unabhängig davon für jeden Benutzer**, du
+kannst die aktuellen Probleme also auf ein Familien-Dashboard legen, ohne die
+Konfiguration herauszugeben.
+
 ### Schweregrade
 
 Frei definierbar, jeder mit einer Priorität, die entscheidet, wer gewinnt, wenn zwei Überwachungen dieselbe Entität erfassen. Am Schweregrad hängen: seine Kanäle, ob er Ruhezeiten ignoriert, ob er eine Home-Assistant-Benachrichtigung erzeugt, das Bündelungsfenster, die Wiederholung und die Eskalationsstufe.

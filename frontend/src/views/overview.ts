@@ -144,6 +144,7 @@ export class Overview extends LitElement {
   @property({ attribute: false }) config!: Config;
   @property({ attribute: false }) status!: Status;
   @property({ attribute: false }) localize!: Localizer;
+  @property({ type: Boolean }) readOnly = false;
 
   /** Ticks once a second so the grace-period countdown stays live. */
   @state() private now = Date.now() / 1000;
@@ -230,7 +231,7 @@ export class Overview extends LitElement {
               : nothing}
           </div>
         </div>
-        ${!muted
+        ${!muted && !this.readOnly
           ? html`
               <div class="actions">
                 <button
@@ -338,7 +339,11 @@ export class Overview extends LitElement {
               : nothing}
           </div>
         </div>
-        <div class="row wrap" style="padding:0 var(--sg-gap) var(--sg-gap)">
+        <div
+          class="row wrap"
+          style="padding:0 var(--sg-gap) var(--sg-gap)"
+          ?hidden=${this.readOnly}
+        >
           <button class="secondary" @click=${() => this.fire("sg-run-check")}>
             <ha-icon icon="mdi:refresh"></ha-icon>
             ${this.localize("overview.run_check")}
@@ -393,7 +398,13 @@ export class Overview extends LitElement {
           `
         : nothing}
 
-      ${!this.config.watches.length
+      ${this.readOnly
+        ? html`<p class="hint" style="margin:0 0 var(--sg-gap)">
+            ${this.localize("overview.read_only")}
+          </p>`
+        : nothing}
+
+      ${!this.readOnly && !this.config.watches.length
         ? html`
             <div class="card">
               <div class="empty">
