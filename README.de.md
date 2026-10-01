@@ -313,14 +313,14 @@ Die Kataloge werden bei Bedarf geladen, einer je Sprache — eine deutsche Insta
 
 ## Weitere Home-Assistant-Projekte
 
-- [Marstek Venus Modbus](https://github.com/sphings79/marstek_venus_modbus_dev) — Marstek-Venus-Batteriespeicher über lokales Modbus TCP
+- [Marstek Modbus Suite](https://github.com/sphings79/marstek-modbus-suite) — Marstek-Venus-Batteriespeicher über lokales Modbus TCP
 - [Shelly Modbus](https://github.com/sphings79/shelly-modbus-home-assistant) — Shelly-Energiezähler und -Relais über Modbus TCP, ohne Cloud
 - [MyIP.wtf](https://github.com/sphings79/myip-wtf-home-assistant) — öffentliche IPv4/IPv6, Provider und Standort als Sensoren
-- [Leasing-KM-Rechner](https://github.com/sphings79/km_leasing_check_ha) — Kilometerkontingent eines Leasingfahrzeugs
+- [Leasing-KM-Rechner](https://github.com/sphings79/leasing-km-home-assistant) — Kilometerkontingent eines Leasingfahrzeugs
 - [Leasing-KM-Karte](https://github.com/sphings79/leasing_km_card) — die passende Lovelace-Karte
 - [Marstek Venus BLE](https://github.com/sphings79/ha-marstek-ble) — Marstek Venus E über Bluetooth LE
 - [Marstek Offline-Endpunkt](https://github.com/sphings79/Marstek-offline-endpoint) — Venus-Batterie ohne Cloud betreiben
-- [venuscontrol](https://github.com/sphings79/venuscontrol) — cloudfreies Web-Bedienfeld über Web Bluetooth
+- [marstek-ble-control](https://github.com/sphings79/marstek-ble-control) — cloudfreies Web-Bedienfeld über Web Bluetooth
 
 ## Mitwirken
 

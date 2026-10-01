@@ -311,14 +311,14 @@ Catalogues load on demand, one per language — a German installation never fetc
 
 ## More Home Assistant projects
 
-- [Marstek Venus Modbus](https://github.com/sphings79/marstek_venus_modbus_dev) — Marstek Venus battery storage over local Modbus TCP
+- [Marstek Modbus Suite](https://github.com/sphings79/marstek-modbus-suite) — Marstek Venus battery storage over local Modbus TCP
 - [Shelly Modbus](https://github.com/sphings79/shelly-modbus-home-assistant) — Shelly energy meters and relays over Modbus TCP, no cloud
 - [MyIP.wtf](https://github.com/sphings79/myip-wtf-home-assistant) — public IPv4/IPv6, ISP and geolocation as sensors
-- [Leasing KM Calculator](https://github.com/sphings79/km_leasing_check_ha) — mileage allowance for a leased car
+- [Leasing KM Calculator](https://github.com/sphings79/leasing-km-home-assistant) — mileage allowance for a leased car
 - [Leasing KM Card](https://github.com/sphings79/leasing_km_card) — the matching Lovelace card
 - [Marstek Venus BLE](https://github.com/sphings79/ha-marstek-ble) — Marstek Venus E over Bluetooth LE
 - [Marstek offline endpoint](https://github.com/sphings79/Marstek-offline-endpoint) — run a Venus battery without the cloud
-- [venuscontrol](https://github.com/sphings79/venuscontrol) — cloud-free web control panel over Web Bluetooth
+- [marstek-ble-control](https://github.com/sphings79/marstek-ble-control) — cloud-free web control panel over Web Bluetooth
 
 ## Contributing
 
