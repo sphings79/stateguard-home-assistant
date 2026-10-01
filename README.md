@@ -318,7 +318,7 @@ Catalogues load on demand, one per language — a German installation never fetc
 - [Leasing KM Card](https://github.com/sphings79/leasing_km_card) — the matching Lovelace card
 - [Marstek Venus BLE](https://github.com/sphings79/ha-marstek-ble) — Marstek Venus E over Bluetooth LE
 - [Marstek offline endpoint](https://github.com/sphings79/Marstek-offline-endpoint) — run a Venus battery without the cloud
-- [marstek-ble-control](https://github.com/sphings79/marstek-ble-control) — cloud-free web control panel over Web Bluetooth
+- [Marstek BLE Control](https://github.com/sphings79/marstek-ble-control) — cloud-free web control panel over Web Bluetooth
 
 ## Contributing
 

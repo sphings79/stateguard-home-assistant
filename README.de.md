@@ -320,7 +320,7 @@ Die Kataloge werden bei Bedarf geladen, einer je Sprache — eine deutsche Insta
 - [Leasing-KM-Karte](https://github.com/sphings79/leasing_km_card) — die passende Lovelace-Karte
 - [Marstek Venus BLE](https://github.com/sphings79/ha-marstek-ble) — Marstek Venus E über Bluetooth LE
 - [Marstek Offline-Endpunkt](https://github.com/sphings79/Marstek-offline-endpoint) — Venus-Batterie ohne Cloud betreiben
-- [marstek-ble-control](https://github.com/sphings79/marstek-ble-control) — cloudfreies Web-Bedienfeld über Web Bluetooth
+- [Marstek BLE Control](https://github.com/sphings79/marstek-ble-control) — cloudfreies Web-Bedienfeld über Web Bluetooth
 
 ## Mitwirken
 
