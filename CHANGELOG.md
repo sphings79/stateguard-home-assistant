@@ -6,6 +6,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-10-14
+
+### Fixed
+
+- **The sidebar entry stayed after disabling the integration.** The panel is
+  now removed when the config entry is unloaded, and registered again when it
+  is re-enabled.
+
 ## [0.2.1] - 2026-08-29
 
 ### Fixed
