@@ -332,7 +332,7 @@ Catalogues load on demand, one per language — a German installation never fetc
 
 ## Contributing
 
-Issues and pull requests are welcome. For the frontend, run `npm install` and `npm run build` inside `frontend/` — the built bundles are committed because HACS does not run a build step.
+Issues and pull requests are welcome. For the frontend, run `npm install` and `npm run build` inside `frontend/` — the built bundles are committed because installing from the repository does not run a build step.
 
 If StateGuard saves you a dead battery or a silent smoke detector, a ⭐ on the repository genuinely helps other people find it.
 
@@ -350,4 +350,4 @@ StateGuard is an unofficial, community-built integration. It is not affiliated w
 
 ---
 
-<sub>Home Assistant monitoring · entity unavailable alert · device offline notification · battery low warning · sensor stopped reporting · stale entity detection · label based monitoring · HACS integration · Telegram notification · Pushover · ntfy · SMTP email alert · Lovelace card · quiet hours · escalation · incident history</sub>
+<sub>Home Assistant monitoring · entity unavailable alert · device offline notification · battery low warning · sensor stopped reporting · stale entity detection · label based monitoring · Marketplace integration · HACS integration · Telegram notification · Pushover · ntfy · SMTP email alert · Lovelace card · quiet hours · escalation · incident history</sub>

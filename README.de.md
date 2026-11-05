@@ -334,7 +334,7 @@ Die Kataloge werden bei Bedarf geladen, einer je Sprache — eine deutsche Insta
 
 ## Mitwirken
 
-Issues und Pull Requests sind willkommen. Fürs Frontend in `frontend/` einmal `npm install` und `npm run build` — die gebauten Bundles liegen im Repository, weil HACS keinen Build ausführt.
+Issues und Pull Requests sind willkommen. Fürs Frontend in `frontend/` einmal `npm install` und `npm run build` — die gebauten Bundles liegen im Repository, weil die Installation aus dem Repository keinen Build ausführt.
 
 Wenn dir StateGuard eine leere Batterie oder einen stummen Rauchmelder erspart, hilft ein ⭐ auf dem Repository anderen wirklich beim Finden.
 
@@ -352,4 +352,4 @@ StateGuard ist eine inoffizielle, aus der Community entstandene Integration. Sie
 
 ---
 
-<sub>Home Assistant Überwachung · Entität nicht verfügbar · Gerät offline melden · Batterie schwach Warnung · Sensor meldet nicht mehr · Stale-Erkennung · Label-basierte Überwachung · HACS Integration · Telegram Benachrichtigung · Pushover · ntfy · SMTP E-Mail · Lovelace-Karte · Ruhezeiten · Eskalation · Vorfall-Historie</sub>
+<sub>Home Assistant Überwachung · Entität nicht verfügbar · Gerät offline melden · Batterie schwach Warnung · Sensor meldet nicht mehr · Stale-Erkennung · Label-basierte Überwachung · Marketplace Integration · HACS Integration · Telegram Benachrichtigung · Pushover · ntfy · SMTP E-Mail · Lovelace-Karte · Ruhezeiten · Eskalation · Vorfall-Historie</sub>
