@@ -6,7 +6,7 @@
   **Label the devices that matter, and StateGuard tells you when they stop answering.**
   A custom integration that watches Home Assistant labels for entities going unavailable, falling silent, or crossing a threshold — with its own panel, its own Lovelace card, and notifications through SMTP, Telegram, Pushover, ntfy or any Home Assistant service.
 
-  [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge)](https://hacs.xyz)
+  [![Marketplace](https://img.shields.io/badge/Marketplace-Custom-41BDF5?style=for-the-badge)](https://my.home-assistant.io/redirect/marketplace_browse/)
   [![Release](https://img.shields.io/github/v/release/sphings79/stateguard-home-assistant?style=for-the-badge&color=7C7CF5)](https://github.com/sphings79/stateguard-home-assistant/releases)
   [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.1%2B-41BDF5?style=for-the-badge)](https://www.home-assistant.io)
   [![License](https://img.shields.io/badge/License-MIT-3ddc97?style=for-the-badge)](LICENSE)
@@ -97,7 +97,17 @@ There is a difference between the two kinds:
 
 <img src="assets/install.svg" alt="Installation in four steps: add the repository to HACS, install and restart, add the integration under Settings, then open StateGuard from the sidebar and start from a template" width="100%">
 
-### Through HACS
+### Marketplace (Home Assistant 2026.11 and newer)
+
+Home Assistant 2026.11 replaces HACS with the built-in **Marketplace**. StateGuard is not in the default catalog, so add it as a custom repository: in **Settings → Marketplace**, add `https://github.com/sphings79/stateguard-home-assistant` (category **Integration**), then install it from there. Custom repositories need the Marketplace to be connected to GitHub, and it asks you to connect the first time.
+
+You can also use this button:
+
+[![Open your Home Assistant instance and open this repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=sphings79&repository=stateguard-home-assistant&category=integration)
+
+Restart Home Assistant if a repair asks you to.
+
+### HACS (Home Assistant 2026.10 and older)
 
 1. HACS → Integrations → ⋮ → **Custom repositories**
 2. Add `https://github.com/sphings79/stateguard-home-assistant`, category **Integration**
