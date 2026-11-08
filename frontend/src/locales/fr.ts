@@ -162,6 +162,7 @@ export const fr: Strings = {
   "editor.overlap_all": "Toutes signalent",
   "editor.overlap_highest": "Seulement la gravité la plus élevée",
   "editor.notify_on_clear": "Signaler la résolution",
+  "editor.suppress_by_integration": "Ne rien signaler si l’intégration est hors service",
   "editor.suppress_by_parent": "Ne rien signaler si l’appareil parent est hors service",
   "editor.group_alerts": "Regrouper en un seul message",
   "editor.channels": "Canaux supplémentaires (en plus de la gravité)",

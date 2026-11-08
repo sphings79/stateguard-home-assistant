@@ -162,6 +162,7 @@ export const cs: Strings = {
   "editor.overlap_all": "Hlásí všechna",
   "editor.overlap_highest": "Jen nejvyšší závažnost",
   "editor.notify_on_clear": "Oznámit vyřešení",
+  "editor.suppress_by_integration": "Mlčet, když je integrace mimo provoz",
   "editor.suppress_by_parent": "Mlčet, když je nadřazené zařízení mimo provoz",
   "editor.group_alerts": "Sloučit do jedné zprávy",
   "editor.channels": "Další kanály (nad rámec těch od závažnosti)",

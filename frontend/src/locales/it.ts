@@ -162,6 +162,7 @@ export const it: Strings = {
   "editor.overlap_all": "Segnalano tutti",
   "editor.overlap_highest": "Solo la gravità più alta",
   "editor.notify_on_clear": "Segnala la risoluzione",
+  "editor.suppress_by_integration": "Taci se l’integrazione è giù",
   "editor.suppress_by_parent": "Taci se il dispositivo padre è giù",
   "editor.group_alerts": "Raggruppa in un unico messaggio",
   "editor.channels": "Canali aggiuntivi (oltre a quelli della gravità)",

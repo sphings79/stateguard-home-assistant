@@ -162,6 +162,7 @@ export const pl: Strings = {
   "editor.overlap_all": "Zgłaszają wszystkie",
   "editor.overlap_highest": "Tylko najwyższa ważność",
   "editor.notify_on_clear": "Zgłoś rozwiązanie",
+  "editor.suppress_by_integration": "Milcz, gdy integracja jest niedostępna",
   "editor.suppress_by_parent": "Milcz, gdy urządzenie nadrzędne jest niedostępne",
   "editor.group_alerts": "Połącz w jedną wiadomość",
   "editor.channels": "Dodatkowe kanały (poza kanałami ważności)",

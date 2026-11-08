@@ -162,6 +162,7 @@ export const es: Strings = {
   "editor.overlap_all": "Avisan todas",
   "editor.overlap_highest": "Solo la de mayor gravedad",
   "editor.notify_on_clear": "Avisar cuando se resuelva",
+  "editor.suppress_by_integration": "Callar si la integración está caída",
   "editor.suppress_by_parent": "Callar si el dispositivo padre está caído",
   "editor.group_alerts": "Agrupar en un solo mensaje",
   "editor.channels": "Canales adicionales (además de los de la gravedad)",

@@ -6,6 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **Per-watch switch to report problems while the integration is down.** New
+  option "Suppress when the integration is down" (on by default, so existing
+  watches behave as before). Turn it off to still get alerts when an
+  integration loses its connection.
+
 ## [0.2.2] - 2026-10-14
 
 ### Fixed

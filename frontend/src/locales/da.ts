@@ -162,6 +162,7 @@ export const da: Strings = {
   "editor.overlap_all": "De melder alle",
   "editor.overlap_highest": "Kun den højeste alvorsgrad",
   "editor.notify_on_clear": "Meld, når det er løst",
+  "editor.suppress_by_integration": "Ti stille, når integrationen er nede",
   "editor.suppress_by_parent": "Ti stille, når den overordnede enhed er nede",
   "editor.group_alerts": "Saml i én besked",
   "editor.channels": "Ekstra kanaler (ud over alvorsgradens)",

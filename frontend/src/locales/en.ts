@@ -174,6 +174,7 @@ export const en: Strings = {
   "editor.overlap_all": "All of them alert",
   "editor.overlap_highest": "Only the highest severity",
   "editor.notify_on_clear": "Notify when resolved",
+  "editor.suppress_by_integration": "Suppress when the integration is down",
   "editor.suppress_by_parent": "Suppress when the parent device is down",
   "editor.group_alerts": "Bundle into one message",
   "editor.preview": "Currently covered",

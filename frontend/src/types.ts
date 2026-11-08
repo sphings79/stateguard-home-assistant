@@ -63,6 +63,7 @@ export interface Watch {
   restart_grace: number | null;
   overlap_mode: "all" | "highest_severity";
   notify_on_clear: boolean;
+  suppress_by_integration: boolean;
   suppress_by_parent: boolean;
   group_alerts: boolean;
   channels: string[];

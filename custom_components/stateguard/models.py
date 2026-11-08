@@ -127,6 +127,7 @@ class Watch:
     restart_grace: int | None = None
     overlap_mode: str = OverlapMode.ALL
     notify_on_clear: bool = True
+    suppress_by_integration: bool = True
     suppress_by_parent: bool = True
     group_alerts: bool = True
     channels: list[str] = field(default_factory=list)

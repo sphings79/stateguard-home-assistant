@@ -162,6 +162,7 @@ export const sv: Strings = {
   "editor.overlap_all": "Alla larmar",
   "editor.overlap_highest": "Endast den högsta allvarsgraden",
   "editor.notify_on_clear": "Meddela när det är löst",
+  "editor.suppress_by_integration": "Var tyst när integrationen är nere",
   "editor.suppress_by_parent": "Var tyst när den överordnade enheten är nere",
   "editor.group_alerts": "Slå ihop till ett meddelande",
   "editor.channels": "Extra kanaler (utöver allvarsgradens)",

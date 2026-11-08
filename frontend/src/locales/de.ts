@@ -174,6 +174,7 @@ export const de: Strings = {
   "editor.overlap_all": "Alle melden",
   "editor.overlap_highest": "Nur der höchste Schweregrad",
   "editor.notify_on_clear": "Entwarnung senden",
+  "editor.suppress_by_integration": "Unterdrücken, wenn die Integration ausgefallen ist",
   "editor.suppress_by_parent": "Unterdrücken, wenn das Elterngerät ausgefallen ist",
   "editor.group_alerts": "Zu einer Nachricht bündeln",
   "editor.preview": "Aktuell erfasst",

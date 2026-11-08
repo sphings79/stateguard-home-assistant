@@ -68,6 +68,7 @@ const emptyWatch = (severityId: string): Watch => ({
   restart_grace: null,
   overlap_mode: "all",
   notify_on_clear: true,
+  suppress_by_integration: true,
   suppress_by_parent: true,
   group_alerts: true,
   channels: [],
@@ -765,6 +766,7 @@ export class WatchEditor extends LitElement {
               </label>
               ${[
                 ["notify_on_clear", "editor.notify_on_clear"],
+                ["suppress_by_integration", "editor.suppress_by_integration"],
                 ["suppress_by_parent", "editor.suppress_by_parent"],
                 ["group_alerts", "editor.group_alerts"],
                 ["enabled", "editor.enabled"],

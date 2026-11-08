@@ -162,6 +162,7 @@ export const nl: Strings = {
   "editor.overlap_all": "Allemaal melden",
   "editor.overlap_highest": "Alleen het hoogste ernstniveau",
   "editor.notify_on_clear": "Melden als het is opgelost",
+  "editor.suppress_by_integration": "Onderdrukken als de integratie uit is",
   "editor.suppress_by_parent": "Onderdrukken als het bovenliggende apparaat uit is",
   "editor.group_alerts": "Bundelen tot één bericht",
   "editor.channels": "Extra kanalen (naast het ernstniveau)",

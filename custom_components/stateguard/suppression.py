@@ -58,7 +58,7 @@ class SuppressionEngine:
 
         if self.async_internet_down(settings.internet_entity):
             return SuppressionReason.INTERNET_DOWN
-        if self._integration_down(entity_id):
+        if watch.suppress_by_integration and self._integration_down(entity_id):
             return SuppressionReason.INTEGRATION_DOWN
         if watch.suppress_by_parent and self._parent_down(entity_id):
             return SuppressionReason.PARENT_DOWN
